@@ -1,9 +1,12 @@
 'use strict';
 
 const createHttpError = require('http-errors');
-const mongoose = require('mongoose');
+const express = require('express');
 
-const mTaskLog = mongoose.model('Tasklog');
+const router = express.Router(); // eslint-disable-line new-cap
+
+const publicAPI = require('../../api').public;
+const sendAPIResult = require('../../lib/sendapiresult');
 
 /**
  * @apiDefine FormatLog
@@ -24,7 +27,9 @@ const mTaskLog = mongoose.model('Tasklog');
  *     "elapsedTime": 915.768167
  *   }
  */
-const api = {};
+router.get('/', function () {
+  throw createHttpError(400);
+});
 
 /**
  * @api {get} /logs/:about.json :About
@@ -37,14 +42,9 @@ const api = {};
  *
  * @apiUse FormatLog
  */
-api.about = function (about) {
-  about = about.toString();
-  if (['task', 'twit_new', 'twit_tomorrow', 'delete'].indexOf(about) === -1) {
-    return Promise.reject(createHttpError(400, ':about must be one of task, twit_new, twit_tomorrow, delete'));
-  }
-  return Promise.resolve(mTaskLog.findOne({
-    name: about
-  }, '-_id -__v').exec());
-};
+router.get('/:about.json', function (req, res) {
+  const about = req.params.about;
+  sendAPIResult(publicAPI.logs.about(about), res);
+});
 
-module.exports = api;
+module.exports = router;

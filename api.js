@@ -4,11 +4,6 @@ const config = require('config');
 
 const mongoURI = config.get('mongoURI');
 
-require('../db')(mongoURI);
-
-const api = {
-  private: require('./private'),
-  public: require('./public')
-};
+const api = require('kyukou-api')(mongoURI);
 
 module.exports = api;

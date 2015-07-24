@@ -74,7 +74,7 @@ gulp.task('build:static', ['bower'], function () {
 
 gulp.task('apidoc', function (callback) {
   const chunk = apidoc.createDoc({
-    src: 'api/',
+    src: './routes/api',
     parse: true,
     debug: false
   });
@@ -82,7 +82,7 @@ gulp.task('apidoc', function (callback) {
     chunk.data = JSON.parse(chunk.data);
     chunk.project = JSON.parse(chunk.project);
     chunk.list = apiList(chunk.data);
-    fs.writeFileSync('api/doc.json', JSON.stringify(chunk));
+    fs.writeFileSync('api.json', JSON.stringify(chunk));
     callback();
   } else {
     callback(new Error('apiDoc execution terminated (set "debug: true" for details).'));
