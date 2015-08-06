@@ -7,10 +7,10 @@ const del = require('del');
 const eslint = require('gulp-eslint');
 const fs = require('fs');
 const gulp = require('gulp');
-const header = require('gulp-header');
 const less = require('gulp-less');
 const mainBowerFiles = require('main-bower-files');
 const minify = require('gulp-minify-css');
+const preprocess = require('gulp-preprocess');
 const uglify = require('gulp-uglify');
 
 const srcPathBase = './src';
@@ -54,7 +54,11 @@ gulp.task('lint:js', function () {
 gulp.task('build:js', function () {
   const destPath = destPathBase + '/js';
   return gulp.src(srcPathBase + '/js/**/*.js')
-    .pipe(header('var SITE_URL = \'//' + config.get('site.url') + '/\';\n'))
+    .pipe(preprocess({
+      context: {
+        SITE_URL: '//' + config.get('site.url')
+      }
+    }))
     .pipe(uglify())
     .pipe(gulp.dest(destPath));
 });

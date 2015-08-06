@@ -1,5 +1,7 @@
 /* eslint-disable no-var, object-shorthand, strict */
-/* global angular, SITE_URL */
+/* global angular, window */
+
+var SITE_URL = '/* @echo SITE_URL */' || '//' + window.location.hostname;
 
 var kyukouAppFilters = angular.module('kyukouApp.filters', []);
 
@@ -46,7 +48,7 @@ kyukouApp.factory('eventList', ['$http', '$q', function ($http, $q) {
     return date.getFullYear() + '年' + (date.getMonth() + 1) + '月' + date.getDate() + '日（' + ['日', '月', '火', '水', '木', '金', '土'][date.getDay()] + '）';
   };
   var deferred = $q.defer();
-  $http.get(SITE_URL + 'api/1/events/list.json').then(function (result) {
+  $http.get(SITE_URL + '/api/1/events/list.json').then(function (result) {
     var date = new Date();
     var today = toJapaneseDateString(date);
     date.setDate(date.getDate() + 1);

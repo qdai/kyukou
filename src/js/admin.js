@@ -1,5 +1,7 @@
 /* eslint-disable no-var, object-shorthand, strict */
-/* global angular, SITE_URL */
+/* global angular, window */
+
+var SITE_URL = '/* @echo SITE_URL */' || '//' + window.location.hostname;
 
 var adminMethod = function (method) {
   return function ($scope, $http) {
@@ -8,7 +10,7 @@ var adminMethod = function (method) {
     this.post = function (data) {
       $http({
         method: 'POST',
-        url: SITE_URL + 'admin/events/' + method,
+        url: SITE_URL + '/admin/events/' + method,
         data: data
       }).success(function (result) {
         var alert = {};
@@ -40,7 +42,7 @@ adminApp.controller('adminCtrl', ['$scope', '$http', function ($scope, $http) {
   $scope.events = [];
 
   $scope.loadEvents = function () {
-    $http.get(SITE_URL + 'admin/events/list.json').success(function (data) {
+    $http.get(SITE_URL + '/admin/events/list.json').success(function (data) {
       $scope.events = data;
     }).error(function (data, status) {
       console.error('load error: %s: %s', status, data);
