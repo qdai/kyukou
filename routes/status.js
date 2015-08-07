@@ -1,18 +1,12 @@
 'use strict';
 
-const config = require('config');
 const express = require('express');
+const path = require('path');
 
 const router = express.Router(); // eslint-disable-line new-cap
-const site = config.get('site');
 
 router.get('/', function (req, res) {
-  res.render('status', {
-    site,
-    page: {
-      title: 'Status - ' + site.name
-    }
-  });
+  res.sendFile(path.join(__dirname, '../views/status.html'));
 });
 
 module.exports = router;

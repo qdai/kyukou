@@ -30,9 +30,6 @@ const app = express();
 require('./cron');
 // additional setting
 app.set('x-powered-by', false);
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
 
 app.use(compression());
 app.use(favicon(path.join(__dirname, 'public/favicon.ico')));

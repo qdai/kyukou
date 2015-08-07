@@ -3,6 +3,7 @@
 const config = require('config');
 const createHttpError = require('http-errors');
 const express = require('express');
+const path = require('path');
 const pwd = require('pwd');
 
 const admin = config.get('admin');
@@ -14,12 +15,7 @@ const sendAPIResult = require('../lib/sendapiresult');
 
 router.get('/', function (req, res) {
   if (req.session.loggedin) {
-    res.render('admin', {
-      site,
-      page: {
-        title: 'Admin - ' + site.name
-      }
-    });
+    res.sendFile(path.join(__dirname, '../views/index.html'));
   } else {
     res.redirect('/admin/login');
   }
@@ -29,12 +25,7 @@ router.get('/login', function (req, res) {
   if (req.session.loggedin) {
     res.redirect('/admin');
   } else {
-    res.render('login', {
-      site,
-      page: {
-        title: 'Login - ' + site.name
-      }
-    });
+    res.sendFile(path.join(__dirname, '../views/login.html'));
   }
 });
 

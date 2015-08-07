@@ -2,16 +2,16 @@ doctype html
 html(lang=site.lang, manifest='/kyukou.appcache', prefix='og: http://ogp.me/ns#', data-ng-app='kyukouApp')
   head
     meta(charset='utf-8')
-    title=page.title
+    title=site.name
     <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><![endif]-->
     meta(name='viewport', content='width=device-width')
     meta(name='author', content=site.author)
     meta(name='application-name', content=site.name)
-    meta(name='description', content=page.description)
-    meta(name='keywords', content=page.keywords)
-    meta(property='og:title', content=page.title)
+    meta(name='description', content=site.description)
+    meta(name='keywords', content=site.keywords)
+    meta(property='og:title', content=site.name)
     meta(property='og:type', content='website')
-    meta(property='og:description', content=page.description)
+    meta(property='og:description', content=site.description)
     meta(property='og:url', content='https://' + site.url)
     meta(property='og:site_name', content=site.name)
     link(rel='stylesheet', href='/lib/bootstrap/dist/css/bootstrap.min.css')
@@ -78,8 +78,8 @@ html(lang=site.lang, manifest='/kyukou.appcache', prefix='og: http://ogp.me/ns#'
   body
     div.container
       header.page-header
-        h1=page.title
-        p=page.description
+        h1=site.name
+        p=site.description
         p#header-buttons
           a.icon-twitter(target='_blank', href='//twitter.com/' + site.twitter, title='Twitter')
             span Twitter

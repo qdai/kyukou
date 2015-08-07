@@ -2,6 +2,7 @@
 
 const config = require('config');
 const express = require('express');
+const path = require('path');
 const vobject = require('vobject');
 
 const router = express.Router(); // eslint-disable-line new-cap
@@ -11,13 +12,7 @@ const get = require('../lib/getasstring');
 const publicAPI = require('../api').public;
 
 router.get('/', function (req, res) {
-  res.render('calendar', {
-    site,
-    page: {
-      title: 'Calendar - ' + site.name,
-      description: '休講情報をiCalendar形式で配信しています。'
-    }
-  });
+  res.sendFile(path.join(__dirname, '../views/calendar.html'));
 });
 
 router.get('/kyukou.ics', function (req, res) {

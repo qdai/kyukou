@@ -4,5 +4,5 @@ config/development.*
 node_modules/
 bower_components/
 public/
-api.json
 src/static/lib/
+views/
