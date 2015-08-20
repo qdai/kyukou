@@ -2,9 +2,9 @@
   "name": "kyukou",
   "description": "Alert information about cancellation of a lecture.",
   "version": "1.4.1",
-  "author": "Qdai",
+  "author": "qdai",
   "bugs": {
-    "url": "https://github.com/Qdai/kyukou/issues"
+    "url": "https://github.com/qdai/kyukou/issues"
   },
   "dependencies": {
     "body-parser": "^1.13.3",
@@ -51,7 +51,7 @@
   "main": "./bin/www",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Qdai/kyukou.git"
+    "url": "git+https://github.com/qdai/kyukou.git"
   },
   "scripts": {
     "build": "gulp build",

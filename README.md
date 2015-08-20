@@ -1,6 +1,6 @@
 # [Kyukou Kyudai](https://kyukou-kyudai.herokuapp.com/)
 
-[![Dependency Status](https://david-dm.org/Qdai/kyukou.svg?style=flat)](https://david-dm.org/Qdai/kyukou) [![devDependency Status](https://david-dm.org/Qdai/kyukou/dev-status.svg?style=flat)](https://david-dm.org/Qdai/kyukou#info=devDependencies)
+[![Dependency Status](https://david-dm.org/qdai/kyukou.svg)](https://david-dm.org/qdai/kyukou) [![devDependency Status](https://david-dm.org/qdai/kyukou/dev-status.svg)](https://david-dm.org/qdai/kyukou#info=devDependencies)
 
 Alert information about cancellation of a lecture.
 

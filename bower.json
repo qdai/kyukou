@@ -1,7 +1,7 @@
 {
   "name": "kyukou",
   "authors": [
-    "Qdai"
+    "qdai"
   ],
   "dependencies": {
     "angular": "~1.3.13",
