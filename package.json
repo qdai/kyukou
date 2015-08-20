@@ -41,7 +41,7 @@
     "require-dir": "^0.3.0"
   },
   "engines": {
-    "iojs": "3.0.0"
+    "iojs": "2.5.0"
   },
   "homepage": "https://kyukou-kyudai.herokuapp.com/",
   "keywords": [
