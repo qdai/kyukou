@@ -21,18 +21,17 @@ router.get('/', function (req, res) {
       language: site.lang,
       ttl: 180
     });
-    events = events.sort(function (a, b) {
+    events.sort(function (a, b) {
       return b.pubDate.getTime() - a.pubDate.getTime();
-    });
-    for (let i = 0; i < 20; i++) {
+    }).slice(0, 20).forEach(function (event) {
       feed.item({
-        title: get(events[i]).asRSSTitle(),
-        description: get(events[i]).asRSSDescription(),
-        url: events[i].link,
-        guid: events[i].hash,
-        date: events[i].pubDate.toISOString()
+        title: get(event).asRSSTitle(),
+        description: get(event).asRSSDescription(),
+        url: event.link,
+        guid: event.hash,
+        date: event.pubDate.toISOString()
       });
-    }
+    });
     res.set('Content-Type', 'application/rss+xml');
     res.send(feed.xml());
   });
