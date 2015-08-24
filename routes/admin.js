@@ -15,7 +15,7 @@ const sendAPIResult = require('../lib/sendapiresult');
 
 router.get('/', function (req, res) {
   if (req.session.loggedin) {
-    res.sendFile(path.join(__dirname, '../views/index.html'));
+    res.sendFile(path.join(__dirname, '../views/admin.html'));
   } else {
     res.redirect('/admin/login');
   }
