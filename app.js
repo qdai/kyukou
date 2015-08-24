@@ -4,7 +4,6 @@ const bodyParser = require('body-parser');
 const compression = require('compression');
 const config = require('config');
 const connectMongo = require('connect-mongo');
-const cookieParser = require('cookie-parser');
 const createHttpError = require('http-errors');
 const express = require('express');
 const favicon = require('serve-favicon');
@@ -36,7 +35,6 @@ app.use(favicon(path.join(__dirname, 'public/favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 // session for routes/admin
 app.use(session({
