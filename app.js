@@ -11,8 +11,22 @@ const logger = require('morgan');
 const path = require('path');
 const session = require('express-session');
 
+const app = express();
 const MongoStore = connectMongo(session);
 const mongoURI = config.get('mongoURI');
+const sessionOptions = {
+  cookie: {},
+  resave: false,
+  saveUninitialized: false,
+  secret: config.get('secret'),
+  store: new MongoStore({
+    url: mongoURI,
+    autoReconnect: true
+  })
+};
+if (app.get('env') === 'production') {
+  sessionConfig.cookie.secure = true;
+}
 
 // routes
 const routes = require('./routes/index');
@@ -23,11 +37,10 @@ const api = require('./routes/api');
 const api0 = require('./routes/api0');
 const admin = require('./routes/admin');
 
-const app = express();
-
 // cron job
 require('./cron');
 // additional setting
+app.set('trust proxy', true);
 app.set('x-powered-by', false);
 
 app.use(compression());
@@ -37,16 +50,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 // session for routes/admin
-app.use(session({
-  store: new MongoStore({
-    url: mongoURI,
-    autoReconnect: true,
-    cookie: {}
-  }),
-  secret: config.get('secret'),
-  resave: false,
-  saveUninitialized: false
-}));
+app.use(session(sessionOptions));
 
 // redirect to HTTPS on production
 if (app.get('env') === 'production') {
