@@ -25,7 +25,7 @@ const sessionOptions = {
   })
 };
 if (app.get('env') === 'production') {
-  sessionConfig.cookie.secure = true;
+  sessionOptions.cookie.secure = true;
 }
 
 // routes
