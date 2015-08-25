@@ -56,7 +56,7 @@ app.use(session(sessionOptions));
 if (app.get('env') === 'production') {
   app.use(function (req, res, next) {
     res.set('strict-transport-security', 'max-age=63072000');
-    if (req.headers['x-forwarded-proto'] === 'http') {
+    if (!req.secure) {
       res.redirect(301, 'https://' + req.headers.host + req.originalUrl);
     } else {
       next();
