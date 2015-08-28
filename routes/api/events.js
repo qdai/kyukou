@@ -3,7 +3,7 @@
 const createHttpError = require('http-errors');
 const express = require('express');
 
-const router = express.Router(); // eslint-disable-line new-cap
+const router = express.Router();
 
 const publicAPI = require('../../api').public;
 const sendAPIResult = require('../../lib/sendapiresult');

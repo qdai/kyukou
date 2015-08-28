@@ -4,7 +4,7 @@ const config = require('config');
 const express = require('express');
 const RSS = require('rss');
 
-const router = express.Router(); // eslint-disable-line new-cap
+const router = express.Router();
 const site = config.get('site');
 
 const get = require('../lib/getasstring');

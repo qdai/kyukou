@@ -4,7 +4,7 @@ const config = require('config');
 const express = require('express');
 const path = require('path');
 
-const router = express.Router(); // eslint-disable-line new-cap
+const router = express.Router();
 const site = config.get('site');
 
 router.get('/', function (req, res) {

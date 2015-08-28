@@ -1,4 +1,3 @@
-/* eslint-disable no-var, object-shorthand, strict */
 /* global angular, window */
 
 var SITE_URL = '/* @echo SITE_URL */' || '//' + window.location.hostname;
@@ -45,7 +44,7 @@ adminApp.controller('adminCtrl', ['$scope', '$http', function ($scope, $http) {
     $http.get(SITE_URL + '/admin/events/list.json').success(function (data) {
       $scope.events = data;
     }).error(function (data, status) {
-      console.error('load error: %s: %s', status, data);
+      console.error('load error: %s: %s', status, data); // eslint-disable-line no-console
     });
   };
 

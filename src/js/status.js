@@ -1,4 +1,3 @@
-/* eslint-disable no-var, strict */
 /* global angular, window */
 
 var SITE_URL = '/* @echo SITE_URL */' || '//' + window.location.hostname;

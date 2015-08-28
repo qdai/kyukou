@@ -7,8 +7,7 @@ const path = require('path');
 const pwd = require('pwd');
 
 const admin = config.get('admin');
-const router = express.Router(); // eslint-disable-line new-cap
-const site = config.get('site');
+const router = express.Router();
 
 const privateAPI = require('../api').private;
 const sendAPIResult = require('../lib/sendapiresult');

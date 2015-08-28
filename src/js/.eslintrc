@@ -1,0 +1,18 @@
+{
+  "ecmaFeatures": {
+    "blockBindings": false,
+    "classes": false,
+    "objectLiteralShorthandMethods": false,
+    "objectLiteralShorthandProperties": false
+  },
+  "env": {
+    "browser": true,
+    "node": false
+  },
+  "rules": {
+    "strict": 0,
+
+    "no-var": 0,
+    "object-shorthand": 0
+  }
+}

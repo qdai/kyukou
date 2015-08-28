@@ -4,6 +4,7 @@
 
 const debug = require('debug')('kyukou');
 const config = require('config');
+
 const app = require('../app');
 
 const serverConfig = config.get('server');

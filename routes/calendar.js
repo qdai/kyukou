@@ -5,7 +5,7 @@ const express = require('express');
 const path = require('path');
 const vobject = require('vobject');
 
-const router = express.Router(); // eslint-disable-line new-cap
+const router = express.Router();
 const site = config.get('site');
 
 const get = require('../lib/getasstring');

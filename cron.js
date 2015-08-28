@@ -10,7 +10,7 @@ const reportTaskResult = function (task) {
   }).catch(function (err) {
     return 'err: ' + err.stack;
   }).then(function (msg) {
-    console.log(msg);
+    console.log(msg); // eslint-disable-line no-console
   });
 };
 const twitter = config.get('twitter');
@@ -19,22 +19,22 @@ const twitter = config.get('twitter');
 const jobTask = new CronJob('0 5 0,4,8,12,16,20 * * *', function () {
   reportTaskResult(privateAPI.tasks.task());
 }, null, true, 'Asia/Tokyo');
-console.log('Job task running:', jobTask.running);
+console.log('Job task running:', jobTask.running); // eslint-disable-line no-console
 
 // run twit_new.js 1, 5, 9, 13, 17, 21
 const jobTwitNew = new CronJob('0 0,5,10 1,5,9,13,17,21 * * *', function () {
   reportTaskResult(privateAPI.tasks.twitNew(twitter));
 }, null, true, 'Asia/Tokyo');
-console.log('Job twit_new running:', jobTwitNew.running);
+console.log('Job twit_new running:', jobTwitNew.running); // eslint-disable-line no-console
 
 // run twit_tomorrow.js 22
 const jobTwitTomorrow = new CronJob('0 0,5,10 22 * * *', function () {
   reportTaskResult(privateAPI.tasks.twitTomorrow(twitter));
 }, null, true, 'Asia/Tokyo');
-console.log('Job twit_tomorrow running:', jobTwitTomorrow.running);
+console.log('Job twit_tomorrow running:', jobTwitTomorrow.running); // eslint-disable-line no-console
 
 // run delete.js 2
 const jobDelete = new CronJob('0 5 2 * * *', function () {
   reportTaskResult(privateAPI.tasks.delete());
 }, null, true, 'Asia/Tokyo');
-console.log('Job delete running:', jobDelete.running);
+console.log('Job delete running:', jobDelete.running); // eslint-disable-line no-console

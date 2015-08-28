@@ -1,4 +1,3 @@
-/* eslint-disable no-var, strict */
 /* global angular */
 
 var calendarApp = angular.module('calendarApp', []);

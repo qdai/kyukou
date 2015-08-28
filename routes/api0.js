@@ -4,7 +4,7 @@ const config = require('config');
 const createHttpError = require('http-errors');
 const express = require('express');
 
-const router = express.Router(); // eslint-disable-line new-cap
+const router = express.Router();
 
 const errorMessage = 'API v0 is no longer active. Please migrate to API v1 (https://' + config.get('site.url') + '/api/1).';
 
