@@ -4,7 +4,6 @@ const bodyParser = require('body-parser');
 const compression = require('compression');
 const config = require('config');
 const connectMongo = require('connect-mongo');
-const cookieParser = require('cookie-parser');
 const createHttpError = require('http-errors');
 const express = require('express');
 const favicon = require('serve-favicon');
@@ -12,8 +11,22 @@ const logger = require('morgan');
 const path = require('path');
 const session = require('express-session');
 
+const app = express();
 const MongoStore = connectMongo(session);
 const mongoURI = config.get('mongoURI');
+const sessionOptions = {
+  cookie: {},
+  resave: false,
+  saveUninitialized: false,
+  secret: config.get('secret'),
+  store: new MongoStore({
+    url: mongoURI,
+    autoReconnect: true
+  })
+};
+if (app.get('env') === 'production') {
+  sessionOptions.cookie.secure = true;
+}
 
 // routes
 const routes = require('./routes/index');
@@ -24,11 +37,10 @@ const api = require('./routes/api');
 const api0 = require('./routes/api0');
 const admin = require('./routes/admin');
 
-const app = express();
-
 // cron job
 require('./cron');
 // additional setting
+app.set('trust proxy', true);
 app.set('x-powered-by', false);
 
 app.use(compression());
@@ -36,25 +48,15 @@ app.use(favicon(path.join(__dirname, 'public/favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 // session for routes/admin
-app.use(session({
-  store: new MongoStore({
-    url: mongoURI,
-    autoReconnect: true,
-    cookie: {}
-  }),
-  secret: config.get('secret'),
-  resave: false,
-  saveUninitialized: false
-}));
+app.use(session(sessionOptions));
 
 // redirect to HTTPS on production
 if (app.get('env') === 'production') {
   app.use(function (req, res, next) {
     res.set('strict-transport-security', 'max-age=63072000');
-    if (req.headers['x-forwarded-proto'] === 'http') {
+    if (!req.secure) {
       res.redirect(301, 'https://' + req.headers.host + req.originalUrl);
     } else {
       next();
