@@ -1,4 +1,8 @@
-/* global angular, window */
+/* global window */
+
+var angular = require('angular');
+require('angular-animate');
+require('angular-bootstrap');
 
 var SITE_URL = '/* @echo SITE_URL */' || '//' + window.location.hostname;
 

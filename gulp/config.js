@@ -53,12 +53,12 @@ exports.build = {
   },
   js: {
     dest: dest + '/js',
+    files: [src + '/js/admin.js', src + '/js/app.js', src + '/js/calendar.js', src + '/js/status.js'],
     options: {
       context: {
         SITE_URL: '//' + config.get('site.url')
       }
-    },
-    src: src + '/js/**/*.js'
+    }
   },
   static: {
     dest,

@@ -8,9 +8,7 @@ html(data-ng-app='adminApp')
     meta(name='author', content=site.author)
     link(rel='stylesheet', href='/lib/bootstrap/dist/css/bootstrap.min.css')
     link(rel='stylesheet', href='/css/main.css')
-    script(src='/lib/angular/angular.min.js', defer)
-    script(src='/lib/angular-bootstrap/ui-bootstrap-tpls.min.js', defer)
-    script(src='/js/admin.js', defer)
+    script(src='/js/admin.bundle.js', async)
   body.container
     header.page-header.clearfix
       h1.pull-left='Admin - '+site.name

@@ -1,4 +1,4 @@
-/* global angular */
+var angular = require('angular');
 
 var calendarApp = angular.module('calendarApp', []);
 calendarApp.controller('calendarCtrl', ['$scope', function ($scope) {

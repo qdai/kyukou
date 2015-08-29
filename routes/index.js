@@ -19,10 +19,7 @@ router.get('/kyukou.appcache', function (req, res) {
            '# ' + site.version + '\n' +
            '\n' +
            'CACHE:\n' +
-           '/lib/angular/angular.min.js\n' +
-           '/lib/angular-bootstrap/ui-bootstrap.min.js\n' +
-           '/lib/angular-local-storage/dist/angular-local-storage.min.js\n' +
-           '/js/app.js\n' +
+           '/js/app.bundle.js\n' +
            '/lib/bootstrap/dist/css/bootstrap.min.css\n' +
            '/icomoon/style.css\n' +
            '/css/main.css\n' +
