@@ -38,10 +38,7 @@
       "dependencies": null
     },
     "highlightjs": {
-      "main": [
-        "highlight.pack.min.js",
-        "styles/github.css"
-      ]
+      "main": "styles/github.css"
     },
     "moment": {
       "main": "min/moment.min.js"

@@ -2,6 +2,7 @@
 
 const apidoc = require('apidoc');
 const config = require('config');
+const hljs = require('highlight.js');
 
 const createDoc = function (src) {
   const doc = apidoc.createDoc({
@@ -13,11 +14,18 @@ const createDoc = function (src) {
   doc.data = JSON.parse(doc.data);
   doc.project = JSON.parse(doc.project);
   doc.list = {};
-  doc.data.forEach(function (el) {
-    if (!doc.list[el.group]) {
-      doc.list[el.group] = [];
+  doc.data.map(function (api) {
+    // list
+    if (!doc.list[api.group]) {
+      doc.list[api.group] = [];
     }
-    doc.list[el.group].push(el.title);
+    doc.list[api.group].push(api.title);
+    // examples
+    api.success.examples = api.success.examples.map(function (example) {
+      example.content = hljs.highlight(example.type, example.content, true).value;
+      return example;
+    });
+    return api;
   });
   return doc;
 };

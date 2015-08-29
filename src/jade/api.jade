@@ -16,9 +16,6 @@ html(lang=site.lang, prefix='og: http://ogp.me/ns#')
     link(rel='stylesheet', href='/lib/highlightjs/styles/github.css')
     link(rel='stylesheet', href='/lib/bootstrap/dist/css/bootstrap.min.css')
     link(rel='stylesheet', href='/css/main.css')
-    script(src='/lib/highlightjs/highlight.pack.min.js')
-    script.
-      hljs.initHighlightingOnLoad();
   body
     div.container
       header.page-header
@@ -91,6 +88,6 @@ html(lang=site.lang, prefix='og: http://ogp.me/ns#')
                         td!=field.description
               h3 Example
               each example in api.success.examples
-                pre(class='lang-'+example.type)
-                  code=example.content
+                pre
+                  code!=example.content
       include ./includes/footer.jade
