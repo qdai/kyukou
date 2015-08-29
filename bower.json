@@ -5,6 +5,7 @@
   ],
   "dependencies": {
     "angular": "~1.4.5",
+    "angular-animate": "~1.4.5",
     "angular-bootstrap": "~0.13.3",
     "angular-local-storage": "~0.2.2",
     "bootstrap": "~3.3.2",
@@ -16,6 +17,9 @@
   "overrides": {
     "angular": {
       "main": "angular.min.*"
+    },
+    "angular-animate": {
+      "main": "angular-animate.min.*"
     },
     "angular-bootstrap": {
       "main": [

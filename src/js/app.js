@@ -54,7 +54,7 @@ kyukouAppFilters.filter('departmentFilter', [function () {
   };
 }]);
 
-var kyukouApp = angular.module('kyukouApp', ['kyukouApp.filters', 'ui.bootstrap', 'LocalStorageModule']);
+var kyukouApp = angular.module('kyukouApp', ['kyukouApp.filters', 'ui.bootstrap', 'LocalStorageModule', 'ngAnimate']);
 
 kyukouApp.factory('eventList', ['$http', '$q', function ($http, $q) {
   var deferred = $q.defer();

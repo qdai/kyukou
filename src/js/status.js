@@ -2,7 +2,7 @@
 
 var SITE_URL = '/* @echo SITE_URL */' || '//' + window.location.hostname;
 
-var logApp = angular.module('statusApp', ['ui.bootstrap']);
+var logApp = angular.module('statusApp', ['ui.bootstrap', 'ngAnimate']);
 logApp.factory('logList', ['$http', '$q', function ($http, $q) {
   var deferred = $q.defer();
   $q.all([
