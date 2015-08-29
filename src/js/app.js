@@ -1,5 +1,10 @@
-/* eslint-disable no-var, object-shorthand, strict */
-/* global angular, moment, window */
+/* global window */
+
+var angular = require('angular');
+require('angular-animate');
+require('angular-bootstrap');
+require('angular-local-storage');
+var moment = require('moment');
 
 moment.locale('ja', {
   weekdays: '日曜日_月曜日_火曜日_水曜日_木曜日_金曜日_土曜日'.split('_'),

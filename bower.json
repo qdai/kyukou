@@ -4,32 +4,12 @@
     "qdai"
   ],
   "dependencies": {
-    "angular": "~1.4.5",
-    "angular-animate": "~1.4.5",
-    "angular-bootstrap": "~0.13.3",
-    "angular-local-storage": "~0.2.2",
     "bootstrap": "~3.3.2",
-    "highlightjs": "~8.4.0",
-    "moment": "~2.10.6"
+    "highlightjs": "~8.4.0"
   },
   "homepage": "https://kyukou-kyudai.herokuapp.com/",
   "license": "MIT",
   "overrides": {
-    "angular": {
-      "main": "angular.min.*"
-    },
-    "angular-animate": {
-      "main": "angular-animate.min.*"
-    },
-    "angular-bootstrap": {
-      "main": [
-        "ui-bootstrap.min.js",
-        "ui-bootstrap-tpls.min.js"
-      ]
-    },
-    "angular-local-storage": {
-      "main": "dist/angular-local-storage.min.js"
-    },
     "bootstrap": {
       "main": [
         "dist/css/bootstrap.min.css",
@@ -42,9 +22,6 @@
         "highlight.pack.js",
         "styles/github.css"
       ]
-    },
-    "moment": {
-      "main": "min/moment.min.js"
     }
   },
   "private": true

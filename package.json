@@ -7,6 +7,10 @@
     "url": "https://github.com/qdai/kyukou/issues"
   },
   "dependencies": {
+    "angular": "^1.4.5",
+    "angular-animate": "^1.4.5",
+    "angular-bootstrap": "^0.12.2",
+    "angular-local-storage": "^0.2.2",
     "body-parser": "^1.13.3",
     "compression": "^1.5.2",
     "config": "^1.15.0",
@@ -29,6 +33,7 @@
   "devDependencies": {
     "apidoc": "^0.13.1",
     "bower": "^1.4.1",
+    "browserify": "^11.0.1",
     "del": "^1.2.0",
     "gulp": "^3.9.0",
     "gulp-eslint": "^1.0.0",
@@ -38,7 +43,10 @@
     "gulp-preprocess": "^1.2.0",
     "gulp-uglify": "^1.2.0",
     "main-bower-files": "^2.9.0",
-    "require-dir": "^0.3.0"
+    "merge-stream": "^1.0.0",
+    "require-dir": "^0.3.0",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0"
   },
   "engines": {
     "iojs": "2.5.0"
