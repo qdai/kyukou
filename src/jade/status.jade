@@ -27,8 +27,9 @@ html(lang=site.lang, manifest='/kyukou.appcache', data-ng-app='statusApp')
       section.panel.panel-default
         div.panel-heading
           h2.panel-title
-            a.accordion-toggle(data-ng-click='toggleOpen()', data-accordion-transclude='heading') {{heading}}
-        div.panel-collapse(data-collapse='!isOpen')
+            a.accordion-toggle(data-ng-click='toggleOpen()', data-accordion-transclude='heading')
+              span {{heading}}
+        div.panel-collapse.collapse(data-collapse='!isOpen')
           div.panel-body(data-ng-transclude)
     script(type='text/ng-template', id='template/accordion/accordion.html')
       div.panel-group(data-ng-transclude)
