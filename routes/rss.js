@@ -2,6 +2,7 @@
 
 const config = require('config');
 const express = require('express');
+const moment = require('moment');
 const RSS = require('rss');
 
 const router = express.Router();
@@ -22,7 +23,7 @@ router.get('/', function (req, res) {
       ttl: 180
     });
     events.sort(function (a, b) {
-      return b.pubDate.getTime() - a.pubDate.getTime();
+      return moment(b.pubDate).diff(moment(a.pubDate));
     }).slice(0, 20).forEach(function (event) {
       feed.item({
         title: get(event).asRSSTitle(),

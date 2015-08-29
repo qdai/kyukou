@@ -2,6 +2,7 @@
 
 const config = require('config');
 const express = require('express');
+const moment = require('moment');
 const path = require('path');
 const vobject = require('vobject');
 
@@ -21,16 +22,14 @@ router.get('/kyukou.ics', function (req, res) {
     const calendar = vobject.calendar();
     calendar.setProperty(vobject.property('PRODID', '-//' + site.author + '//' + site.generator + '//EN'));
     events.forEach(function (event) {
-      const startDate = new Date(event.eventDate);
-      startDate.setHours(startDate.getHours() + 9);
-      const endDate = new Date(startDate);
-      endDate.setDate(endDate.getDate() + 1);
+      const startDate = moment(event.eventDate);
+      const endDate = startDate.clone().add(1, 'day');
       const vevent = vobject.event();
       vevent.setSummary(get(event).asCalSummary());
       vevent.setDescription(get(event).asCalDescription());
       vevent.setUID(event.hash);
-      vevent.setDTStart(vobject.dateValue(startDate.toISOString().slice(0, 10)));
-      vevent.setDTEnd(vobject.dateValue(endDate.toISOString().slice(0, 10)));
+      vevent.setDTStart(vobject.dateValue(startDate.format('YYYY-MM-DD')));
+      vevent.setDTEnd(vobject.dateValue(endDate.format('YYYY-MM-DD')));
       calendar.pushComponent(vevent);
     });
     res.set('Content-Type', 'text/calendar');

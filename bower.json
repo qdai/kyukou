@@ -8,7 +8,8 @@
     "angular-bootstrap": "~0.11.2",
     "angular-local-storage": "~0.1.5",
     "bootstrap": "~3.3.2",
-    "highlightjs": "~8.4.0"
+    "highlightjs": "~8.4.0",
+    "moment": "~2.10.6"
   },
   "homepage": "https://kyukou-kyudai.herokuapp.com/",
   "license": "MIT",
@@ -37,6 +38,9 @@
         "highlight.pack.js",
         "styles/github.css"
       ]
+    },
+    "moment": {
+      "main": "min/moment.min.js"
     }
   },
   "private": true
