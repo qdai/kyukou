@@ -1,5 +1,3 @@
-/* global window */
-
 var angular = require('angular');
 require('angular-animate');
 require('angular-bootstrap');
@@ -61,9 +59,8 @@ kyukouAppFilters.filter('departmentFilter', [function () {
 
 var kyukouApp = angular.module('kyukouApp', ['kyukouApp.filters', 'ui.bootstrap', 'LocalStorageModule', 'ngAnimate']);
 
-kyukouApp.factory('eventList', ['$http', '$q', function ($http, $q) {
-  var deferred = $q.defer();
-  $http.get(SITE_URL + '/api/1/events/list.json').then(function (result) {
+kyukouApp.factory('eventList', ['$http', function ($http) {
+  return $http.get(SITE_URL + '/api/1/events/list.json').then(function (result) {
     var eventsObj = {};
     result.data.forEach(function (event) {
       event.raw = event.raw.replace(/\s+/g, ' ');
@@ -86,14 +83,11 @@ kyukouApp.factory('eventList', ['$http', '$q', function ($http, $q) {
         date: eventsObj[key][0].dateformatted
       };
     });
-    deferred.resolve({
+    return {
       events: events,
       eventsCount: result.data.length
-    });
-  }, function (err) {
-    deferred.reject(err);
+    };
   });
-  return deferred.promise;
 }]);
 
 kyukouApp.service('defaults', function () {
