@@ -39,7 +39,7 @@ exports.bower = {
 exports.build = {
   css: {
     dest: dest + '/css',
-    src: src + '/less/**/*.less'
+    src: src + '/sass/**/*.scss'
   },
   html: {
     dest: './views',

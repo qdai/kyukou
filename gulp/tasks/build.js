@@ -4,10 +4,10 @@ const browserify = require('browserify');
 const buffer = require('vinyl-buffer');
 const gulp = require('gulp');
 const jade = require('gulp-jade');
-const less = require('gulp-less');
 const merge = require('merge-stream');
 const minify = require('gulp-minify-css');
 const preprocess = require('gulp-preprocess');
+const sass = require('gulp-sass');
 const source = require('vinyl-source-stream');
 const uglify = require('gulp-uglify');
 
@@ -15,7 +15,7 @@ const config = require('../config').build;
 
 gulp.task('build:css', function () {
   return gulp.src(config.css.src)
-    .pipe(less())
+    .pipe(sass())
     .pipe(minify())
     .pipe(gulp.dest(config.css.dest));
 });
