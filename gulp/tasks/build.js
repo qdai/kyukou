@@ -6,10 +6,12 @@ const gulp = require('gulp');
 const jade = require('gulp-jade');
 const merge = require('merge-stream');
 const minify = require('gulp-minify-css');
-const preprocess = require('gulp-preprocess');
+const preprocessify = require('preprocessify');
 const sass = require('gulp-sass');
+const saveLicense = require('uglify-save-license');
 const source = require('vinyl-source-stream');
 const uglify = require('gulp-uglify');
+const uglifyify = require('uglifyify');
 
 const config = require('../config').build;
 
@@ -29,11 +31,21 @@ gulp.task('build:html', function () {
 gulp.task('build:js', function () {
   return merge(config.js.files.map(function (src) {
     const filename = src.slice(src.lastIndexOf('/') + 1, src.lastIndexOf('.')) + '.bundle.js';
-    return browserify().require(src, { entry: true }).bundle()
+    return browserify()
+      .require(src, { entry: true })
+      .transform(preprocessify(config.js.options))
+      .transform(uglifyify, {
+        global: true,
+        output: {
+          comments: saveLicense
+        }
+      })
+      .bundle()
       .pipe(source(filename))
       .pipe(buffer())
-      .pipe(preprocess(config.js.options))
-      .pipe(uglify())
+      .pipe(uglify({
+        preserveComments: 'all'
+      }))
       .pipe(gulp.dest(config.js.dest));
   }));
 });
