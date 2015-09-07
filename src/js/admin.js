@@ -1,4 +1,5 @@
-/* global angular, window */
+var angular = require('angular');
+require('angular-bootstrap');
 
 var SITE_URL = '/* @echo SITE_URL */' || '//' + window.location.hostname;
 
@@ -11,23 +12,19 @@ var adminMethod = function (method) {
         method: 'POST',
         url: SITE_URL + '/admin/events/' + method,
         data: data
-      }).success(function (result) {
-        var alert = {};
-        if (result.error) {
-          alert.type = 'danger';
-          alert.message = 'Error: ' + result.error.message;
-        } else {
-          alert.type = 'success';
-          alert.message = 'Success: ' + result.success.message;
-        }
-        self.alerts.push(alert);
-        // reload
-        $scope.loadEvents();
-      }).error(function (result, status) {
-        self.alerts.push({
+      }).then(function (result) {
+        return {
+          type: 'success',
+          message: 'Success: ' + result.data.success.message
+        };
+      }).catch(function (result) {
+        return {
           type: 'danger',
-          message: 'Load error:' + status + ' ' + result.error.message
-        });
+          message: 'Error: ' + result.status + ': ' + result.data.error.message
+        };
+      }).then(function (log) {
+        self.alerts.push(log);
+        $scope.loadEvents();
       });
     };
     this.closeAlert = function (index) {
@@ -41,10 +38,8 @@ adminApp.controller('adminCtrl', ['$scope', '$http', function ($scope, $http) {
   $scope.events = [];
 
   $scope.loadEvents = function () {
-    $http.get(SITE_URL + '/admin/events/list.json').success(function (data) {
-      $scope.events = data;
-    }).error(function (data, status) {
-      console.error('load error: %s: %s', status, data); // eslint-disable-line no-console
+    $http.get(SITE_URL + '/admin/events/list.json').then(function (result) {
+      $scope.events = result.data;
     });
   };
 

@@ -1,28 +1,27 @@
-/* global angular, window */
+var angular = require('angular');
+require('angular-animate');
+require('angular-bootstrap');
 
 var SITE_URL = '/* @echo SITE_URL */' || '//' + window.location.hostname;
 
-var logApp = angular.module('statusApp', ['ui.bootstrap']);
+var logApp = angular.module('statusApp', ['ui.bootstrap', 'ngAnimate']);
 logApp.factory('logList', ['$http', '$q', function ($http, $q) {
-  var deferred = $q.defer();
-  $q.all([
-    $http.get(SITE_URL + '/api/1/logs/task.json'),
-    $http.get(SITE_URL + '/api/1/logs/twit_new.json'),
-    $http.get(SITE_URL + '/api/1/logs/twit_tomorrow.json'),
-    $http.get(SITE_URL + '/api/1/logs/delete.json')
-  ]).then(function (results) {
-    var temp = [];
-    for (var i = 0; i < results.length; i++) {
-      results[i].data.time = new Date(results[i].data.time).toString();
-      results[i].data.isFailure = results[i].data.level !== 1;
-      results[i].data.level = ['', 'success', 'info', 'warning', 'danger'][results[i].data.level];
-      temp.push(results[i].data);
-    }
-    deferred.resolve(temp);
-  }, function (error) {
-    deferred.reject(error);
+  return $q.all([
+    '/api/1/logs/task.json',
+    '/api/1/logs/twit_new.json',
+    '/api/1/logs/twit_tomorrow.json',
+    '/api/1/logs/delete.json'
+  ].map(function (path) {
+    return $http.get(SITE_URL + path);
+  })).then(function (results) {
+    return results.map(function (result) {
+      var data = result.data;
+      data.time = new Date(data.time).toString();
+      data.isFailure = data.level !== 1;
+      data.level = ['', 'success', 'info', 'warning', 'danger'][data.level];
+      return data;
+    });
   });
-  return deferred.promise;
 }]);
 logApp.controller('logListCtrl', ['logList', function (logList) {
   this.ctrlTmpl = 'logapp-loading';

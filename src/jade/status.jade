@@ -1,5 +1,5 @@
 doctype html
-html(lang=site.lang, manifest='/kyukou.appcache', data-ng-app='statusApp')
+html(lang=site.lang, data-ng-app='statusApp')
   head
     meta(charset='utf-8')
     title='Status - '+site.name
@@ -8,9 +8,7 @@ html(lang=site.lang, manifest='/kyukou.appcache', data-ng-app='statusApp')
     meta(name='author', content=site.author)
     link(rel='stylesheet', href='/lib/bootstrap/dist/css/bootstrap.min.css')
     link(rel='stylesheet', href='/css/main.css')
-    script(src='/lib/angular/angular.min.js', defer)
-    script(src='/lib/angular-bootstrap/ui-bootstrap.min.js', defer)
-    script(src='/js/status.js', defer)
+    script(src='/js/status.bundle.js', async)
     script#logapp-loading(type='text/ng-template')
       div.alert(role='alert', data-ng-class='{\'alert-info\': !llc.error, \'alert-danger\': llc.error}')
         p.lead(data-ng-show='!llc.error') Now loading...
@@ -27,8 +25,9 @@ html(lang=site.lang, manifest='/kyukou.appcache', data-ng-app='statusApp')
       section.panel.panel-default
         div.panel-heading
           h2.panel-title
-            a.accordion-toggle(data-ng-click='toggleOpen()', data-accordion-transclude='heading') {{heading}}
-        div.panel-collapse(data-collapse='!isOpen')
+            a.accordion-toggle(data-ng-click='toggleOpen()', data-accordion-transclude='heading')
+              span {{heading}}
+        div.panel-collapse.collapse(data-collapse='!isOpen')
           div.panel-body(data-ng-transclude)
     script(type='text/ng-template', id='template/accordion/accordion.html')
       div.panel-group(data-ng-transclude)

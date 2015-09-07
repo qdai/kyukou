@@ -1,7 +1,8 @@
-@monospace: Menlo, Monaco, Consolas, "Courier New", Osaka,Meiryo, monospace;
-@sans-serif: "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+$monospace: Menlo, Monaco, Consolas, "Courier New", Osaka,Meiryo, monospace;
+$sans-serif: "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
 
-th, td {
+th,
+td {
   :last-child {
     margin-bottom: 0;
   }
@@ -16,16 +17,17 @@ h1 {
 }
 
 code {
-  font-family: @monospace;
+  font-family: $monospace;
 }
 
 body {
-  text-align: justify;
-  font-family: @sans-serif;
+  font-family: $sans-serif;
   min-width: 320px;
+  text-align: justify;
 }
 
-.alert, .panel-body {
+.alert,
+.panel-body {
   >:first-child {
     margin-top: 0;
   }
@@ -42,29 +44,32 @@ h2.page-header span:first-child {
   display: none;
 }
 
-@header-button-size: 40px;
+$header-button-size: 40px;
+
 body > .container {
   position: relative;
 }
+
 #header-buttons {
   position: absolute;
   right: 15px;
-  top: @header-button-size / 10;
+  top: $header-button-size / 10;
   a {
-    display: inline-block;
-    width: @header-button-size;
-    height: @header-button-size;
+    border-radius: $header-button-size / 2;
     color: rgb(255, 255, 255);
-    font-size: @header-button-size * 3 / 5;
-    padding: @header-button-size / 5;
-    margin: @header-button-size / 10;
+    display: inline-block;
+    font-size: $header-button-size * 3 / 5;
+    height: $header-button-size;
+    margin: $header-button-size / 10;
+    padding: $header-button-size / 5;
     text-decoration: none;
-    border-radius: @header-button-size / 2;
     transition: border-radius .2s ease-in-out;
-    &:hover, &:active {
-      color: #fff;
-      border-radius: @header-button-size / 10;
+    width: $header-button-size;
+    &:hover,
+    &:active {
+      border-radius: $header-button-size / 10;
       box-shadow: 1px 1px 2px rgba(0, 0, 0, .4);
+      color: #fff;
     }
   }
   .icon-twitter {
@@ -115,15 +120,15 @@ body > .container {
     z-index: 10;
   }
   .panel {
-    box-shadow: none;
     border-radius: 0;
+    box-shadow: none;
     + .panel {
       margin-top: -1px;
     }
   }
   .panel-collapse {
-    border-top: 1px solid rgb(221, 221, 221);
     background-color: rgb(252, 252, 252);
+    border-top: 1px solid rgb(221, 221, 221);
   }
   .panel-body {
     ul {
@@ -135,8 +140,8 @@ body > .container {
   }
   .accordion-toggle {
     cursor: pointer;
-    margin-top: 0;
     margin-bottom: 0;
+    margin-top: 0;
     padding: 10px 0;
     &.row {
       margin-left: 0;
@@ -153,17 +158,18 @@ body > .container {
 }
 
 .page-footer {
-  margin-top: 20px;
-  margin-bottom: 40px;
-  padding-top: 20px;
   border-top: 1px solid rgb(238, 238, 238);
+  margin-bottom: 40px;
+  margin-top: 20px;
+  padding-top: 20px;
 }
 
 [data-ng-app="adminApp"] {
   .nav.nav-tabs {
     margin-bottom: 20px;
   }
-  th, td {
+  th,
+  td {
     max-width: 250px;
     overflow: hidden;
   }
