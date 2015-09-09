@@ -49,7 +49,7 @@ const sendAPIResult = require('../../lib/sendapiresult');
  *     }
  *   ]
  */
-router.get('/', function () {
+router.get('/', () => {
   throw createHttpError(400);
 });
 
@@ -66,7 +66,7 @@ router.get('/', function () {
  *
  * @apiUse FormatEvents
  */
-router.get('/list.json', function (req, res) {
+router.get('/list.json', (req, res) => {
   const departments = req.query.departments;
   const startIndex = req.query.start_index;
   const count = req.query.count;
@@ -87,7 +87,7 @@ router.get('/list.json', function (req, res) {
  *
  * @apiUse FormatEvents
  */
-router.get('/:yyyy-:mm-:dd.json', function (req, res) {
+router.get('/:yyyy-:mm-:dd.json', (req, res) => {
   const yyyy = req.params.yyyy;
   const mm = req.params.mm;
   const dd = req.params.dd;
@@ -107,7 +107,7 @@ router.get('/:yyyy-:mm-:dd.json', function (req, res) {
  *
  * @apiUse FormatEvents
  */
-router.get('/search.json', function (req, res) {
+router.get('/search.json', (req, res) => {
   const q = req.query.q;
   const count = req.query.count;
   sendAPIResult(publicAPI.events.search(q, count), res);

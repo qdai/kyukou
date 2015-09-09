@@ -11,7 +11,7 @@ const logs = require('./logs');
 router.use('/events', events);
 router.use('/logs', logs);
 
-router.get('/', function (req, res) {
+router.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../../views/api.html'));
 });
 

@@ -15,21 +15,21 @@ const uglifyify = require('uglifyify');
 
 const config = require('../config').build;
 
-gulp.task('build:css', function () {
+gulp.task('build:css', () => {
   return gulp.src(config.css.src)
     .pipe(sass())
     .pipe(minify())
     .pipe(gulp.dest(config.css.dest));
 });
 
-gulp.task('build:html', function () {
+gulp.task('build:html', () => {
   return gulp.src(config.html.src)
     .pipe(jade(config.html.options))
     .pipe(gulp.dest(config.html.dest));
 });
 
-gulp.task('build:js', function () {
-  return merge(config.js.files.map(function (src) {
+gulp.task('build:js', () => {
+  return merge(config.js.files.map(src => {
     const filename = src.slice(src.lastIndexOf('/') + 1, src.lastIndexOf('.')) + '.bundle.js';
     return browserify()
       .require(src, { entry: true })
@@ -50,7 +50,7 @@ gulp.task('build:js', function () {
   }));
 });
 
-gulp.task('build:static', ['bower'], function () {
+gulp.task('build:static', ['bower'], () => {
   return gulp.src(config.static.src)
     .pipe(gulp.dest(config.static.dest));
 });

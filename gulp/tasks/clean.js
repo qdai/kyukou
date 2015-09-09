@@ -5,6 +5,6 @@ const gulp = require('gulp');
 
 const config = require('../config').clean;
 
-gulp.task('clean', function (callback) {
+gulp.task('clean', callback => {
   del(config.src, callback);
 });

@@ -12,7 +12,7 @@ const router = express.Router();
 const privateAPI = require('../api').private;
 const sendAPIResult = require('../lib/sendapiresult');
 
-router.get('/', function (req, res) {
+router.get('/', (req, res) => {
   if (req.session.loggedin) {
     res.sendFile(path.join(__dirname, '../views/admin.html'));
   } else {
@@ -20,7 +20,7 @@ router.get('/', function (req, res) {
   }
 });
 
-router.get('/login', function (req, res) {
+router.get('/login', (req, res) => {
   if (req.session.loggedin) {
     res.redirect('/admin');
   } else {
@@ -28,19 +28,19 @@ router.get('/login', function (req, res) {
   }
 });
 
-router.post('/login', function (req, res) {
+router.post('/login', (req, res) => {
   const name = req.body.name;
   const pass = req.body.password;
   if (name === admin.name) {
-    new Promise(function (resolve, reject) {
-      pwd.hash(pass, admin.salt, function (err, hash) {
+    new Promise((resolve, reject) => {
+      pwd.hash(pass, admin.salt, (err, hash) => {
         if (err) {
           reject(err);
         } else {
           resolve(hash);
         }
       });
-    }).then(function (hash) {
+    }).then(hash => {
       if (hash !== admin.hash) {
         res.redirect('/admin/login');
       } else {
@@ -53,12 +53,12 @@ router.post('/login', function (req, res) {
   }
 });
 
-router.get('/logout', function (req, res) {
+router.get('/logout', (req, res) => {
   req.session.destroy();
   res.redirect('/');
 });
 
-router.get('/events/list.json', function (req, res) {
+router.get('/events/list.json', (req, res) => {
   if (req.session.loggedin) {
     sendAPIResult(privateAPI.events.list(), res);
   } else {
@@ -66,7 +66,7 @@ router.get('/events/list.json', function (req, res) {
   }
 });
 
-router.post('/events/add', function (req, res) {
+router.post('/events/add', (req, res) => {
   if (req.session.loggedin) {
     const event = req.body;
     sendAPIResult(privateAPI.events.add(event), res);
@@ -75,7 +75,7 @@ router.post('/events/add', function (req, res) {
   }
 });
 
-router.post('/events/edit', function (req, res) {
+router.post('/events/edit', (req, res) => {
   if (req.session.loggedin) {
     const hash = req.body.hash;
     const key = req.body.key;
@@ -88,7 +88,7 @@ router.post('/events/edit', function (req, res) {
   }
 });
 
-router.post('/events/delete', function (req, res) {
+router.post('/events/delete', (req, res) => {
   if (req.session.loggedin) {
     const hash = req.body.hash;
     sendAPIResult(privateAPI.events.delete(hash), res);
@@ -97,7 +97,7 @@ router.post('/events/delete', function (req, res) {
   }
 });
 
-router.use(function (err, req, res, next) { // eslint-disable-line no-unused-vars
+router.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   res.status(err.status || 500).json({
     error: {
       message: err.message
@@ -105,11 +105,11 @@ router.use(function (err, req, res, next) { // eslint-disable-line no-unused-var
   });
 });
 
-router.get('/events', function () {
+router.get('/events', () => {
   throw createHttpError(400);
 });
 
-router.get('/events/:method', function (req) {
+router.get('/events/:method', req => {
   if (['add', 'edit', 'delete'].indexOf(req.params.method) !== -1) {
     throw createHttpError(405);
   } else {

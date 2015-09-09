@@ -12,16 +12,16 @@ const site = config.get('site');
 const get = require('../lib/getasstring');
 const publicAPI = require('../api').public;
 
-router.get('/', function (req, res) {
+router.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../views/calendar.html'));
 });
 
-router.get('/kyukou.ics', function (req, res) {
+router.get('/kyukou.ics', (req, res) => {
   const departments = req.query.departments || req.query.department;
-  publicAPI.events.list(departments).then(function (events) {
+  publicAPI.events.list(departments).then(events => {
     const calendar = vobject.calendar();
     calendar.setProperty(vobject.property('PRODID', '-//' + site.author + '//' + site.generator + '//EN'));
-    events.forEach(function (event) {
+    events.forEach(event => {
       const startDate = moment(event.eventDate);
       const endDate = startDate.clone().add(1, 'day');
       const vevent = vobject.event();

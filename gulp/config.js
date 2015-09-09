@@ -4,7 +4,7 @@ const apidoc = require('apidoc');
 const config = require('config');
 const hljs = require('highlight.js');
 
-const createDoc = function (src) {
+const createDoc = src => {
   const doc = apidoc.createDoc({
     debug: false,
     parse: true,
@@ -14,14 +14,14 @@ const createDoc = function (src) {
   doc.data = JSON.parse(doc.data);
   doc.project = JSON.parse(doc.project);
   doc.list = {};
-  doc.data.map(function (api) {
+  doc.data.map(api => {
     // list
     if (!doc.list[api.group]) {
       doc.list[api.group] = [];
     }
     doc.list[api.group].push(api.title);
     // examples
-    api.success.examples = api.success.examples.map(function (example) {
+    api.success.examples = api.success.examples.map(example => {
       example.content = hljs.highlight(example.type, example.content, true).value;
       return example;
     });

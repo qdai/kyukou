@@ -8,15 +8,15 @@ const router = express.Router();
 
 const errorMessage = 'API v0 is no longer active. Please migrate to API v1 (https://' + config.get('site.url') + '/api/1).';
 
-router.get('/list.json', function () {
+router.get('/list.json', () => {
   throw createHttpError(410, errorMessage);
 });
 
-router.get('/log/:about.json', function () {
+router.get('/log/:about.json', () => {
   throw createHttpError(410, errorMessage);
 });
 
-router.use(function (err, req, res, next) { // eslint-disable-line no-unused-vars
+router.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   res.status(err.status || 500).json({
     error: {
       message: err.message
@@ -24,7 +24,7 @@ router.use(function (err, req, res, next) { // eslint-disable-line no-unused-var
   });
 });
 
-router.get('/', function () {
+router.get('/', () => {
   throw createHttpError(410, errorMessage);
 });
 
