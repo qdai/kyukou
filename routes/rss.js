@@ -11,8 +11,8 @@ const site = config.get('site');
 const get = require('../lib/getasstring');
 const publicAPI = require('../api').public;
 
-router.get('/', function (req, res) {
-  publicAPI.events.list().then(function (events) {
+router.get('/', (req, res) => {
+  publicAPI.events.list().then(events => {
     const feed = new RSS({
       title: site.name,
       description: site.description,
@@ -22,9 +22,9 @@ router.get('/', function (req, res) {
       language: site.lang,
       ttl: 180
     });
-    events.sort(function (a, b) {
+    events.sort((a, b) => {
       return moment(b.pubDate).diff(moment(a.pubDate));
-    }).slice(0, 20).forEach(function (event) {
+    }).slice(0, 20).forEach(event => {
       feed.item({
         title: get(event).asRSSTitle(),
         description: get(event).asRSSDescription(),

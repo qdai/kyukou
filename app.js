@@ -54,7 +54,7 @@ app.use(session(sessionOptions));
 
 // redirect to HTTPS on production
 if (app.get('env') === 'production') {
-  app.use(function (req, res, next) {
+  app.use((req, res, next) => {
     res.set('strict-transport-security', 'max-age=63072000');
     if (!req.secure) {
       res.redirect(301, 'https://' + req.headers.host + req.originalUrl);
@@ -72,7 +72,7 @@ app.use('/api', api0);
 app.use('/admin', admin);
 
 /// catch 404 and forward to error handler
-app.use(function (req, res, next) {
+app.use((req, res, next) => {
   next(createHttpError(404));
 });
 
@@ -81,14 +81,14 @@ app.use(function (req, res, next) {
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-  app.use(function (err, req, res, next) { // eslint-disable-line no-unused-vars
+  app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
     res.status(err.status || 500).type('text/plain').send(err.stack);
   });
 }
 
 // production error handler
 // no stacktraces leaked to user
-app.use(function (err, req, res, next) { // eslint-disable-line no-unused-vars
+app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   res.status(err.status || 500).type('text/plain').send(err.message);
 });
 

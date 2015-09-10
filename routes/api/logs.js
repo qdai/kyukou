@@ -27,7 +27,7 @@ const sendAPIResult = require('../../lib/sendapiresult');
  *     "elapsedTime": 915.768167
  *   }
  */
-router.get('/', function () {
+router.get('/', () => {
   throw createHttpError(400);
 });
 
@@ -42,7 +42,7 @@ router.get('/', function () {
  *
  * @apiUse FormatLog
  */
-router.get('/:about.json', function (req, res) {
+router.get('/:about.json', (req, res) => {
   const about = req.params.about;
   sendAPIResult(publicAPI.logs.about(about), res);
 });

@@ -6,15 +6,15 @@ const mainBowerFiles = require('main-bower-files');
 
 const config = require('../config').bower;
 
-gulp.task('bower:install', function (callback) {
-  bower.commands.install().on('end', function () {
+gulp.task('bower:install', callback => {
+  bower.commands.install().on('end', () => {
     callback();
-  }).on('error', function (err) {
+  }).on('error', err => {
     callback(err);
   });
 });
 
-gulp.task('bower', ['bower:install'], function () {
+gulp.task('bower', ['bower:install'], () => {
   return gulp.src(mainBowerFiles(), { base: 'bower_components' })
     .pipe(gulp.dest(config.dest));
 });
