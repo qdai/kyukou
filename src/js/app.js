@@ -10,9 +10,9 @@ moment.locale('ja', {
   calendar: {
     sameDay: '[今日]',
     nextDay: '[明日]',
-    nextWeek: '[来週] dddd',
+    nextWeek: 'dddd',
     lastDay: '[昨日]',
-    lastWeek: '[前週] dddd',
+    lastWeek: 'YYYY年M月D日（dd）',
     sameElse: 'YYYY年M月D日（dd）'
   }
 });
