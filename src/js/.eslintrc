@@ -4,7 +4,8 @@
     "blockBindings": false,
     "classes": false,
     "objectLiteralShorthandMethods": false,
-    "objectLiteralShorthandProperties": false
+    "objectLiteralShorthandProperties": false,
+    "spread": false
   },
   "env": {
     "browser": true,
