@@ -17,8 +17,8 @@ router.get('/', (req, res) => {
       title: site.name,
       description: site.description,
       generator: site.generator,
-      feed_url: 'https://' + site.url + '/rss', // eslint-disable-line camelcase
-      site_url: 'https://' + site.url, // eslint-disable-line camelcase
+      feed_url: 'https://' + site.url + '/rss',
+      site_url: 'https://' + site.url,
       language: site.lang,
       ttl: 180
     });

@@ -59,7 +59,7 @@ if (app.get('env') === 'production') {
     if (!req.secure) {
       res.redirect(301, 'https://' + req.headers.host + req.originalUrl);
     } else {
-      next();
+      return next();
     }
   });
 }
@@ -71,12 +71,12 @@ app.use('/api/1', api);
 app.use('/api', api0);
 app.use('/admin', admin);
 
-/// catch 404 and forward to error handler
+// catch 404 and forward to error handler
 app.use((req, res, next) => {
   next(createHttpError(404));
 });
 
-/// error handlers
+// error handlers
 
 // development error handler
 // will print stacktrace

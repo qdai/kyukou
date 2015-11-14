@@ -13,8 +13,6 @@ router.get('/', (req, res) => {
 
 router.get('/kyukou.appcache', (req, res) => {
   res.set('Content-Type', 'text/cache-manifest; charset=UTF-8');
-  //res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
-  //res.set('Pragma', 'no-cache');
   res.send('CACHE MANIFEST\n' +
            '# ' + site.version + '\n' +
            '\n' +
