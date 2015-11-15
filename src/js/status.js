@@ -7,7 +7,7 @@ var SITE_URL = '/* @echo SITE_URL */' || '//' + window.location.hostname;
 var logApp = angular.module('statusApp', ['ui.bootstrap', 'ngAnimate']);
 logApp.factory('logList', ['$http', '$q', function ($http, $q) {
   return $q.all([
-    '/api/1/logs/task.json',
+    '/api/1/logs/scrap.json',
     '/api/1/logs/twit_new.json',
     '/api/1/logs/twit_tomorrow.json',
     '/api/1/logs/delete.json'

@@ -9,7 +9,7 @@ const pwd = require('pwd');
 const admin = config.get('admin');
 const router = express.Router();
 
-const privateAPI = require('../api').private;
+const eventsAPI = require('../api').events;
 const sendAPIResult = require('../lib/sendapiresult');
 
 router.get('/', (req, res) => {
@@ -58,18 +58,10 @@ router.get('/logout', (req, res) => {
   res.redirect('/');
 });
 
-router.get('/events/list.json', (req, res) => {
-  if (req.session.loggedin) {
-    sendAPIResult(privateAPI.events.list(), res);
-  } else {
-    throw createHttpError(403);
-  }
-});
-
 router.post('/events/add', (req, res) => {
   if (req.session.loggedin) {
     const event = req.body;
-    sendAPIResult(privateAPI.events.add(event), res);
+    sendAPIResult(eventsAPI.add(event), res);
   } else {
     throw createHttpError(403);
   }
@@ -82,7 +74,7 @@ router.post('/events/edit', (req, res) => {
     const value = req.body.value;
     const data = {};
     data[key] = value;
-    sendAPIResult(privateAPI.events.edit(hash, data), res);
+    sendAPIResult(eventsAPI.edit(hash, data), res);
   } else {
     throw createHttpError(403);
   }
@@ -91,7 +83,7 @@ router.post('/events/edit', (req, res) => {
 router.post('/events/delete', (req, res) => {
   if (req.session.loggedin) {
     const hash = req.body.hash;
-    sendAPIResult(privateAPI.events.delete(hash), res);
+    sendAPIResult(eventsAPI.delete(hash), res);
   } else {
     throw createHttpError(403);
   }

@@ -5,7 +5,7 @@ const express = require('express');
 
 const router = express.Router();
 
-const publicAPI = require('../../api').public;
+const logsAPI = require('../../api').logs;
 const sendAPIResult = require('../../lib/sendapiresult');
 
 /**
@@ -20,7 +20,7 @@ const sendAPIResult = require('../../lib/sendapiresult');
  * @apiSuccessExample {json} Success-Response:
  *   HTTP/1.1 200 OK
  *   {
- *     "name": "task",
+ *     "name": "scrap",
  *     "log": "msg: 0 event(s) created\nmsg: 19 event(s) already exist",
  *     "level": 1,
  *     "time": "2015-01-21T11:05:00.298Z",
@@ -38,13 +38,13 @@ router.get('/', () => {
  * @apiName LogsAbout
  * @apiGroup Logs
  *
- * @apiParam {String=task,twit_new,twit_tomorrow,delete} about
+ * @apiParam {String=scrap,twit_new,twit_tomorrow,delete} about
  *
  * @apiUse FormatLog
  */
 router.get('/:about.json', (req, res) => {
   const about = req.params.about;
-  sendAPIResult(publicAPI.logs.about(about), res);
+  sendAPIResult(logsAPI.about(about), res);
 });
 
 module.exports = router;
