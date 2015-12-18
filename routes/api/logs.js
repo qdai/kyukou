@@ -20,7 +20,7 @@ const sendAPIResult = require('../../lib/sendapiresult');
  * @apiSuccessExample {json} Success-Response:
  *   HTTP/1.1 200 OK
  *   {
- *     "name": "scrap",
+ *     "name": "task",
  *     "log": "msg: 0 event(s) created\nmsg: 19 event(s) already exist",
  *     "level": 1,
  *     "time": "2015-01-21T11:05:00.298Z",
@@ -38,13 +38,20 @@ router.get('/', () => {
  * @apiName LogsAbout
  * @apiGroup Logs
  *
- * @apiParam {String=scrap,twit_new,twit_tomorrow,delete} about
+ * @apiParam {String=task,twit_new,twit_tomorrow,delete} about
  *
  * @apiUse FormatLog
  */
 router.get('/:about.json', (req, res) => {
   const about = req.params.about;
-  sendAPIResult(logsAPI.about(about), res);
+  if (about === 'task') {
+    sendAPIResult(logsAPI.about('scrap').then(log => {
+      log.name = 'task';
+      return log;
+    }), res);
+  } else {
+    sendAPIResult(logsAPI.about(about), res);
+  }
 });
 
 module.exports = router;
