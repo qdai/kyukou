@@ -8,11 +8,10 @@ const RSS = require('rss');
 const router = express.Router();
 const site = config.get('site');
 
-const get = require('../lib/getasstring');
-const publicAPI = require('../api').public;
+const eventsAPI = require('../api').events;
 
 router.get('/', (req, res) => {
-  publicAPI.events.list().then(events => {
+  eventsAPI.list().then(events => {
     const feed = new RSS({
       title: site.name,
       description: site.description,
@@ -26,8 +25,8 @@ router.get('/', (req, res) => {
       return moment(b.pubDate).diff(moment(a.pubDate));
     }).slice(0, 20).forEach(event => {
       feed.item({
-        title: get(event).asRSSTitle(),
-        description: get(event).asRSSDescription(),
+        title: event.asString('summary'),
+        description: event.asString(null, '<br />'),
         url: event.link,
         guid: event.hash,
         date: event.pubDate.toISOString()

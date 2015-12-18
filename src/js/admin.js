@@ -38,7 +38,7 @@ adminApp.controller('adminCtrl', ['$scope', '$http', function ($scope, $http) {
   $scope.events = [];
 
   $scope.loadEvents = function () {
-    $http.get(SITE_URL + '/admin/events/list.json').then(function (result) {
+    $http.get(SITE_URL + '/api/1/events/list.json').then(function (result) {
       $scope.events = result.data;
     });
   };

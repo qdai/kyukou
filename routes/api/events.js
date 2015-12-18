@@ -5,7 +5,7 @@ const express = require('express');
 
 const router = express.Router();
 
-const publicAPI = require('../../api').public;
+const eventsAPI = require('../../api').events;
 const sendAPIResult = require('../../lib/sendapiresult');
 
 /**
@@ -70,7 +70,7 @@ router.get('/list.json', (req, res) => {
   const departments = req.query.departments;
   const startIndex = req.query.start_index;
   const count = req.query.count;
-  sendAPIResult(publicAPI.events.list(departments, startIndex, count), res);
+  sendAPIResult(eventsAPI.list(departments, startIndex, count), res);
 });
 
 /**
@@ -92,7 +92,7 @@ router.get('/:yyyy-:mm-:dd.json', (req, res) => {
   const mm = req.params.mm;
   const dd = req.params.dd;
   const count = req.query.count;
-  sendAPIResult(publicAPI.events.yyyymmdd(yyyy, mm, dd, count), res);
+  sendAPIResult(eventsAPI.yyyymmdd(yyyy, mm, dd, count), res);
 });
 
 /**
@@ -110,7 +110,7 @@ router.get('/:yyyy-:mm-:dd.json', (req, res) => {
 router.get('/search.json', (req, res) => {
   const q = req.query.q;
   const count = req.query.count;
-  sendAPIResult(publicAPI.events.search(q, count), res);
+  sendAPIResult(eventsAPI.search(q, count), res);
 });
 
 module.exports = router;

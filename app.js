@@ -5,8 +5,10 @@ const compression = require('compression');
 const config = require('config');
 const connectMongo = require('connect-mongo');
 const createHttpError = require('http-errors');
+const enforcesSsl = require('express-enforces-ssl');
 const express = require('express');
 const favicon = require('serve-favicon');
+const helmet = require('helmet');
 const logger = require('morgan');
 const path = require('path');
 const session = require('express-session');
@@ -43,6 +45,10 @@ require('./cron');
 app.set('trust proxy', true);
 app.set('x-powered-by', false);
 
+if (app.get('env') === 'production') {
+  app.use(enforcesSsl());
+}
+app.use(helmet());
 app.use(compression());
 app.use(favicon(path.join(__dirname, 'public/favicon.ico')));
 app.use(logger('dev'));
@@ -52,17 +58,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 // session for routes/admin
 app.use(session(sessionOptions));
 
-// redirect to HTTPS on production
-if (app.get('env') === 'production') {
-  app.use((req, res, next) => {
-    res.set('strict-transport-security', 'max-age=63072000');
-    if (!req.secure) {
-      res.redirect(301, 'https://' + req.headers.host + req.originalUrl);
-    } else {
-      return next();
-    }
-  });
-}
 app.use('/', routes);
 app.use('/status', apiStatus);
 app.use('/rss', rss);

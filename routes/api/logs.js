@@ -5,7 +5,7 @@ const express = require('express');
 
 const router = express.Router();
 
-const publicAPI = require('../../api').public;
+const logsAPI = require('../../api').logs;
 const sendAPIResult = require('../../lib/sendapiresult');
 
 /**
@@ -44,7 +44,14 @@ router.get('/', () => {
  */
 router.get('/:about.json', (req, res) => {
   const about = req.params.about;
-  sendAPIResult(publicAPI.logs.about(about), res);
+  if (about === 'task') {
+    sendAPIResult(logsAPI.about('scrap').then(log => {
+      log.name = 'task';
+      return log;
+    }), res);
+  } else {
+    sendAPIResult(logsAPI.about(about), res);
+  }
 });
 
 module.exports = router;
