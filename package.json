@@ -24,7 +24,7 @@
     "http-errors": "^1.3.1",
     "jsonfile": "^2.2.3",
     "kyukou-api": "github:qdai/kyukou-api#v2.0.0",
-    "kyukou-scraper-kyudai": "github:qdai/kyukou-scraper-kyudai#v2.0.1",
+    "kyukou-scraper-kyudai": "github:qdai/kyukou-scraper-kyudai#v2.0.2",
     "moment": "^2.10.6",
     "morgan": "^1.6.1",
     "pwd": "0.0.4",
