@@ -33,13 +33,13 @@ const dest = './public';
 const src = './src';
 
 exports.bower = {
-  dest: src + '/static/lib'
+  dest: `${src}/static/lib`
 };
 
 exports.build = {
   css: {
-    dest: dest + '/css',
-    src: [src + '/sass/**/*.scss', '!' + src + '/sass/**/_*.scss']
+    dest: `${dest}/css`,
+    src: [`${src}/sass/**/*.scss`, `!${src}/sass/**/_*.scss`]
   },
   html: {
     dest: './views',
@@ -49,27 +49,27 @@ exports.build = {
         site: config.get('site')
       }
     },
-    src: [src + '/jade/**/*.jade', '!' + src + '/jade/includes/**']
+    src: [`${src}/jade/**/*.jade`, `!${src}/jade/includes/**`]
   },
   js: {
-    dest: dest + '/js',
-    files: [src + '/js/admin.js', src + '/js/app.js', src + '/js/calendar.js', src + '/js/status.js'],
+    dest: `${dest}/js`,
+    files: [`${src}/js/admin.js`, `${src}/js/app.js`, `${src}/js/calendar.js`, `${src}/js/status.js`],
     options: {
-      SITE_URL: '//' + config.get('site.url')
+      SITE_URL: `//${config.get('site.url')}`
     }
   },
   static: {
     dest,
-    src: src + '/static/**'
+    src: `${src}/static/**`
   }
 };
 
 exports.clean = {
-  src: [dest, src + '/static/lib', './views']
+  src: [dest, `${src}/static/lib`, './views']
 };
 
 exports.lint = {
   js: {
-    src: ['./**/*.js', '!./node_modules/**', '!./bower_components/**', '!./public/**', '!./src/static/**']
+    src: ['bin/www', './**/*.js', '!./node_modules/**', '!./bower_components/**', '!./public/**', '!./src/static/**']
   }
 };

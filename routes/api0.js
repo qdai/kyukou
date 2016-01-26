@@ -6,7 +6,7 @@ const express = require('express');
 
 const router = express.Router();
 
-const errorMessage = 'API v0 is no longer active. Please migrate to API v1 (https://' + config.get('site.url') + '/api/1).';
+const errorMessage = `API v0 is no longer active. Please migrate to API v1 (https://${config.get('site.url')}/api/1).`;
 
 router.get('/list.json', () => {
   throw createHttpError(410, errorMessage);

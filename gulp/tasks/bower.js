@@ -14,7 +14,6 @@ gulp.task('bower:install', callback => {
   });
 });
 
-gulp.task('bower', ['bower:install'], () => {
-  return gulp.src(mainBowerFiles(), { base: 'bower_components' })
-    .pipe(gulp.dest(config.dest));
-});
+gulp.task('bower', ['bower:install'], () =>
+  gulp.src(mainBowerFiles(), { base: 'bower_components' })
+    .pipe(gulp.dest(config.dest)));

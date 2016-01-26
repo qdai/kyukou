@@ -19,7 +19,7 @@ router.get('/kyukou.ics', (req, res) => {
   const departments = req.query.departments || req.query.department;
   eventsAPI.list(departments).then(events => {
     const calendar = vobject.calendar();
-    calendar.setProperty(vobject.property('PRODID', '-//' + site.author + '//' + site.generator + '//EN'));
+    calendar.setProperty(vobject.property('PRODID', `-//${site.author}//${site.generator}//EN`));
     events.forEach(event => {
       const startDate = moment(event.eventDate);
       const endDate = startDate.clone().add(1, 'day');

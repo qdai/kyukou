@@ -38,7 +38,7 @@
     "bower": "^1.6.5",
     "browserify": "^13.0.0",
     "del": "^2.0.2",
-    "eslint-config-eslint": "^2.0.0",
+    "eslint-config-egy186": "github:egy186/eslint-config-egy186#v0.1.1",
     "gulp": "^3.9.0",
     "gulp-eslint": "^1.1.0",
     "gulp-jade": "^1.1.0",

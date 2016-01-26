@@ -13,17 +13,18 @@ router.get('/', (req, res) => {
 
 router.get('/kyukou.appcache', (req, res) => {
   res.set('Content-Type', 'text/cache-manifest; charset=UTF-8');
-  res.send('CACHE MANIFEST\n' +
-           '# ' + site.version + '\n' +
-           '\n' +
-           'CACHE:\n' +
-           '/js/app.bundle.js\n' +
-           '/lib/bootstrap/dist/css/bootstrap.min.css\n' +
-           '/icomoon/style.css\n' +
-           '/css/main.css\n' +
-           '\n' +
-           'NETWORK:\n' +
-           '*\n');
+  res.send(`CACHE MANIFEST
+# ${site.version}
+
+CACHE:
+/js/app.bundle.js
+/lib/bootstrap/dist/css/bootstrap.min.css
+/icomoon/style.css
+/css/main.css
+
+NETWORK:
+*
+`);
 });
 
 module.exports = router;
