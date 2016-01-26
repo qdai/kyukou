@@ -16,22 +16,22 @@ router.get('/', (req, res) => {
       title: site.name,
       description: site.description,
       generator: site.generator,
-      feed_url: 'https://' + site.url + '/rss',
-      site_url: 'https://' + site.url,
+      feed_url: `https://${site.url}/rss`,
+      site_url: `https://${site.url}`,
       language: site.lang,
       ttl: 180
     });
-    events.sort((a, b) => {
-      return moment(b.pubDate).diff(moment(a.pubDate));
-    }).slice(0, 20).forEach(event => {
-      feed.item({
-        title: event.asString('summary'),
-        description: event.asString(null, '<br />'),
-        url: event.link,
-        guid: event.hash,
-        date: event.pubDate.toISOString()
+    events
+      .sort((a, b) => moment(b.pubDate).diff(moment(a.pubDate)))
+      .slice(0, 20).forEach(event => {
+        feed.item({
+          title: event.asString('summary'),
+          description: event.asString(null, '<br />'),
+          url: event.link,
+          guid: event.hash,
+          date: event.pubDate.toISOString()
+        });
       });
-    });
     res.set('Content-Type', 'application/rss+xml');
     res.send(feed.xml());
   });

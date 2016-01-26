@@ -33,9 +33,8 @@ kyukouAppFilters.filter('aboutFilter', [function () {
         });
       });
       return tempEvents;
-    } else {
-      return events;
     }
+    return events;
   };
 }]);
 
@@ -51,9 +50,8 @@ kyukouAppFilters.filter('departmentFilter', [function () {
         });
       });
       return tempEvents;
-    } else {
-      return events;
     }
+    return events;
   };
 }]);
 

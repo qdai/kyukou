@@ -4,13 +4,12 @@ const CronJob = require('cron').CronJob;
 
 const tasksAPI = require('./api').tasks;
 const reportTaskResult = task => {
-  task.then(tasklog => {
-    return 'msg: ' + tasklog.name + ' done';
-  }).catch(err => {
-    return 'err: ' + err.stack;
-  }).then(msg => {
-    console.log(msg);
-  });
+  task
+    .then(tasklog => `msg: ${tasklog.name} done`)
+    .catch(err => `err: ${err.stack}`)
+    .then(msg => {
+      console.log(msg);
+    });
 };
 
 const jobScrap = new CronJob('0 5 0,4,8,12,16,20 * * *', () => {

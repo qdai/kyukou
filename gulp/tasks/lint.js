@@ -5,11 +5,10 @@ const gulp = require('gulp');
 
 const config = require('../config').lint;
 
-gulp.task('lint:js', () => {
-  return gulp.src(config.js.src)
+gulp.task('lint:js', () =>
+  gulp.src(config.js.src)
     .pipe(eslint())
     .pipe(eslint.format())
-    .pipe(eslint.failAfterError());
-});
+    .pipe(eslint.failAfterError()));
 
 gulp.task('lint', ['lint:js']);

@@ -26,7 +26,7 @@ module.exports = {
     url: '',
     lang: 'ja',
     twitter: '',
-    version: 'v' + pkg.version,
+    version: `v${pkg.version}`,
     author: pkg.author,
     generator: pkg.name
   }

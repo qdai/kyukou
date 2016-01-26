@@ -1,0 +1,17 @@
+{
+  "env": {
+    "es6": false,
+    "browser": true,
+    "node": false,
+    "commonjs": true
+  },
+  "rules": {
+    "vars-on-top": 0,
+    "func-names": 0,
+    "no-var": 0,
+    "object-shorthand": 0,
+    "prefer-arrow-callback": 0,
+    "prefer-template": 0,
+    "strict": [2, "never"]
+  }
+}
