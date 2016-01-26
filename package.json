@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "apidoc": "^0.14.0",
-    "bower": "^1.6.5",
+    "bower": "^1.7.3",
     "browserify": "^13.0.0",
     "del": "^2.0.2",
     "eslint-config-egy186": "github:egy186/eslint-config-egy186#v0.1.1",
