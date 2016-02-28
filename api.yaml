@@ -1,0 +1,216 @@
+swagger: '2.0'
+info:
+  title: 九州大学休講情報 API v1
+  description: 九州大学休講情報のAPIです。教育学部、文学部、法学部、理学部、経済学部に対応しています。
+  version: '1.1.0'
+host: kyukou-kyudai.herokuapp.com
+schemes:
+- https
+basePath: /api/1
+produces:
+- application/json
+paths:
+  /events/list.json:
+    get:
+      description: Get a list of sheduled events.
+      parameters:
+      - name: departments
+        in: query
+        description: Specify department.
+        required: false
+        type: array
+        items:
+          type: string
+          enum:
+          - edu
+          - lit
+          - law
+          - sci
+          - econ
+      - name: start_index
+        in: query
+        description: Starting index.
+        required: false
+        type: number
+        default: 0
+      - name: count
+        in: query
+        description: List count.
+        required: false
+        type: number
+      tags:
+        - Events
+      responses:
+        200:
+          description: An array of scheduled events.
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Event'
+  /events/search.json:
+    get:
+      description: Get a list of events matched search query.
+      parameters:
+      - name: q
+        in: query
+        description: Query.
+        required: true
+        type: string
+      - name: count
+        in: query
+        description: List count.
+        required: false
+        type: number
+      tags:
+        - Events
+      responses:
+        200:
+          description: An array of scheduled events.
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Event'
+  /events/{yyyy}-{mm}-{dd}.json:
+    get:
+      description: Get a list of YYYY-MM-DD's events.
+      parameters:
+      - name: yyyy
+        in: path
+        description: Year.
+        required: true
+        type: number
+      - name: mm
+        in: path
+        description: Month.
+        required: true
+        type: number
+      - name: dd
+        in: path
+        description: Date.
+        required: true
+        type: number
+      - name: count
+        in: query
+        description: List count.
+        required: false
+        type: number
+      tags:
+        - Events
+      responses:
+        200:
+          description: An array of scheduled events.
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Event'
+  /logs/{about}.json:
+    get:
+      description: Get latest log.
+      parameters:
+      - name: about
+        in: path
+        required: true
+        type: string
+        enum:
+        - task
+        - twit_new
+        - twit_tomorrow
+        - delete
+      tags:
+        - Logs
+      responses:
+        200:
+          description: Latest log.
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Log'
+definitions:
+  Event:
+    type: object
+    required:
+    - about
+    - department
+    - subject
+    - period
+    - link
+    - eventDate
+    - pubDate
+    - raw
+    - hash
+    - tweet
+    properties:
+      about:
+        type: string
+        description: Event type.
+      department:
+        type: string
+        description: Department.
+      subject:
+        type: string
+        description: Subject.
+      period:
+        type: string
+        description: Event period.
+      link:
+        type: string
+        description: Event URL.
+      eventDate:
+        type: string
+        description: Event date.
+      pubDate:
+        type: string
+        description: Date the event published.
+      raw:
+        type: string
+        description: Event source.
+      hash:
+        type: string
+        description: Event ID.
+      tweet:
+        type: object
+        required:
+        - new
+        - tomorrow
+        description: Tweet flags.
+        properties:
+          new:
+            type: boolean
+          tomorrow:
+            type: boolean
+      campus:
+        type: string
+        description: Campus.
+      room:
+        type: string
+        description: Room.
+      teacher:
+        type: string
+        description: Teacher.
+      note:
+        type: string
+        description: Notes.
+  Log:
+    type: object
+    required:
+    - name
+    - log
+    - level
+    - time
+    - elapsedTime
+    properties:
+      name:
+        type: string
+        description: Log type. Same as requested about.
+      log:
+        type: string
+        description: Main content.
+      level:
+        type: number
+        description: Error level.
+      time:
+        type: string
+        description: Loged time.
+      elapsedTime:
+        type: number
+        description: Elapsed time in ms.
