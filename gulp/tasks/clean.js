@@ -5,4 +5,4 @@ const gulp = require('gulp');
 
 const config = require('../config').clean;
 
-gulp.task('clean', () => { del(config.src); });
+gulp.task('clean', () => del(config.src));
