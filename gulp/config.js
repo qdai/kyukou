@@ -32,10 +32,6 @@ const createDoc = src => {
 const dest = './public';
 const src = './src';
 
-exports.bower = {
-  dest: `${src}/static/lib`
-};
-
 exports.build = {
   html: {
     dest: './views',
@@ -61,11 +57,11 @@ exports.build = {
 };
 
 exports.clean = {
-  src: [dest, `${src}/static/lib`, './views']
+  src: [dest, `${src}/css`, './views']
 };
 
 exports.lint = {
   js: {
-    src: ['bin/www', './**/*.js', '!./node_modules/**', '!./bower_components/**', '!./public/**', '!./src/static/**']
+    src: ['bin/www', './**/*.js', '!./node_modules/**', '!./public/**', '!./src/static/**']
   }
 };

@@ -13,9 +13,10 @@ html(lang=site.lang, prefix='og: http://ogp.me/ns#')
     meta(property='og:description', content=doc.project.description)
     meta(property='og:url', content='https://' + site.url + '/api/1')
     meta(property='og:site_name', content=site.name)
-    link(rel='stylesheet', href='/lib/highlightjs/styles/github.css')
-    link(rel='stylesheet', href='/css/bootstrap-custom.css')
-    link(rel='stylesheet', href='/css/main.css')
+    style
+      include ../../node_modules/highlight.js/styles/github.css
+    style
+      include ../css/bundle.css
   body
     div.container
       header.page-header

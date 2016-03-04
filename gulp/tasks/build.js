@@ -41,7 +41,7 @@ gulp.task('build:js', () =>
   }))
 );
 
-gulp.task('build:static', ['bower'], () =>
+gulp.task('build:static', () =>
   gulp.src(config.static.src)
     .pipe(gulp.dest(config.static.dest))
 );
