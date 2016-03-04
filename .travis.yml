@@ -14,6 +14,7 @@ before_install:
 before_script:
 - npm install -g gulp
 script:
+- npm run lint
 - gulp ci
 deploy:
   provider: heroku

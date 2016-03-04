@@ -63,9 +63,3 @@ exports.build = {
     src: `${src}/static/**`
   }
 };
-
-exports.lint = {
-  js: {
-    src: ['bin/www', './**/*.js', '!./node_modules/**', '!./bower_components/**', '!./public/**', '!./src/static/**']
-  }
-};

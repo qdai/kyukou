@@ -37,9 +37,9 @@
     "apidoc": "^0.15.0",
     "bower": "^1.7.3",
     "browserify": "^13.0.0",
+    "eslint": "^2.2.0",
     "eslint-config-egy186": "github:egy186/eslint-config-egy186#v0.3.0",
     "gulp": "^3.9.0",
-    "gulp-eslint": "^2.0.0",
     "gulp-jade": "^1.1.0",
     "gulp-minify-css": "^1.2.1",
     "gulp-sass": "^2.1.0",
@@ -71,6 +71,7 @@
   "scripts": {
     "build": "gulp build",
     "clean": "rimraf public src/static/lib views",
+    "lint": "eslint . bin/**",
     "postinstall": "npm run build",
     "start": "node ./bin/www"
   }
