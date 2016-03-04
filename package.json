@@ -35,8 +35,10 @@
   },
   "devDependencies": {
     "apidoc": "^0.15.0",
+    "bootstrap-sass": "^3.3.6",
     "bower": "^1.7.3",
     "browserify": "^13.0.0",
+    "datauri": "^1.0.4",
     "del": "^2.0.2",
     "eslint-config-egy186": "github:egy186/eslint-config-egy186#v0.3.0",
     "gulp": "^3.9.0",
@@ -69,7 +71,8 @@
     "url": "git+https://github.com/qdai/kyukou.git"
   },
   "scripts": {
-    "build": "gulp build",
+    "build": "gulp build && npm run build:css",
+    "build:css": "node-sass --include-path node_modules --functions lib/sass-functions.js --output-style compressed --output public/css src/sass",
     "clean": "gulp clean",
     "postinstall": "npm run build",
     "start": "node ./bin/www"

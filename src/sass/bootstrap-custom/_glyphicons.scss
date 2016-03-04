@@ -1,0 +1,26 @@
+@at-root {
+  @font-face {
+    font-family: 'Glyphicons Halflings';
+    src: url(inline-file('node_modules/bootstrap-sass/assets/fonts/bootstrap/glyphicons-halflings-regular.woff')) format('woff');
+  }
+}
+
+// Catchall baseclass
+.glyphicon {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Individual icons
+.glyphicon-check                  { &:before { content: "\e067"; } }
+.glyphicon-chevron-right          { &:before { content: "\e080"; } }
+.glyphicon-chevron-down           { &:before { content: "\e114"; } }
+.glyphicon-unchecked              { &:before { content: "\e157"; } }
+.glyphicon-new-window             { &:before { content: "\e164"; } }

@@ -4,19 +4,11 @@
     "qdai"
   ],
   "dependencies": {
-    "bootstrap": "~3.3.5",
     "highlightjs": "~9.1.0"
   },
   "homepage": "https://kyukou-kyudai.herokuapp.com/",
   "license": "MIT",
   "overrides": {
-    "bootstrap": {
-      "main": [
-        "dist/css/bootstrap.min.css",
-        "dist/fonts/*.*"
-      ],
-      "dependencies": null
-    },
     "highlightjs": {
       "main": "styles/github.css"
     }

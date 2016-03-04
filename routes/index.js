@@ -18,8 +18,8 @@ router.get('/kyukou.appcache', (req, res) => {
 
 CACHE:
 /js/app.bundle.js
-/lib/bootstrap/dist/css/bootstrap.min.css
 /icomoon/style.css
+/css/bootstrap-custom.css
 /css/main.css
 
 NETWORK:
