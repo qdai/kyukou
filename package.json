@@ -7,10 +7,6 @@
     "url": "https://github.com/qdai/kyukou/issues"
   },
   "dependencies": {
-    "angular": "^1.4.7",
-    "angular-animate": "^1.4.7",
-    "angular-bootstrap": "^0.12.2",
-    "angular-local-storage": "^0.2.2",
     "body-parser": "^1.14.1",
     "compression": "^1.6.1",
     "config": "^1.16.0",
@@ -34,6 +30,10 @@
     "vobject": "0.0.34"
   },
   "devDependencies": {
+    "angular": "~1.4.7",
+    "angular-animate": "~1.4.7",
+    "angular-bootstrap": "^0.12.2",
+    "angular-local-storage": "^0.2.2",
     "apidoc": "^0.15.0",
     "bootstrap-sass": "^3.3.6",
     "browserify": "^13.0.0",
