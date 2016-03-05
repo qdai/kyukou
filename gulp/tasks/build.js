@@ -5,22 +5,13 @@ const buffer = require('vinyl-buffer');
 const gulp = require('gulp');
 const jade = require('gulp-jade');
 const merge = require('merge-stream');
-const minify = require('gulp-minify-css');
 const preprocessify = require('preprocessify');
-const sass = require('gulp-sass');
 const saveLicense = require('uglify-save-license');
 const source = require('vinyl-source-stream');
 const uglify = require('gulp-uglify');
 const uglifyify = require('uglifyify');
 
 const config = require('../config').build;
-
-gulp.task('build:css', () =>
-  gulp.src(config.css.src)
-    .pipe(sass())
-    .pipe(minify())
-    .pipe(gulp.dest(config.css.dest))
-);
 
 gulp.task('build:html', () =>
   gulp.src(config.html.src)
@@ -50,9 +41,9 @@ gulp.task('build:js', () =>
   }))
 );
 
-gulp.task('build:static', ['bower'], () =>
+gulp.task('build:static', () =>
   gulp.src(config.static.src)
     .pipe(gulp.dest(config.static.dest))
 );
 
-gulp.task('build', ['build:css', 'build:html', 'build:js', 'build:static']);
+gulp.task('build', ['build:html', 'build:js', 'build:static']);

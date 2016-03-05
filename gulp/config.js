@@ -32,15 +32,7 @@ const createDoc = src => {
 const dest = './public';
 const src = './src';
 
-exports.bower = {
-  dest: `${src}/static/lib`
-};
-
 exports.build = {
-  css: {
-    dest: `${dest}/css`,
-    src: [`${src}/sass/**/*.scss`, `!${src}/sass/**/_*.scss`]
-  },
   html: {
     dest: './views',
     options: {
