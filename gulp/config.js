@@ -49,9 +49,5 @@ exports.build = {
     options: {
       SITE_URL: `//${config.get('site.url')}`
     }
-  },
-  static: {
-    dest,
-    src: `${src}/static/**`
   }
 };

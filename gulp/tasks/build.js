@@ -41,9 +41,4 @@ gulp.task('build:js', () =>
   }))
 );
 
-gulp.task('build:static', () =>
-  gulp.src(config.static.src)
-    .pipe(gulp.dest(config.static.dest))
-);
-
-gulp.task('build', ['build:html', 'build:js', 'build:static']);
+gulp.task('build', ['build:html', 'build:js']);

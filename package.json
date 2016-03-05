@@ -37,8 +37,8 @@
     "apidoc": "^0.15.0",
     "bootstrap-sass": "^3.3.6",
     "browserify": "^13.0.0",
-    "eslint": "^2.2.0",
     "datauri": "^1.0.4",
+    "eslint": "^2.2.0",
     "eslint-config-egy186": "github:egy186/eslint-config-egy186#v0.3.0",
     "gulp": "^3.9.0",
     "gulp-jade": "^1.1.0",
@@ -47,6 +47,7 @@
     "gulp-uglify": "^1.4.2",
     "highlight.js": "^9.1.0",
     "merge-stream": "^1.0.0",
+    "ncp": "^2.0.0",
     "preprocessify": "0.0.6",
     "require-dir": "^0.3.0",
     "rimraf": "^2.5.2",
@@ -69,11 +70,13 @@
     "url": "git+https://github.com/qdai/kyukou.git"
   },
   "scripts": {
-    "build": "npm run build:css && gulp build",
+    "build": "npm run build:static && gulp build",
     "build:css": "node-sass --include-path node_modules --functions lib/sass-functions.js --output-style compressed --output src/css src/sass",
+    "build:static": "ncp src/static public",
     "clean": "rimraf public src/css views",
     "lint": "eslint . bin/**",
     "postinstall": "npm run build",
+    "prebuild": "npm run build:css",
     "start": "node ./bin/www"
   }
 }
