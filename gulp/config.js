@@ -29,7 +29,6 @@ const createDoc = src => {
   });
   return doc;
 };
-const dest = './public';
 const src = './src';
 
 exports.build = {
@@ -42,12 +41,5 @@ exports.build = {
       }
     },
     src: [`${src}/jade/**/*.jade`, `!${src}/jade/includes/**`]
-  },
-  js: {
-    dest: `${dest}/js`,
-    files: [`${src}/js/admin.js`, `${src}/js/app.js`, `${src}/js/calendar.js`, `${src}/js/status.js`],
-    options: {
-      SITE_URL: `//${config.get('site.url')}`
-    }
   }
 };
