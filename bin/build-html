@@ -1,8 +1,15 @@
+#!/usr/bin/env node
+
 'use strict';
 
 const apidoc = require('apidoc');
 const config = require('config');
+const fs = require('fs');
+const glob = require('glob');
 const hljs = require('highlight.js');
+const jade = require('jade');
+const mkdirp = require('mkdirp');
+const path = require('path');
 
 const createDoc = src => {
   const doc = apidoc.createDoc({
@@ -29,17 +36,17 @@ const createDoc = src => {
   });
   return doc;
 };
-const src = './src';
 
-exports.build = {
-  html: {
-    dest: './views',
-    options: {
-      locals: {
-        doc: createDoc('./routes/api'),
-        site: config.get('site')
-      }
-    },
-    src: [`${src}/jade/**/*.jade`, `!${src}/jade/includes/**`]
-  }
-};
+const dest = 'views';
+const doc = createDoc('./routes/api');
+
+mkdirp.sync(dest);
+
+glob.sync('src/jade/*.jade').forEach(file => {
+  const compile = jade.compileFile(file);
+  const html = compile({
+    doc,
+    site: config.get('site')
+  });
+  fs.writeFile(path.join(dest, `${file.slice(file.lastIndexOf('/') + 1, file.lastIndexOf('.'))}.html`), html);
+});

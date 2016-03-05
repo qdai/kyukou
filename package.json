@@ -40,9 +40,9 @@
     "datauri": "^1.0.4",
     "eslint": "^2.2.0",
     "eslint-config-egy186": "github:egy186/eslint-config-egy186#v0.3.0",
-    "gulp": "^3.9.0",
-    "gulp-jade": "^1.1.0",
+    "glob": "^7.0.3",
     "highlight.js": "^9.1.0",
+    "jade": "^1.11.0",
     "minifyify": "^7.3.2",
     "mkdirp": "^0.5.1",
     "ncp": "^2.0.0",
@@ -65,14 +65,15 @@
     "url": "git+https://github.com/qdai/kyukou.git"
   },
   "scripts": {
-    "build": "npm run build:js && npm run build:static && gulp build",
+    "build": "npm run build:js && npm run build:static && npm run build:html",
     "build:css": "node-sass --include-path node_modules --functions lib/sass-functions.js --output-style compressed --output src/css src/sass",
+    "build:html": "node bin/build-html",
     "build:js": "node bin/build-js",
     "build:static": "ncp src/static public",
     "clean": "rimraf public src/css views",
     "lint": "eslint . bin/**",
     "postinstall": "npm run build",
-    "prebuild": "npm run build:css",
+    "prebuild:html": "npm run build:css",
     "start": "node bin/www"
   }
 }
