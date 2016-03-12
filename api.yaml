@@ -122,9 +122,7 @@ paths:
         200:
           description: Latest log.
           schema:
-            type: array
-            items:
-              $ref: '#/definitions/Log'
+            $ref: '#/definitions/Log'
 definitions:
   Event:
     type: object
