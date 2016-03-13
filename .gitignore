@@ -1,8 +1,5 @@
-*.*~
-*~
 config/development.*
-node_modules/
-bower_components/
-public/
-src/static/lib/
-views/
+node_modules
+public
+src/css
+views

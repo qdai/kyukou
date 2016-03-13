@@ -1,0 +1,52 @@
+#!/usr/bin/env node
+
+'use strict';
+
+const apidoc = require('apidoc');
+const config = require('config');
+const fs = require('fs');
+const glob = require('glob');
+const hljs = require('highlight.js');
+const jade = require('jade');
+const mkdirp = require('mkdirp');
+const path = require('path');
+
+const createDoc = src => {
+  const doc = apidoc.createDoc({
+    debug: false,
+    parse: true,
+    silent: true,
+    src
+  });
+  doc.data = JSON.parse(doc.data);
+  doc.project = JSON.parse(doc.project);
+  doc.list = {};
+  doc.data.map(api => {
+    // list
+    if (!doc.list[api.group]) {
+      doc.list[api.group] = [];
+    }
+    doc.list[api.group].push(api.title);
+    // examples
+    api.success.examples = api.success.examples.map(example => {
+      example.content = hljs.highlight(example.type, example.content, true).value;
+      return example;
+    });
+    return api;
+  });
+  return doc;
+};
+
+const dest = 'views';
+const doc = createDoc('./routes/api');
+
+mkdirp.sync(dest);
+
+glob.sync('src/jade/*.jade').forEach(file => {
+  const compile = jade.compileFile(file);
+  const html = compile({
+    doc,
+    site: config.get('site')
+  });
+  fs.writeFile(path.join(dest, `${file.slice(file.lastIndexOf('/') + 1, file.lastIndexOf('.'))}.html`), html);
+});

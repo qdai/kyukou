@@ -7,10 +7,6 @@
     "url": "https://github.com/qdai/kyukou/issues"
   },
   "dependencies": {
-    "angular": "^1.4.7",
-    "angular-animate": "^1.4.7",
-    "angular-bootstrap": "^0.12.2",
-    "angular-local-storage": "^0.2.2",
     "body-parser": "^1.14.1",
     "compression": "^1.6.1",
     "config": "^1.16.0",
@@ -34,26 +30,27 @@
     "vobject": "0.0.34"
   },
   "devDependencies": {
+    "angular": "~1.4.7",
+    "angular-animate": "~1.4.7",
+    "angular-bootstrap": "^0.12.2",
+    "angular-local-storage": "^0.2.2",
     "apidoc": "^0.15.0",
-    "bower": "^1.7.3",
+    "bootstrap-sass": "^3.3.6",
     "browserify": "^13.0.0",
-    "del": "^2.0.2",
+    "datauri": "^1.0.4",
+    "eslint": "^2.2.0",
     "eslint-config-egy186": "github:egy186/eslint-config-egy186#v0.3.0",
-    "gulp": "^3.9.0",
-    "gulp-eslint": "^2.0.0",
-    "gulp-jade": "^1.1.0",
-    "gulp-minify-css": "^1.2.1",
-    "gulp-sass": "^2.1.0",
-    "gulp-uglify": "^1.4.2",
+    "glob": "^7.0.3",
     "highlight.js": "^9.1.0",
-    "main-bower-files": "^2.9.0",
-    "merge-stream": "^1.0.0",
+    "jade": "^1.11.0",
+    "minifyify": "^7.3.2",
+    "mkdirp": "^0.5.1",
+    "ncp": "^2.0.0",
+    "node-sass": "^3.4.2",
+    "npm-run-all": "^1.5.1",
     "preprocessify": "0.0.6",
     "require-dir": "^0.3.0",
-    "uglify-save-license": "^0.4.1",
-    "uglifyify": "^3.0.1",
-    "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.1.0"
+    "rimraf": "^2.5.2"
   },
   "engines": {
     "node": "~5.7.1"
@@ -63,15 +60,21 @@
     "kyukou"
   ],
   "license": "MIT",
-  "main": "./bin/www",
+  "main": "bin/www",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/qdai/kyukou.git"
   },
   "scripts": {
-    "build": "gulp build",
-    "clean": "gulp clean",
+    "build": "npm-run-all --parallel build:html build:js build:static",
+    "build:css": "node-sass --include-path node_modules --functions lib/sass-functions.js --output-style compressed --output src/css src/sass",
+    "build:html": "node bin/build-html",
+    "build:js": "node bin/build-js",
+    "build:static": "ncp src/static public",
+    "clean": "rimraf public src/css views",
+    "lint": "eslint . bin/**",
     "postinstall": "npm run build",
-    "start": "node ./bin/www"
+    "prebuild:html": "npm run build:css",
+    "start": "node bin/www"
   }
 }
