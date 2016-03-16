@@ -31,7 +31,7 @@
   },
   "devDependencies": {
     "angular": "~1.5.1",
-    "angular-animate": "~1.4.7",
+    "angular-animate": "~1.5.1",
     "angular-bootstrap": "^0.12.2",
     "angular-local-storage": "^0.2.2",
     "apidoc": "^0.15.0",
