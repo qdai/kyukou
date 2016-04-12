@@ -38,7 +38,7 @@ const createDoc = src => {
 };
 
 const dest = 'views';
-const doc = createDoc('./routes/api');
+const doc = createDoc('./routes/api1');
 
 mkdirp.sync(dest);
 
