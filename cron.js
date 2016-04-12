@@ -4,7 +4,7 @@
 
 const CronJob = require('cron').CronJob;
 
-const tasksAPI = require('./api').tasks;
+const tasksAPI = require('./api1').tasks;
 const reportTaskResult = task => {
   task
     .then(tasklog => `msg: ${tasklog.name} done`)

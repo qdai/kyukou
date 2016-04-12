@@ -9,7 +9,7 @@ const vobject = require('vobject');
 const router = express.Router();
 const site = config.get('site');
 
-const eventsAPI = require('../api').events;
+const eventsAPI = require('../api1').events;
 
 router.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../views/calendar.html'));

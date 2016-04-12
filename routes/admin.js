@@ -9,7 +9,7 @@ const pwd = require('pwd');
 const admin = config.get('admin');
 const router = express.Router();
 
-const eventsAPI = require('../api').events;
+const eventsAPI = require('../api1').events;
 const sendAPIResult = require('../lib/sendapiresult');
 
 router.get('/', (req, res) => {

@@ -5,7 +5,7 @@ const express = require('express');
 
 const router = express.Router();
 
-const logsAPI = require('../../api').logs;
+const logsAPI = require('../../api1').logs;
 const sendAPIResult = require('../../lib/sendapiresult');
 
 /**

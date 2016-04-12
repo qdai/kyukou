@@ -35,7 +35,7 @@ const routes = require('./routes/index');
 const apiStatus = require('./routes/status');
 const rss = require('./routes/rss');
 const calendar = require('./routes/calendar');
-const api = require('./routes/api');
+const api1 = require('./routes/api1');
 const api0 = require('./routes/api0');
 const admin = require('./routes/admin');
 
@@ -62,7 +62,7 @@ app.use('/', routes);
 app.use('/status', apiStatus);
 app.use('/rss', rss);
 app.use('/calendar', calendar);
-app.use('/api/1', api);
+app.use('/api/1', api1);
 app.use('/api', api0);
 app.use('/admin', admin);
 
