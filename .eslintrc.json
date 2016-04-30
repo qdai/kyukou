@@ -1,7 +1,7 @@
 {
   "extends": [
-    "egy186",
-    "egy186/node"
+    "@egy186/eslint-config",
+    "@egy186/eslint-config/node"
   ],
   "rules": {
     "new-cap": [2, {
