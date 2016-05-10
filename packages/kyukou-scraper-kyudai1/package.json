@@ -1,0 +1,11 @@
+{
+  "name": "kyukou-scraper-kyudai1",
+  "description": "qdai/kyukou-scraper-kyudai v2",
+  "version": "1.0.0",
+  "author": "qdai",
+  "dependencies": {
+    "kyukou-scraper-kyudai": "github:qdai/kyukou-scraper-kyudai#v2.0.2"
+  },
+  "license": "MIT",
+  "main": "index.js"
+}

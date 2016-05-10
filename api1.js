@@ -5,9 +5,15 @@ const config = require('config');
 const mongoURI = config.get('mongoURI');
 const twitter = config.get('twitter');
 
-const api = require('kyukou-kyudai-api');
+const Api = require('kyukou-api1');
+const scraperObject = require('kyukou-scraper-kyudai1');
 
-module.exports = api({
+const scrapers = Object.keys(scraperObject).map(key => scraperObject[key]);
+
+const api = new Api({
   mongoURI,
+  scrapers,
   twitter
 });
+
+module.exports = api;
