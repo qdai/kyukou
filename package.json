@@ -63,7 +63,7 @@
     "url": "git+https://github.com/qdai/kyukou.git"
   },
   "scripts": {
-    "build": "npm-run-all --parallel build:html build:js build:static",
+    "build": "run-p build:html build:js build:static",
     "build:css": "node-sass --include-path node_modules --functions lib/sass-functions.js --output-style compressed --output src/css src/sass",
     "build:html": "node bin/build-html",
     "build:js": "node bin/build-js",
