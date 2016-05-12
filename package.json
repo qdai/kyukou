@@ -43,14 +43,14 @@
     "minifyify": "^7.3.2",
     "mkdirp": "^0.5.1",
     "ncp": "^2.0.0",
-    "node-sass": "^3.4.2",
+    "node-sass": "^3.7.0",
     "npm-run-all": "^2.0.0",
     "preprocessify": "0.0.6",
     "require-dir": "^0.3.0",
     "rimraf": "^2.5.2"
   },
   "engines": {
-    "node": "~5.7.1"
+    "node": "^6.1.0"
   },
   "homepage": "https://kyukou-kyudai.herokuapp.com/",
   "keywords": [
