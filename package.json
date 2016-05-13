@@ -24,7 +24,7 @@
     "pwd": "1.0.0",
     "rss": "^1.2.0",
     "serve-favicon": "^2.3.0",
-    "vobject": "0.0.34"
+    "vobject": "0.1.0"
   },
   "devDependencies": {
     "@egy186/eslint-config": "^0.6.1",
