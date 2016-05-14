@@ -18,17 +18,17 @@ router.get('/', (req, res) => {
 router.get('/kyukou.ics', (req, res) => {
   const departments = req.query.departments || req.query.department;
   eventsAPI.list(departments).then(events => {
-    const calendar = vobject.calendar();
-    calendar.setProperty(vobject.property('PRODID', `-//${site.author}//${site.generator}//EN`));
+    const calendar = vobject.calendar()
+      .setProperty(vobject.property('PRODID', `-//${site.author}//${site.generator}//EN`));
     events.forEach(event => {
       const startDate = moment(event.eventDate);
       const endDate = startDate.clone().add(1, 'day');
-      const vevent = vobject.event();
-      vevent.setSummary(event.asString('title'));
-      vevent.setDescription(event.asString('note'));
-      vevent.setUID(event.hash);
-      vevent.setDTStart(vobject.dateValue(startDate.format('YYYY-MM-DD')));
-      vevent.setDTEnd(vobject.dateValue(endDate.format('YYYY-MM-DD')));
+      const vevent = vobject.event()
+        .setSummary(event.asString('title'))
+        .setDescription(event.asString('note'))
+        .setUID(event.hash)
+        .setDTStart(vobject.dateValue(startDate.format('YYYY-MM-DD')))
+        .setDTEnd(vobject.dateValue(endDate.format('YYYY-MM-DD')));
       calendar.pushComponent(vevent);
     });
     res.set('Content-Type', 'text/calendar');
