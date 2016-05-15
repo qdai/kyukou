@@ -2,7 +2,7 @@
 
 const config = require('config');
 
-const mongoURI = config.get('mongoURI');
+const mongoURI = config.get('api1');
 const twitter = config.get('twitter');
 
 const Api = require('kyukou-api1');

@@ -13,6 +13,7 @@ module.exports = {
   },
   secret: '',
   mongoURI: 'mongodb://localhost/kyukou',
+  api1: 'mongodb://localhost/kyukou',
   twitter: {
     consumer_key: '',
     consumer_secret: '',
