@@ -32,9 +32,12 @@ files.forEach(src => {
         }
       }
     })
-    .transform(preprocessify({
-      SITE_URL: `//${config.get('site.url')}`
-    }))
+    .transform(preprocessify, {
+      includeExtensions: ['.js'],
+      context: {
+        SITE_URL: `//${config.get('site.url')}`
+      }
+    })
     .bundle()
     .pipe(fs.createWriteStream(path.join(dest, filename)));
 });
