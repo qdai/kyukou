@@ -22,10 +22,10 @@
     "kyukou-scraper-kyudai1": "file:packages/kyukou-scraper-kyudai1",
     "moment": "^2.11.2",
     "morgan": "^1.6.1",
-    "pwd": "1.0.0",
+    "pwd": "^1.0.0",
     "rss": "^1.2.0",
     "serve-favicon": "^2.3.0",
-    "vobject": "0.1.0"
+    "vobject": "^0.1.0"
   },
   "devDependencies": {
     "@egy186/eslint-config": "^0.6.1",
@@ -46,7 +46,7 @@
     "ncp": "^2.0.0",
     "node-sass": "^3.7.0",
     "npm-run-all": "^2.0.0",
-    "preprocessify": "1.0.0",
+    "preprocessify": "^1.0.0",
     "require-dir": "^0.3.0",
     "rimraf": "^2.5.2"
   },
