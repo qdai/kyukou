@@ -1,0 +1,11 @@
+{
+  "name": "kyukou-api1",
+  "description": "qdai/kyukou-api v2",
+  "version": "1.0.0",
+  "author": "qdai",
+  "dependencies": {
+    "kyukou-api": "github:qdai/kyukou-api#v2.0.0"
+  },
+  "license": "MIT",
+  "main": "index.js"
+}
