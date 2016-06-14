@@ -3,11 +3,26 @@ var angular = require('angular');
 var calendarApp = angular.module('calendarApp', []);
 calendarApp.controller('calendarCtrl', ['$scope', function ($scope) {
   $scope.departments = [
-    { key: 'edu', text: '教育学部' },
-    { key: 'lit', text: '文学部' },
-    { key: 'law', text: '法学部' },
-    { key: 'sci', text: '理学部' },
-    { key: 'econ', text: '経済学部' }
+    {
+      key: 'edu',
+      text: '教育学部'
+    },
+    {
+      key: 'lit',
+      text: '文学部'
+    },
+    {
+      key: 'law',
+      text: '法学部'
+    },
+    {
+      key: 'sci',
+      text: '理学部'
+    },
+    {
+      key: 'econ',
+      text: '経済学部'
+    }
   ];
   $scope.selectedDepartments = [];
   $scope.setSelectedDepartments = function () {

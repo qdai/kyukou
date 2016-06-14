@@ -125,9 +125,7 @@ kyukouApp.controller('eventListCtrl', ['$scope', 'eventList', 'defaults', 'local
     $scope.ctrlTmpl = 'kyukou-app';
     $scope.error = null;
   }, function (err) {
-    $scope.error = {
-      status: err.status
-    };
+    $scope.error = { status: err.status };
   });
 
   $scope.departments = defaults.departments;
