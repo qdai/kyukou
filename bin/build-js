@@ -26,17 +26,11 @@ files.forEach(src => {
     .require(src, { entry: true })
     .plugin(minifyify, {
       map: false,
-      uglify: {
-        output: {
-          comments: /@preserve|license|@cc_on/i
-        }
-      }
+      uglify: { output: { comments: /@preserve|license|@cc_on/i } }
     })
     .transform(preprocessify, {
       includeExtensions: ['.js'],
-      context: {
-        SITE_URL: `//${config.get('site.url')}`
-      }
+      context: { SITE_URL: `//${config.get('site.url')}` }
     })
     .bundle()
     .pipe(fs.createWriteStream(path.join(dest, filename)));

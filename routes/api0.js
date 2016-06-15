@@ -17,11 +17,7 @@ router.get('/log/:about.json', () => {
 });
 
 router.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
-  res.status(err.status || 500).json({
-    error: {
-      message: err.message
-    }
-  });
+  res.status(err.status || 500).json({ error: { message: err.message } });
 });
 
 router.get('/', () => {
