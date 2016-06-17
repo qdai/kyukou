@@ -24,7 +24,7 @@ passport.use(new LocalStrategy({
       if (hash === admin.hash) {
         return done(null, admin);
       }
-      done(null, false);
+      return done(null, false);
     });
   } else {
     done(null, false);
