@@ -3,17 +3,45 @@
 const config = require('config');
 const createHttpError = require('http-errors');
 const express = require('express');
+const passport = require('passport');
 const path = require('path');
 const pwd = require('pwd');
+const { Strategy: LocalStrategy } = require('passport-local');
 
 const admin = config.get('admin');
 const router = express.Router();
+
+passport.use(new LocalStrategy({
+  usernameField: 'name',
+  passwordField: 'password',
+  passReqToCallback: true
+}, (req, name, password, done) => {
+  if (name === admin.name) {
+    pwd.hash(password, admin.salt, (err, hash) => {
+      if (err) {
+        return done(err);
+      }
+      if (hash === admin.hash) {
+        return done(null, admin);
+      }
+      done(null, false);
+    });
+  } else {
+    done(null, false);
+  }
+}));
+passport.serializeUser((account, done) => {
+  done(null, account.name);
+});
+passport.deserializeUser((serializedAccount, done) => {
+  done(null, admin);
+});
 
 const eventsAPI = require('../api1').events;
 const sendAPIResult = require('../lib/sendapiresult');
 
 router.get('/', (req, res) => {
-  if (req.session.loggedin) {
+  if (req.session.passport && req.session.passport.user === admin.name) {
     res.sendFile(path.join(__dirname, '../views/admin.html'));
   } else {
     res.redirect('/admin/login');
@@ -21,36 +49,18 @@ router.get('/', (req, res) => {
 });
 
 router.get('/login', (req, res) => {
-  if (req.session.loggedin) {
+  if (req.session.passport && req.session.passport.user === admin.name) {
     res.redirect('/admin');
   } else {
     res.sendFile(path.join(__dirname, '../views/login.html'));
   }
 });
 
-router.post('/login', (req, res) => {
-  const name = req.body.name;
-  const pass = req.body.password;
-  if (name === admin.name) {
-    new Promise((resolve, reject) => {
-      pwd.hash(pass, admin.salt, (err, hash) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(hash);
-        }
-      });
-    }).then(hash => {
-      if (hash !== admin.hash) {
-        res.redirect('/admin/login');
-      } else {
-        req.session.loggedin = true;
-        res.redirect('/admin');
-      }
-    });
-  } else {
-    res.redirect('/admin/login');
-  }
+router.post('/login', (req, res, next) => {
+  passport.authenticate('local', {
+    successRedirect: '/admin',
+    failureRedirect: '/admin/login'
+  })(req, res, next);
 });
 
 router.get('/logout', (req, res) => {
@@ -59,7 +69,7 @@ router.get('/logout', (req, res) => {
 });
 
 router.post('/events/add', (req, res) => {
-  if (req.session.loggedin) {
+  if (req.session.passport && req.session.passport.user === admin.name) {
     const event = req.body;
     sendAPIResult(eventsAPI.add(event), res);
   } else {
@@ -68,7 +78,7 @@ router.post('/events/add', (req, res) => {
 });
 
 router.post('/events/edit', (req, res) => {
-  if (req.session.loggedin) {
+  if (req.session.passport && req.session.passport.user === admin.name) {
     const hash = req.body.hash;
     const key = req.body.key;
     const value = req.body.value;
@@ -81,7 +91,7 @@ router.post('/events/edit', (req, res) => {
 });
 
 router.post('/events/delete', (req, res) => {
-  if (req.session.loggedin) {
+  if (req.session.passport && req.session.passport.user === admin.name) {
     const hash = req.body.hash;
     sendAPIResult(eventsAPI.delete(hash), res);
   } else {
