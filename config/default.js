@@ -8,8 +8,7 @@ const pkg = jsonfile.readFileSync(path.join(__dirname, '../package.json'));
 module.exports = {
   admin: {
     name: '',
-    hash: '',
-    salt: ''
+    hash: ''
   },
   secret: '',
   mongoURI: 'mongodb://localhost/kyukou',

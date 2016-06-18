@@ -1,11 +1,11 @@
 'use strict';
 
+const bcrypt = require('bcrypt');
 const config = require('config');
 const createHttpError = require('http-errors');
 const express = require('express');
 const passport = require('passport');
 const path = require('path');
-const pwd = require('pwd');
 const { Strategy: LocalStrategy } = require('passport-local');
 
 const admin = config.get('admin');
@@ -17,11 +17,11 @@ passport.use(new LocalStrategy({
   passReqToCallback: true
 }, (req, name, password, done) => {
   if (name === admin.name) {
-    pwd.hash(password, admin.salt, (err, hash) => {
+    bcrypt.compare(password, admin.hash, (err, match) => {
       if (err) {
         return done(err);
       }
-      if (hash === admin.hash) {
+      if (match) {
         return done(null, admin);
       }
       return done(null, false);

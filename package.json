@@ -7,6 +7,7 @@
     "url": "https://github.com/qdai/kyukou/issues"
   },
   "dependencies": {
+    "bcrypt": "^0.8.7",
     "body-parser": "^1.14.1",
     "compression": "^1.6.1",
     "config": "^1.16.0",
@@ -24,7 +25,6 @@
     "morgan": "^1.6.1",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
-    "pwd": "^1.0.0",
     "rss": "^1.2.0",
     "serve-favicon": "^2.3.0",
     "vobject": "^0.1.0"
