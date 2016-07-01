@@ -37,7 +37,7 @@
     "bootstrap-sass": "^3.3.6",
     "browserify": "^13.0.0",
     "datauri": "^1.0.4",
-    "eslint": "^2.12.0",
+    "eslint": "^3.0.0",
     "glob": "^7.0.3",
     "highlight.js": "^9.1.0",
     "jade": "^1.11.0",
