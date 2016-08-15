@@ -3,8 +3,9 @@ require('angular-animate');
 require('angular-bootstrap');
 require('angular-local-storage');
 var moment = require('moment');
+require('moment/locale/ja');
 
-moment.locale('ja', {
+moment.updateLocale('ja', {
   calendar: {
     lastDay: '[昨日]',
     lastWeek: 'YYYY年M月D日（dd）',
@@ -12,9 +13,7 @@ moment.locale('ja', {
     nextWeek: 'dddd',
     sameDay: '[今日]',
     sameElse: 'YYYY年M月D日（dd）'
-  },
-  weekdays: '日曜日_月曜日_火曜日_水曜日_木曜日_金曜日_土曜日'.split('_'),
-  weekdaysMin: '日_月_火_水_木_金_土'.split('_')
+  }
 });
 
 var SITE_URL = '/* @echo SITE_URL */' || '//' + window.location.hostname;
