@@ -22,8 +22,8 @@ const sessionOptions = {
   saveUninitialized: false,
   secret: config.get('secret'),
   store: new MongoStore({
-    url: mongoURI,
-    autoReconnect: true
+    autoReconnect: true,
+    url: mongoURI
   })
 };
 if (app.get('env') === 'production') {

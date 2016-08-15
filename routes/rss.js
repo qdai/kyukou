@@ -13,23 +13,23 @@ const eventsAPI = require('../api1').events;
 router.get('/', (req, res) => {
   eventsAPI.list().then(events => {
     const feed = new RSS({
-      title: site.name,
       description: site.description,
-      generator: site.generator,
       feed_url: `https://${site.url}/rss`,
-      site_url: `https://${site.url}`,
+      generator: site.generator,
       language: site.lang,
+      site_url: `https://${site.url}`,
+      title: site.name,
       ttl: 180
     });
     events
       .sort((a, b) => moment(b.pubDate).diff(moment(a.pubDate)))
       .slice(0, 20).forEach(event => {
         feed.item({
-          title: event.asString('summary'),
+          date: event.pubDate.toISOString(),
           description: event.asString(null, '<br />'),
-          url: event.link,
           guid: event.hash,
-          date: event.pubDate.toISOString()
+          title: event.asString('summary'),
+          url: event.link
         });
       });
     res.set('Content-Type', 'application/rss+xml');

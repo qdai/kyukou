@@ -9,18 +9,18 @@ var adminMethod = function (method) {
     var self = this;
     this.post = function (data) {
       $http({
+        data: data,
         method: 'POST',
-        url: SITE_URL + '/admin/events/' + method,
-        data: data
+        url: SITE_URL + '/admin/events/' + method
       }).then(function (result) {
         return {
-          type: 'success',
-          message: 'Success: ' + result.data.success.message
+          message: 'Success: ' + result.data.success.message,
+          type: 'success'
         };
       }).catch(function (result) {
         return {
-          type: 'danger',
-          message: 'Error: ' + result.status + ': ' + result.data.error.message
+          message: 'Error: ' + result.status + ': ' + result.data.error.message,
+          type: 'danger'
         };
       }).then(function (log) {
         self.alerts.push(log);
