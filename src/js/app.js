@@ -3,16 +3,15 @@ require('angular-animate');
 require('angular-bootstrap');
 require('angular-local-storage');
 var moment = require('moment');
+require('moment/locale/ja');
 
-moment.locale('ja', {
-  weekdays: '日曜日_月曜日_火曜日_水曜日_木曜日_金曜日_土曜日'.split('_'),
-  weekdaysMin: '日_月_火_水_木_金_土'.split('_'),
+moment.updateLocale('ja', {
   calendar: {
-    sameDay: '[今日]',
-    nextDay: '[明日]',
-    nextWeek: 'dddd',
     lastDay: '[昨日]',
     lastWeek: 'YYYY年M月D日（dd）',
+    nextDay: '[明日]',
+    nextWeek: 'dddd',
+    sameDay: '[今日]',
     sameElse: 'YYYY年M月D日（dd）'
   }
 });

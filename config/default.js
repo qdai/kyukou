@@ -7,28 +7,28 @@ const pkg = jsonfile.readFileSync(path.join(__dirname, '../package.json'));
 
 module.exports = {
   admin: {
-    name: '',
     hash: '',
+    name: '',
     salt: ''
   },
-  secret: '',
-  mongoURI: 'mongodb://localhost/kyukou',
   api1: 'mongodb://localhost/kyukou',
-  twitter: {
-    consumer_key: '',
-    consumer_secret: '',
-    access_token: '',
-    access_token_secret: ''
-  },
+  mongoURI: 'mongodb://localhost/kyukou',
+  secret: '',
   site: {
-    name: '',
-    description: '',
-    keywords: '',
-    url: '',
-    lang: 'ja',
-    twitter: '',
-    version: `v${pkg.version}`,
     author: pkg.author,
-    generator: pkg.name
+    description: '',
+    generator: pkg.name,
+    keywords: '',
+    lang: 'ja',
+    name: '',
+    twitter: '',
+    url: '',
+    version: `v${pkg.version}`
+  },
+  twitter: {
+    access_token: '',
+    access_token_secret: '',
+    consumer_key: '',
+    consumer_secret: ''
   }
 };
