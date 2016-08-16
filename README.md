@@ -1,6 +1,8 @@
 # [Kyukou Kyudai](https://kyukou-kyudai.herokuapp.com/)
 
-[![GitHub release](https://img.shields.io/github/release/qdai/kyukou.svg?style=flat-square)](https://github.com/qdai/kyukou/releases/latest) [![Dependency Status](https://img.shields.io/david/qdai/kyukou.svg?style=flat-square)](https://david-dm.org/qdai/kyukou) [![devDependency Status](https://img.shields.io/david/dev/qdai/kyukou.svg?style=flat-square)](https://david-dm.org/qdai/kyukou#info=devDependencies)
+[![GitHub release](https://img.shields.io/github/release/qdai/kyukou.svg)](https://github.com/qdai/kyukou/releases/latest)
+[![dependencies Status](https://david-dm.org/qdai/kyukou/status.svg)](https://david-dm.org/qdai/kyukou)
+[![devDependencies Status](https://david-dm.org/qdai/kyukou/dev-status.svg)](https://david-dm.org/qdai/kyukou?type=dev)
 
 Alert information about cancellation of a lecture.
 
