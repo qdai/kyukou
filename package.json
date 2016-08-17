@@ -45,7 +45,7 @@
     "mkdirp": "^0.5.1",
     "ncp": "^2.0.0",
     "node-sass": "^3.8.0",
-    "npm-run-all": "^2.3.0",
+    "npm-run-all": "^3.0.0",
     "preprocessify": "^1.0.0",
     "require-dir": "^0.3.0",
     "rimraf": "^2.5.2"
