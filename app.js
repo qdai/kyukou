@@ -10,6 +10,7 @@ const express = require('express');
 const favicon = require('serve-favicon');
 const helmet = require('helmet');
 const logger = require('morgan');
+const passport = require('passport');
 const path = require('path');
 const session = require('express-session');
 
@@ -57,6 +58,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 // session for routes/admin
 app.use(session(sessionOptions));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/', routes);
 app.use('/status', apiStatus);
