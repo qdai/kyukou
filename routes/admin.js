@@ -12,9 +12,9 @@ const admin = config.get('admin');
 const router = express.Router();
 
 passport.use(new LocalStrategy({
-  usernameField: 'name',
+  passReqToCallback: true,
   passwordField: 'password',
-  passReqToCallback: true
+  usernameField: 'name'
 }, (req, name, password, done) => {
   if (name === admin.name) {
     bcrypt.compare(password, admin.hash, (err, match) => {
@@ -62,8 +62,8 @@ router.get('/login', (req, res) => {
 
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', {
-    successRedirect: '/admin',
-    failureRedirect: '/admin/login'
+    failureRedirect: '/admin/login',
+    successRedirect: '/admin'
   })(req, res, next);
 });
 
