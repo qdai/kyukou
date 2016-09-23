@@ -2,21 +2,29 @@
 
 'use strict';
 
+const babelify = require('babelify');
 const browserify = require('browserify');
 const config = require('config');
 const fs = require('fs');
+const jsonfile = require('jsonfile');
 const minifyify = require('minifyify');
-const path = require('path');
 const mkdirp = require('mkdirp');
+const path = require('path');
 const preprocessify = require('preprocessify');
 
 const files = [
-  'src/js/admin.js',
-  'src/js/app.js',
-  'src/js/calendar.js',
-  'src/js/status.js'
+  'src/js/admin.jsx',
+  'src/js/app.jsx',
+  'src/js/calendar.jsx',
+  'src/js/status.jsx'
 ];
 const dest = 'public/js';
+const { version } = jsonfile.readFileSync(path.join(__dirname, '../package.json'));
+let SITE_URL = `https://${config.get('site.url')}`;
+if (process.env.NODE_ENV === 'development') { // eslint-disable-line no-process-env
+  SITE_URL = `http://${config.get('site.url')}`;
+}
+
 
 mkdirp.sync(dest);
 
@@ -28,8 +36,12 @@ files.forEach(src => {
       map: false,
       uglify: { output: { comments: /@preserve|license|@cc_on/i } }
     })
+    .transform(babelify)
     .transform(preprocessify, {
-      context: { SITE_URL: `//${config.get('site.url')}` },
+      context: {
+        APP_VERSION: `v${version.slice(0, version.indexOf('.'))}`,
+        SITE_URL
+      },
       includeExtensions: ['.js']
     })
     .bundle()

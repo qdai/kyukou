@@ -1,5 +1,5 @@
 doctype html
-html(lang=site.lang, data-ng-app='statusApp')
+html(lang=site.lang)
   head
     meta(charset='utf-8')
     title='Status - '+site.name
@@ -9,37 +9,9 @@ html(lang=site.lang, data-ng-app='statusApp')
     script(src='/js/status.bundle.js', async)
     style
       include ../css/bundle.css
-    script#logapp-loading(type='text/ng-template')
-      div.alert(role='alert', data-ng-class='{\'alert-info\': !llc.error, \'alert-danger\': llc.error}')
-        p.lead(data-ng-show='!llc.error') Now loading...
-        p.lead(data-ng-show='llc.error') Load error ({{llc.error.status}}). Please 
-          a(href='//' + site.url + '/status') load again
-          | .
-    script#logapp(type='text/ng-template')
-      accordion(data-close-others='llc.oneAtATime')
-        accordion-group(data-ng-repeat='log in llc.logs', is-open='log.isFailure', class='panel panel-{{log.level}}')
-          accordion-heading {{log.name}} ({{log.elapsedTime}}ms) 
-            time {{log.time}}
-          pre {{log.log}}
-    script(type='text/ng-template', id='template/accordion/accordion-group.html')
-      section.panel.panel-default
-        div.panel-heading
-          h2.panel-title
-            a.accordion-toggle(data-ng-click='toggleOpen()', data-accordion-transclude='heading')
-              span {{heading}}
-        div.panel-collapse.collapse(data-collapse='!isOpen')
-          div.panel-body(data-ng-transclude)
-    script(type='text/ng-template', id='template/accordion/accordion.html')
-      div.panel-group(data-ng-transclude)
   body
     div.container
-      header
-        h1.page-header='Status - '+site.name
-      main(role='main', data-ng-include='llc.ctrlTmpl', data-ng-controller='logListCtrl as llc')
-        noscript
-          div.alert.alert-danger
-            h2=site.name + 'はJavaScriptを使用しています。'
-            p お使いのブラウザのJavaScriptを有効にしてご利用ください。
-        div.alert.alert-info(role='alert')
-          p.lead Now loading...
+      header.page-header
+        h1='Status - '+site.name
+      include ./includes/main.jade
       include ./includes/footer.jade
