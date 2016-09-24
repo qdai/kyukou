@@ -28,7 +28,7 @@ module.exports = {
     ]
   },
   output: {
-    filename: '[name].bundle.js',
+    filename: '[name].js',
     path: path.join(dest, 'js')
   },
   plugins: [
@@ -37,6 +37,10 @@ module.exports = {
       SITE_URL: JSON.stringify(siteUrl),
       // eslint-disable-next-line no-process-env
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      filename: 'commons.js',
+      name: 'commons'
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.DedupePlugin(),
