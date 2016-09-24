@@ -13,10 +13,10 @@ const { version } = jsonfile.readFileSync(path.join(__dirname, './package.json')
 
 module.exports = {
   entry: {
-    admin: path.join(src, 'js/admin.jsx'),
-    app: path.join(src, 'js/app.jsx'),
-    calendar: path.join(src, 'js/calendar.jsx'),
-    status: path.join(src, 'js/status.jsx')
+    admin: ['babel-polyfill', path.join(src, 'js/admin.jsx')],
+    app: ['babel-polyfill', path.join(src, 'js/app.jsx')],
+    calendar: ['babel-polyfill', path.join(src, 'js/calendar.jsx')],
+    status: ['babel-polyfill', path.join(src, 'js/status.jsx')]
   },
   module: {
     loaders: [
