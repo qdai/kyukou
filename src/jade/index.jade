@@ -14,7 +14,7 @@ html(lang=site.lang, prefix='og: http://ogp.me/ns#')
     meta(property='og:description', content=site.description)
     meta(property='og:url', content='https://' + site.url)
     meta(property='og:site_name', content=site.name)
-    script(src='/js/app.bundle.js', async)
+    script(src='/js/app.bundle.js', defer)
     style
       include ../css/icomoon.css
     style
