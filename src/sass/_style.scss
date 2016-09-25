@@ -40,10 +40,6 @@ h2.page-header span:first-child {
   text-transform: capitalize;
 }
 
-.btn-group [type="checkbox"] {
-  display: none;
-}
-
 $header-button-size: 40px;
 
 body > .container {
@@ -86,7 +82,7 @@ body > .container {
   }
 }
 
-#settings {
+.settings {
   h3 {
     font-size: 18px;
     margin-top: 0;
@@ -100,17 +96,23 @@ body > .container {
   dd {
     font-size: 20px;
   }
+}
+
+.component-checkbox {
+  display: inline-block;
+  font-size: 20px;
+  margin: 0 10px;
+  [type="checkbox"] {
+    display: none;
+  }
   label {
     cursor: pointer;
     font-weight: normal;
-    margin: 10px;
-  }
-  input[type="checkbox"] {
-    display: none;
   }
 }
 
 .events {
+  position: relative;
   h2 {
     background: #fff;
     margin-top: 0;
@@ -119,6 +121,16 @@ body > .container {
     top: 0;
     z-index: 10;
   }
+  .events-count {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1;
+  }
+  .events-list {
+    position: relative;
+    z-index: 0;
+  }
   .panel {
     border-radius: 0;
     box-shadow: none;
@@ -126,30 +138,19 @@ body > .container {
       margin-top: -1px;
     }
   }
+  .panel-heading {
+    background-color: #fff;
+  }
+  .panel-title {
+    font-size: 18px;
+  }
   .panel-collapse {
     background-color: rgb(252, 252, 252);
-    border-top: 1px solid rgb(221, 221, 221);
-  }
-  .panel-body {
     ul {
       padding-left: 20px;
     }
     li {
       padding: 0;
-    }
-  }
-  .accordion-toggle {
-    cursor: pointer;
-    margin-bottom: 0;
-    margin-top: 0;
-    padding: 10px 0;
-    &.row {
-      margin-left: 0;
-      margin-right: 0;
-    }
-    [class*="col-"] {
-      padding-left: 10px;
-      padding-right: 10px;
     }
   }
   [target="_blank"] span {
@@ -164,7 +165,7 @@ body > .container {
   padding-top: 20px;
 }
 
-[data-ng-app="adminApp"] {
+.admin {
   .nav.nav-tabs {
     margin-bottom: 20px;
   }
@@ -182,5 +183,8 @@ body > .container {
 @media (max-width: 767px) {
   .page-header {
     margin-top: 50px;
+  }
+  .events .events-count {
+    position: static;
   }
 }
