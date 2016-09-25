@@ -15,10 +15,6 @@ class Checkbox extends Component {
     const { isSelected, value } = this.props;
     return (
       <span className="component-checkbox">
-        <span
-          aria-hidden="true"
-          className={isSelected ? 'glyphicon glyphicon-check' : 'glyphicon glyphicon-unchecked'}
-        />
         <input
           checked={isSelected}
           id={value}
@@ -26,7 +22,12 @@ class Checkbox extends Component {
           type="checkbox"
           value={value}
         />
-        <label htmlFor={value}>{value}</label>
+        <label htmlFor={value}>
+          <svg className="icon">
+            <use xlinkHref={isSelected ? '#icon-checkbox-checked' : '#icon-checkbox-unchecked'} />
+          </svg>
+          {value}
+        </label>
       </span>
     );
   }

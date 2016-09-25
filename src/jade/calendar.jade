@@ -9,10 +9,13 @@ html(lang=site.lang)
     script(src='/js/commons.js', defer)
     script(src='/js/calendar.js', defer)
     style
+      include ../icomoon/style.css
+    style
       include ../css/bundle.css
     link(rel='icon', type='image/vnd.microsoft.icon', href='/favicon.ico')
     link(rel='shortcut icon', type='image/vnd.microsoft.icon', href='/favicon.ico')
   body
+    include ../icomoon/symbol-defs.svg
     div.container
       header.page-header
         h1='Calendar - '+site.name

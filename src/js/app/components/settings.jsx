@@ -41,7 +41,9 @@ class Settings extends Component {
             onClick={this.handleClick}
             role="button"
           >
-            <span className={this.state.open ? 'glyphicon glyphicon-chevron-down' : 'glyphicon glyphicon-chevron-right'} />
+            <svg className="icon">
+              <use xlinkHref="#icon-cog" />
+            </svg>
             {'Settings'}
           </a>
         </h2>
