@@ -37,7 +37,6 @@
     "babel-preset-es2015": "^6.13.2",
     "babel-preset-react": "^6.11.1",
     "bootstrap-sass": "^3.3.6",
-    "datauri": "^1.0.4",
     "eslint": "^3.5.0",
     "glob": "^7.0.3",
     "highlight.js": "^9.1.0",
@@ -75,7 +74,7 @@
   },
   "scripts": {
     "build": "run-p build:html build:js build:static",
-    "build:css": "node-sass --include-path node_modules --functions lib/sass-functions.js --output-style compressed --output src/css src/sass",
+    "build:css": "node-sass --include-path node_modules --output-style compressed --output src/css src/sass",
     "build:html": "node bin/build-html",
     "build:js": "webpack",
     "build:static": "ncp src/static public",

@@ -17,23 +17,25 @@ html(lang=site.lang, prefix='og: http://ogp.me/ns#')
     script(src='/js/commons.js', defer)
     script(src='/js/app.js', defer)
     style
-      include ../css/icomoon.css
-    style
-      include ../css/bundle.css
+      include ../css/index.css
     link(rel='icon', type='image/vnd.microsoft.icon', href='/favicon.ico')
     link(rel='shortcut icon', type='image/vnd.microsoft.icon', href='/favicon.ico')
     link(rel='alternate' type='application/rss+xml' title=site.name href='https://' + site.url + '/rss')
   body
+    include ../icomoon/symbol-defs.svg
     div.container
       header.page-header
         h1=site.name
         p=site.description
         p#header-buttons
           a.icon-twitter(target='_blank', href='//twitter.com/' + site.twitter, title='Twitter')
-            span Twitter
+            svg.icon
+              use(xlink:href='#icon-twitter')
           a.icon-calendar(href='/calendar', title='calendar')
-            span Calendar
+            svg.icon
+              use(xlink:href='#icon-calendar')
           a.icon-feed(href='/rss', title='RSS')
-            span RSS
+            svg.icon
+              use(xlink:href='#icon-feed')
       include ./includes/main.jade
       include ./includes/footer.jade

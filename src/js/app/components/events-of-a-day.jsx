@@ -31,10 +31,9 @@ const EventsOfADay = ({ data, date }) =>
               target="_blank"
             >
               {'情報取得元'}
-              <span
-                aria-hidden="true"
-                className="glyphicon glyphicon-new-window"
-              />
+              <svg className="icon">
+                <use xlinkHref="#icon-new-tab" />
+              </svg>
             </a>
           </p>
         </Panel>
