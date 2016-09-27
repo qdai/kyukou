@@ -3,7 +3,7 @@ import InputText from './input-text.jsx';
 import SubmitButton from './submit-button.jsx';
 import { eventKeys } from '../../utils/constant';
 
-const requiredKeys = ['about', 'link', 'eventDate', 'period', 'department', 'subject', 'raw', 'tweet.new', 'tweet.tomorrow'];
+const requiredKeys = ['about', 'link', 'eventDate', 'pubDate', 'period', 'department', 'subject', 'raw', 'tweet.new', 'tweet.tomorrow'];
 
 const Add = ({ handleSubmit }) =>
   <div>
