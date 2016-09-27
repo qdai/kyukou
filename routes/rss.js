@@ -14,10 +14,10 @@ router.get('/', (req, res) => {
   eventsAPI.list().then(events => {
     const feed = new RSS({
       description: site.description,
-      feed_url: `https://${site.url}/rss`,
+      feed_url: `${site.url}/rss`,
       generator: site.generator,
       language: site.lang,
-      site_url: `https://${site.url}`,
+      site_url: `${site.url}`,
       title: site.name,
       ttl: 180
     });
