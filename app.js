@@ -13,8 +13,10 @@ const logger = require('morgan');
 const passport = require('passport');
 const path = require('path');
 const session = require('express-session');
+const createHashes = require('./lib/create-hashes');
 
 const app = express();
+const hashAlgorithm = 'sha256';
 const MongoStore = connectMongo(session);
 const mongoURI = config.get('mongoURI');
 const sessionOptions = {
@@ -49,7 +51,21 @@ app.set('x-powered-by', false);
 if (app.get('env') === 'production') {
   app.use(enforcesSsl());
 }
-app.use(helmet({ hsts: { maxAge: 31536000000 } }));
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      connectSrc: "'self'",
+      defaultSrc: "'none'",
+      scriptSrc: "'self'",
+      styleSrc: [
+        "'unsafe-inline'",
+        ...createHashes(hashAlgorithm, path.join(__dirname, 'src/css/*.css'))
+          .map(hash => `'${hashAlgorithm}-${hash}'`)
+      ]
+    }
+  },
+  hsts: { maxAge: 31536000000 }
+}));
 app.use(compression());
 app.use(favicon(path.join(__dirname, 'public/favicon.ico')));
 app.use(logger('dev'));
