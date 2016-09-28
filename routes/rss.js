@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
       feed_url: `${site.url}/rss`,
       generator: site.generator,
       language: site.lang,
-      site_url: `${site.url}`,
+      site_url: site.url,
       title: site.name,
       ttl: 180
     });
