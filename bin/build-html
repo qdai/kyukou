@@ -7,9 +7,9 @@ const config = require('config');
 const fs = require('fs');
 const glob = require('glob');
 const hljs = require('highlight.js');
-const jade = require('jade');
 const mkdirp = require('mkdirp');
 const path = require('path');
+const pug = require('pug');
 
 const createDoc = src => {
   const doc = apidoc.createDoc({
@@ -42,8 +42,8 @@ const doc = createDoc('./routes/api1');
 
 mkdirp.sync(dest);
 
-glob.sync('src/jade/*.jade').forEach(file => {
-  const compile = jade.compileFile(file);
+glob.sync('src/pug/*.pug').forEach(file => {
+  const compile = pug.compileFile(file);
   const html = compile({
     doc,
     site: config.get('site')
