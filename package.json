@@ -45,7 +45,7 @@
     "ncp": "^2.0.0",
     "node-sass": "^3.8.0",
     "npm-run-all": "^3.0.0",
-    "pug": "^2.0.0-beta6",
+    "pug-cli": "^1.0.0-alpha6",
     "react": "^15.3.0",
     "react-bootstrap": "^0.30.2",
     "react-dom": "^15.3.0",
@@ -75,7 +75,7 @@
   "scripts": {
     "build": "run-p build:html build:js build:static",
     "build:css": "node-sass --include-path node_modules --output-style compressed --output src/css src/sass",
-    "build:html": "node bin/build-html",
+    "build:html": "pug --obj locals.js --out views src/pug",
     "build:js": "webpack",
     "build:static": "ncp src/static public",
     "clean": "rimraf public src/css views",
