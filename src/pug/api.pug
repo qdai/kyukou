@@ -11,7 +11,7 @@ html(lang=site.lang, prefix='og: http://ogp.me/ns#')
     meta(property='og:title', content=doc.project.title)
     meta(property='og:type', content='website')
     meta(property='og:description', content=doc.project.description)
-    meta(property='og:url', content=site.url + '/api/1')
+    meta(property='og:url', content=`${site.url}/api/1`)
     meta(property='og:site_name', content=site.name)
     style
       include ../css/api.css
@@ -26,20 +26,20 @@ html(lang=site.lang, prefix='og: http://ogp.me/ns#')
           ul.list-unstyled
             each apis, index in doc.list
               li
-                h3=index+'/'
+                h3=`${index}/`
                 ul.nav.nav-pills.nav-stacked
                   each api in apis
                     li
-                      a(href='#'+index+'-'+api)=api
+                      a(href=`#${index}-${api}`)=api
         main.col-md-9(role='main')
           each api in doc.data
-            section(id=api.group+'-'+api.title)
+            section(id=`${api.group}-${api.title}`)
               h2.page-header
                 span=api.type
                 |  
-                =api.groupTitle+'/'+api.title
+                =`${api.groupTitle}/${api.title}`
                 |  
-                small='v'+api.version
+                small=`v${api.version}`
               !=api.description
               h3 Resource URL
               code=doc.project.url
