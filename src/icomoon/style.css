@@ -14,3 +14,10 @@ Single-colored icons can be modified like so:
   color: red;
 }
 ========================================== */
+
+#symbol-defs {
+  height: 0;
+  overflow: hidden;
+  position: absolute;
+  width: 0;
+}
