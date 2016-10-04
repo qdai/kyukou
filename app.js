@@ -54,9 +54,8 @@ if (app.get('env') === 'production') {
 app.use(helmet({
   contentSecurityPolicy: {
     directives: {
-      connectSrc: "'self'",
-      defaultSrc: "'none'",
-      scriptSrc: "'self'",
+      defaultSrc: "'self'",
+      objectSrc: "'none'",
       styleSrc: [
         "'unsafe-inline'",
         ...createHashes(hashAlgorithm, path.join(__dirname, 'src/css/*.css'))
