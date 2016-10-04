@@ -2,7 +2,7 @@ doctype html
 html(lang=site.lang)
   head
     meta(charset='utf-8')
-    title='Admin - '+site.name
+    title=`Admin - ${site.name}`
     <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><![endif]-->
     meta(name='viewport', content='width=device-width')
     meta(name='author', content=site.author)
@@ -12,8 +12,8 @@ html(lang=site.lang)
       include ../css/admin.css
   body.container.admin
     header.page-header.clearfix
-      h1.pull-left='Admin - '+site.name
+      h1.pull-left=`Admin - ${site.name}`
       p.pull-right
         a.btn.btn-default.btn-lg(href='/admin/logout') Logout
-    include ./includes/main.jade
-    include ./includes/footer.jade
+    include ./includes/main
+    include ./includes/footer

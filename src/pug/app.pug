@@ -20,7 +20,7 @@ html(lang=site.lang, prefix='og: http://ogp.me/ns#')
       include ../css/app.css
     link(rel='icon', type='image/vnd.microsoft.icon', href='/favicon.ico')
     link(rel='shortcut icon', type='image/vnd.microsoft.icon', href='/favicon.ico')
-    link(rel='alternate' type='application/rss+xml' title=site.name href=site.url + '/rss')
+    link(rel='alternate', type='application/rss+xml', title=site.name, href=`${site.url}/rss`)
   body
     include ../icomoon/symbol-defs.svg
     div.container
@@ -28,7 +28,7 @@ html(lang=site.lang, prefix='og: http://ogp.me/ns#')
         h1=site.name
         p=site.description
         p#header-buttons
-          a.icon-twitter(target='_blank', href='//twitter.com/' + site.twitter, title='Twitter')
+          a.icon-twitter(target='_blank', href=`//twitter.com/${site.twitter}`, title='Twitter')
             svg.icon
               use(xlink:href='#icon-twitter')
           a.icon-calendar(href='/calendar', title='calendar')
@@ -37,5 +37,5 @@ html(lang=site.lang, prefix='og: http://ogp.me/ns#')
           a.icon-feed(href='/rss', title='RSS')
             svg.icon
               use(xlink:href='#icon-feed')
-      include ./includes/main.jade
-      include ./includes/footer.jade
+      include ./includes/main
+      include ./includes/footer
