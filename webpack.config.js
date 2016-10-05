@@ -13,10 +13,11 @@ const { version } = jsonfile.readFileSync(path.join(__dirname, './package.json')
 
 module.exports = {
   entry: {
-    admin: ['babel-polyfill', path.join(src, 'js/admin.jsx')],
-    app: ['babel-polyfill', path.join(src, 'js/app.jsx')],
-    calendar: ['babel-polyfill', path.join(src, 'js/calendar.jsx')],
-    status: ['babel-polyfill', path.join(src, 'js/status.jsx')]
+    'js/admin': ['babel-polyfill', path.join(src, 'js/admin.jsx')],
+    'js/app': ['babel-polyfill', path.join(src, 'js/app.jsx')],
+    'js/calendar': ['babel-polyfill', path.join(src, 'js/calendar.jsx')],
+    'js/status': ['babel-polyfill', path.join(src, 'js/status.jsx')],
+    'service-worker': path.join(src, 'js/service-worker.js')
   },
   module: {
     loaders: [
@@ -29,18 +30,19 @@ module.exports = {
   },
   output: {
     filename: '[name].js',
-    path: path.join(dest, 'js')
+    path: dest
   },
   plugins: [
     new webpack.DefinePlugin({
-      APP_VERSION: JSON.stringify(`v${version.slice(0, version.indexOf('.'))}`),
+      APP_VERSION: JSON.stringify(version),
       SITE_URL: JSON.stringify(siteUrl),
       // eslint-disable-next-line no-process-env
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
     }),
     new webpack.optimize.CommonsChunkPlugin({
-      filename: 'commons.js',
-      name: 'commons'
+      chunks: ['js/admin', 'js/app', 'js/calendar', 'js/status'],
+      filename: 'js/commons.js',
+      name: 'js/commons'
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.DedupePlugin(),
