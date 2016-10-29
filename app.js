@@ -63,7 +63,7 @@ app.use(helmet({
       ]
     }
   },
-  hsts: { maxAge: 31536000000 }
+  hsts: { maxAge: 31536000 }
 }));
 app.use(compression());
 app.use(favicon(path.join(__dirname, 'public/favicon.ico')));
