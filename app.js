@@ -54,8 +54,8 @@ if (app.get('env') === 'production') {
 app.use(helmet({
   contentSecurityPolicy: {
     directives: {
-      defaultSrc: "'self'",
-      objectSrc: "'none'",
+      defaultSrc: ["'self'"],
+      objectSrc: ["'none'"],
       styleSrc: [
         "'unsafe-inline'",
         ...createHashes(hashAlgorithm, path.join(__dirname, 'src/css/*.css'))
@@ -63,7 +63,7 @@ app.use(helmet({
       ]
     }
   },
-  hsts: { maxAge: 31536000000 }
+  hsts: { maxAge: 31536000 }
 }));
 app.use(compression());
 app.use(favicon(path.join(__dirname, 'public/favicon.ico')));
