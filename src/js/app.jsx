@@ -13,7 +13,7 @@ const enhancer = compose(autoRehydrate(), applyMiddleware(apiMiddleware));
 const store = createStore(reducer, initialState, enhancer);
 
 persistStore(store, {
-  keyPrefix: `kyukou-${version}-`,
+  keyPrefix: `kyukou-v${version.slice(0, version.indexOf('.'))}`,
   whitelist: ['selectedAbouts', 'selectedDepartments']
 });
 
@@ -25,3 +25,9 @@ render(
   </Provider>,
   document.getElementById('content')
 );
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('service-worker.js').catch(err => {
+    console.error(err); // eslint-disable-line no-console
+  });
+}
