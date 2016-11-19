@@ -6,7 +6,7 @@ const calendarUrl = `${siteUrl}/calendar/kyukou.ics`;
 const serialize = department => departmentsEnShort[departments.indexOf(department)];
 
 const mapStateToProps = state => {
-  const query = state.selectedDepartments.map(department => `departments[]=${serialize(department)}`);
+  const query = state.selectedDepartments.sort().map(department => `departments[]=${serialize(department)}`);
   const link = query.length === 0 ? calendarUrl : `${calendarUrl}?${query.join('&')}`;
   return { link };
 };
