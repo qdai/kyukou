@@ -81,8 +81,9 @@
     "build:static": "ncp src/static public",
     "clean": "rimraf public src/css views",
     "lint": "eslint --ext .js,.jsx . bin/**",
-    "postinstall": "npm run build",
+    "postinstall": "run-p build reinstall",
     "prebuild:html": "npm run build:css",
+    "reinstall": "npm install kyukou-api1 kyukou-scraper-kyudai1",
     "start": "node bin/www"
   }
 }
