@@ -7,7 +7,7 @@
     "url": "https://github.com/qdai/kyukou/issues"
   },
   "dependencies": {
-    "bcrypt": "^0.8.7",
+    "bcrypt": "^1.0.0",
     "body-parser": "^1.14.1",
     "compression": "^1.6.1",
     "config": "^1.21.0",
