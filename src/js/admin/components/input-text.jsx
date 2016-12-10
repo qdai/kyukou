@@ -18,4 +18,6 @@ InputText.propTypes = {
   required: PropTypes.bool
 };
 
+InputText.defaultProps = { required: false };
+
 export default InputText;

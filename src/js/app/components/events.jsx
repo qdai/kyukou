@@ -46,4 +46,6 @@ Events.propTypes = {
   selectedDepartments: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 
+Events.defaultProps = { loadError: null };
+
 export default Events;

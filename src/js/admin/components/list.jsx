@@ -36,4 +36,6 @@ List.propTypes = {
   loading: PropTypes.bool.isRequired
 };
 
+List.defaultProps = { loadError: null };
+
 export default List;

@@ -1,7 +1,7 @@
 const formatEvents = data => {
   const eventsObj = {};
   data.forEach(event => {
-    // push to eventsObj
+    // Push to eventsObj
     const time = event.eventDate;
     if (!eventsObj[time]) {
       eventsObj[time] = [];

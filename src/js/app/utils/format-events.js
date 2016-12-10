@@ -14,7 +14,7 @@ moment.updateLocale('ja', {
 
 const formatEvents = events => events.map(event => {
   event.raw = event.raw.replace(/\s+/g, ' ');
-  // datetime
+  // Datetime
   const eventDate = moment(event.eventDate).utcOffset(540);
   event.eventDate = eventDate.valueOf();
   event.dateformatted = eventDate.calendar();

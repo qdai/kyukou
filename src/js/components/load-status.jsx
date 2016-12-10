@@ -39,4 +39,6 @@ LoadStatus.propTypes = {
   onReload: PropTypes.func.isRequired
 };
 
+LoadStatus.defaultProps = { loadError: null };
+
 export default LoadStatus;

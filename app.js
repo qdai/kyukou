@@ -33,7 +33,7 @@ if (app.get('env') === 'production') {
   sessionOptions.cookie.secure = true;
 }
 
-// routes
+// Routes
 const routes = require('./routes/index');
 const apiStatus = require('./routes/status');
 const rss = require('./routes/rss');
@@ -42,9 +42,9 @@ const api1 = require('./routes/api1');
 const api0 = require('./routes/api0');
 const admin = require('./routes/admin');
 
-// cron job
+// Cron job
 require('./cron');
-// additional setting
+// Additional setting
 app.set('trust proxy', true);
 app.set('x-powered-by', false);
 
@@ -71,7 +71,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
-// session for routes/admin
+// Session for routes/admin
 app.use(session(sessionOptions));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -84,23 +84,23 @@ app.use('/api/1', api1);
 app.use('/api', api0);
 app.use('/admin', admin);
 
-// catch 404 and forward to error handler
+// Catch 404 and forward to error handler
 app.use((req, res, next) => {
   next(createHttpError(404));
 });
 
-// error handlers
+// Error handlers
 
-// development error handler
-// will print stacktrace
+// Development error handler
+// Will print stacktrace
 if (app.get('env') === 'development') {
   app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
     res.status(err.status || 500).type('text/plain').send(err.stack);
   });
 }
 
-// production error handler
-// no stacktraces leaked to user
+// Production error handler
+// No stacktraces leaked to user
 app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   res.status(err.status || 500).type('text/plain').send(err.message);
 });
