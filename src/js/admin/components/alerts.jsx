@@ -23,4 +23,6 @@ Alerts.propTypes = {
   handleDismiss: PropTypes.func.isRequired
 };
 
+Alerts.defaultProps = { alerts: [] };
+
 export default Alerts;

@@ -24,4 +24,6 @@ Logs.propTypes = {
   logs: PropTypes.arrayOf(PropTypes.shape(Log.propTypes)).isRequired
 };
 
+Logs.defaultProps = { loadError: null };
+
 export default Logs;
