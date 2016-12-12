@@ -44,7 +44,7 @@
     "isomorphic-fetch": "^2.2.1",
     "mkdirp": "^0.5.1",
     "ncp": "^2.0.0",
-    "node-sass": "^3.8.0",
+    "node-sass": "^4.0.0",
     "npm-run-all": "^3.0.0",
     "pug-cli": "^1.0.0-alpha6",
     "react": "^15.3.0",
