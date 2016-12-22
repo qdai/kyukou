@@ -40,6 +40,7 @@ module.exports = {
       APP_VERSION: JSON.stringify(version),
       SITE_URL: JSON.stringify(siteUrl)
     }),
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new webpack.LoaderOptionsPlugin({ minimize: true }),
     new webpack.optimize.CommonsChunkPlugin({
       chunks: ['js/admin', 'js/app', 'js/calendar', 'js/status'],
