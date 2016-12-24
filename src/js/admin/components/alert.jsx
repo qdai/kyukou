@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Alert as BootstrapAlert } from 'react-bootstrap';
+import BootstrapAlert from 'react-bootstrap/es/Alert';
 
 class Alert extends Component {
   constructor (...args) {

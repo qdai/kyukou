@@ -20,10 +20,10 @@ module.exports = {
     'service-worker': path.join(src, 'js/service-worker.js')
   },
   module: {
-    loaders: [
+    rules: [
       {
         exclude: /node_modules/,
-        loader: 'babel',
+        loader: 'babel-loader',
         test: /\.(js|jsx)$/
       }
     ]
@@ -33,22 +33,20 @@ module.exports = {
     path: dest
   },
   plugins: [
+    new webpack.EnvironmentPlugin([
+      'NODE_ENV'
+    ]),
     new webpack.DefinePlugin({
       APP_VERSION: JSON.stringify(version),
-      SITE_URL: JSON.stringify(siteUrl),
-      // eslint-disable-next-line no-process-env
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+      SITE_URL: JSON.stringify(siteUrl)
     }),
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    new webpack.LoaderOptionsPlugin({ minimize: true }),
     new webpack.optimize.CommonsChunkPlugin({
       chunks: ['js/admin', 'js/app', 'js/calendar', 'js/status'],
       filename: 'js/commons.js',
       name: 'js/commons'
     }),
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: { warnings: false },
-      output: { comments: saveLicense }
-    })
+    new webpack.optimize.UglifyJsPlugin({ output: { comments: saveLicense } })
   ]
 };
