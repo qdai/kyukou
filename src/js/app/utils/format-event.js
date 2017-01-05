@@ -37,13 +37,12 @@ moment.updateLocale('ja', {
   }
 });
 
-const formatEvents = events => events.map(event => {
-  event.raw = event.raw.replace(/\s+/g, ' ');
-  // Datetime
+const formatEvent = event => {
   const eventDate = moment(event.eventDate).utcOffset(540);
-  event.eventDate = eventDate.valueOf();
-  event.dateformatted = eventDate.calendar();
+  event.date = eventDate.format('LL');
+  event.dateFormatted = eventDate.calendar();
+  event.raw = event.raw.replace(/\s+/g, ' ');
   return event;
-});
+};
 
-export default formatEvents;
+export default formatEvent;

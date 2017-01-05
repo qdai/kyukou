@@ -1,5 +1,5 @@
 import { DISMISS_ALERT, FETCH_API_COMPLETE, LOAD_EVENTS_FAILURE, LOAD_EVENTS_REQUEST, LOAD_EVENTS_SUCCESS } from './action-types';
-import formatEvents from './utils/format-events';
+import formatEvent from './utils/format-event';
 import { handleActions } from 'redux-actions';
 
 export const initialState = {
@@ -28,7 +28,7 @@ const reducer = handleActions({
     loading: true
   }),
   [LOAD_EVENTS_SUCCESS]: (state, action) => Object.assign({}, state, {
-    events: formatEvents(action.payload),
+    events: action.payload.map(formatEvent),
     loadError: null,
     loading: false
   })

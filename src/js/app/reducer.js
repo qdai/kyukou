@@ -1,6 +1,6 @@
 import { LOAD_EVENTS_FAILURE, LOAD_EVENTS_REQUEST, LOAD_EVENTS_SUCCESS, TOGGLE_ABOUT, TOGGLE_DEPARTMENT } from './action-types';
 import { abouts, departments } from '../utils/constant';
-import formatEvents from './utils/format-events';
+import formatEvent from './utils/format-event';
 import { handleActions } from 'redux-actions';
 import { default as toggle } from '../utils/toggle-array-item';
 
@@ -22,7 +22,7 @@ const reducer = handleActions({
     loading: true
   }),
   [LOAD_EVENTS_SUCCESS]: (state, action) => Object.assign({}, state, {
-    events: formatEvents(action.payload),
+    events: action.payload.map(formatEvent),
     loadError: null,
     loading: false
   }),
