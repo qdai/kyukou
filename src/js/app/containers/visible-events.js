@@ -2,7 +2,7 @@ import Events from '../components/events.jsx';
 import { connect } from 'react-redux';
 import eventsOfADay from '../utils/events-of-a-day';
 import filterEvents from '../utils/filter-events';
-import { loadEvents } from '../actions';
+import { loadEventsRequest } from '../actions';
 
 const mapStateToProps = state => {
   const filteredEvents = filterEvents(state.events, state.selectedAbouts, state.selectedDepartments);
@@ -18,7 +18,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   handleReloadClick: () => {
-    dispatch(loadEvents());
+    dispatch(loadEventsRequest());
   }
 });
 

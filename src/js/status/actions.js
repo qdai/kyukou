@@ -1,11 +1,6 @@
-import { LOAD_LOG_FAILURE, LOAD_LOG_REQUEST, LOAD_LOG_SUCCESS } from './action-types';
-import { CALL_API } from 'redux-api-middleware';
-import { siteUrl } from '../utils/constant';
+import { LOAD_LOGS_FAILURE, LOAD_LOGS_REQUEST, LOAD_LOGS_SUCCESS } from './action-types';
+import { createAction } from 'redux-actions';
 
-export const loadLog = logName => ({
-  [CALL_API]: {
-    endpoint: `${siteUrl}/api/1/logs/${logName}.json`,
-    method: 'GET',
-    types: [LOAD_LOG_REQUEST, LOAD_LOG_SUCCESS, LOAD_LOG_FAILURE]
-  }
-});
+export const loadLogsRequest = createAction(LOAD_LOGS_REQUEST);
+export const loadLogsFailure = createAction(LOAD_LOGS_FAILURE);
+export const loadLogsSuccess = createAction(LOAD_LOGS_SUCCESS);

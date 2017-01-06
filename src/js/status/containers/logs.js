@@ -1,10 +1,10 @@
 import LogsComponent from '../components/logs.jsx';
 import { connect } from 'react-redux';
-import loadLogs from '../utils/load-logs';
+import { loadLogsRequest } from '../actions';
 
 const mapDispatchToProps = dispatch => ({
   handleReloadClick: () => {
-    loadLogs(dispatch);
+    dispatch(loadLogsRequest());
   }
 });
 

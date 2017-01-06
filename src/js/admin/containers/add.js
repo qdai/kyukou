@@ -1,11 +1,14 @@
 import AddComponent from '../components/add.jsx';
 import { connect } from 'react-redux';
-import submitHandler from '../utils/submit-handler';
+import { fetchApiRequest } from '../actions';
 
 const mapDispatchToProps = dispatch => ({
   handleSubmit: evt => {
     evt.preventDefault();
-    submitHandler(dispatch, 'add', new FormData(evt.currentTarget));
+    dispatch(fetchApiRequest({
+      formData: new FormData(evt.currentTarget),
+      method: 'add'
+    }));
   }
 });
 

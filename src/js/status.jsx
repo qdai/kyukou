@@ -3,13 +3,16 @@ import reducer, { initialState } from './status/reducer';
 import App from './status/components/app.jsx';
 import { Provider } from 'react-redux';
 import React from 'react';
-import { apiMiddleware } from 'redux-api-middleware';
-import loadLogs from './status/utils/load-logs';
+import createSagaMiddleware from 'redux-saga';
+import { loadLogsRequest } from './status/actions';
 import { render } from 'react-dom';
+import sagas from './status/sagas';
 
-const store = createStore(reducer, initialState, applyMiddleware(apiMiddleware));
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(reducer, initialState, applyMiddleware(sagaMiddleware));
 
-loadLogs(store.dispatch);
+sagaMiddleware.run(sagas);
+store.dispatch(loadLogsRequest());
 
 render(
   <Provider store={store}>

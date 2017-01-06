@@ -1,11 +1,14 @@
 import EditComponent from '../components/edit.jsx';
 import { connect } from 'react-redux';
-import submitHandler from '../utils/submit-handler';
+import { fetchApiRequest } from '../actions';
 
 const mapDispatchToProps = dispatch => ({
   handleSubmit: evt => {
     evt.preventDefault();
-    submitHandler(dispatch, 'edit', new FormData(evt.currentTarget));
+    dispatch(fetchApiRequest({
+      formData: new FormData(evt.currentTarget),
+      method: 'edit'
+    }));
   }
 });
 
