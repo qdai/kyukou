@@ -1,18 +1,16 @@
-const formatEvents = data => {
-  const eventsObj = {};
-  data.forEach(event => {
-    // Push to eventsObj
-    const time = event.eventDate;
-    if (!eventsObj[time]) {
-      eventsObj[time] = [];
-    }
-    eventsObj[time].push(event);
+const eventsOfADay = events => {
+  const uniqEventDates = events
+    .map(event => event.eventDate)
+    .filter((event, index, eventDates) => eventDates.lastIndexOf(event) === index)
+    .sort();
+  return uniqEventDates.map(eventDate => {
+    const data = events.filter(event => eventDate === event.eventDate);
+    return {
+      data,
+      date: data[0].date,
+      dateFormatted: data[0].dateFormatted
+    };
   });
-  const events = Object.keys(eventsObj).sort().map(key => ({
-    data: eventsObj[key],
-    date: eventsObj[key][0].dateformatted
-  }));
-  return events;
 };
 
-export default formatEvents;
+export default eventsOfADay;

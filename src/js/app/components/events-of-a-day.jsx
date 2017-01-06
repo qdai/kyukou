@@ -1,9 +1,12 @@
 import React, { PropTypes } from 'react';
 import Panel from 'react-bootstrap/es/Panel';
 
-const EventsOfADay = ({ data, date }) =>
+const EventsOfADay = ({ data, date, dateFormatted }) =>
   <section>
-    <h2 className="h3">{date}</h2>
+    <h2
+      className="h3"
+      title={date}
+    >{dateFormatted}</h2>
     <div className="panel-group">
       {data.map(event =>
         <Panel
@@ -55,7 +58,8 @@ EventsOfADay.propTypes = {
     subject: PropTypes.string.isRequired,
     teacher: PropTypes.string.isRequired
   }).isRequired).isRequired,
-  date: PropTypes.string.isRequired
+  date: PropTypes.string.isRequired,
+  dateFormatted: PropTypes.string.isRequired
 };
 
 export default EventsOfADay;
