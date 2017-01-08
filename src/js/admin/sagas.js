@@ -1,5 +1,5 @@
 import { FETCH_API_REQUEST, LOAD_EVENTS_REQUEST } from './action-types';
-import { effects, takeEvery, takeLatest } from 'redux-saga';
+import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
 import { fetchApiComplete, loadEventsFailire, loadEventsRequest, loadEventsSuccess } from './actions';
 import requestApi from './utils/request-api';
 import requestEvents from '../utils/request-events';
@@ -7,17 +7,17 @@ import requestEvents from '../utils/request-events';
 const fetchApi = function* (action) {
   try {
     const { method, formData } = action.payload;
-    const result = yield effects.call(requestApi, method, formData);
+    const result = yield call(requestApi, method, formData);
     if (result.error) {
       throw new Error(result.error.message);
     }
-    yield effects.put(fetchApiComplete({
+    yield put(fetchApiComplete({
       message: `Success: ${result.success.message}`,
       type: 'success'
     }));
-    yield effects.put(loadEventsRequest());
+    yield put(loadEventsRequest());
   } catch (err) {
-    yield effects.put(fetchApiComplete({
+    yield put(fetchApiComplete({
       message: `Error: ${err.message}`,
       type: 'danger'
     }));
@@ -26,10 +26,10 @@ const fetchApi = function* (action) {
 
 const loadEvents = function* () {
   try {
-    const events = yield effects.call(requestEvents);
-    yield effects.put(loadEventsSuccess(events));
+    const events = yield call(requestEvents);
+    yield put(loadEventsSuccess(events));
   } catch (err) {
-    yield effects.put(loadEventsFailire(err));
+    yield put(loadEventsFailire(err));
   }
 };
 

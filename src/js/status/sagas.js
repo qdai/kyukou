@@ -1,14 +1,14 @@
-import { effects, takeLatest } from 'redux-saga';
+import { call, put, takeLatest } from 'redux-saga/effects';
 import { loadLogsFailure, loadLogsSuccess } from './actions';
 import { LOAD_LOGS_REQUEST } from './action-types';
 import requestLogs from './utils/request-logs';
 
 const loadLogs = function* () {
   try {
-    const logs = yield effects.call(requestLogs);
-    yield effects.put(loadLogsSuccess(logs));
+    const logs = yield call(requestLogs);
+    yield put(loadLogsSuccess(logs));
   } catch (err) {
-    yield effects.put(loadLogsFailure(err));
+    yield put(loadLogsFailure(err));
   }
 };
 
