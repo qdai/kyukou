@@ -4,20 +4,23 @@ import reducer, { initialState } from './app/reducer';
 import App from './app/components/app.jsx';
 import { Provider } from 'react-redux';
 import React from 'react';
-import { apiMiddleware } from 'redux-api-middleware';
-import { loadEvents } from './app/actions';
+import createSagaMiddleware from 'redux-saga';
+import { loadEventsRequest } from './app/actions';
 import { render } from 'react-dom';
+import sagas from './app/sagas';
 import { version } from './utils/constant';
 
-const enhancer = compose(autoRehydrate(), applyMiddleware(apiMiddleware));
+const sagaMiddleware = createSagaMiddleware();
+const enhancer = compose(autoRehydrate(), applyMiddleware(sagaMiddleware));
 const store = createStore(reducer, initialState, enhancer);
+
+sagaMiddleware.run(sagas);
+store.dispatch(loadEventsRequest());
 
 persistStore(store, {
   keyPrefix: `kyukou-v${version.slice(0, version.indexOf('.'))}`,
   whitelist: ['selectedAbouts', 'selectedDepartments']
 });
-
-store.dispatch(loadEvents());
 
 render(
   <Provider store={store}>
