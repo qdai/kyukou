@@ -2,7 +2,7 @@ import { LOAD_EVENTS_FAILURE, LOAD_EVENTS_REQUEST, LOAD_EVENTS_SUCCESS, TOGGLE_A
 import { abouts, departments } from '../utils/constant';
 import formatEvent from './utils/format-event';
 import { handleActions } from 'redux-actions';
-import { default as toggle } from '../utils/toggle-array-item';
+import toggle from '../utils/toggle-array-item';
 
 export const initialState = {
   events: [],

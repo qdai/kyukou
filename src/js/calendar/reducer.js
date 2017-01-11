@@ -1,6 +1,6 @@
 import { TOGGLE_DEPARTMENT } from './action-types';
 import { handleActions } from 'redux-actions';
-import { default as toggle } from '../utils/toggle-array-item';
+import toggle from '../utils/toggle-array-item';
 
 export const initialState = { selectedDepartments: [] };
 
