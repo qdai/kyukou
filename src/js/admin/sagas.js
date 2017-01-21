@@ -1,6 +1,6 @@
 import { FETCH_API_REQUEST, LOAD_EVENTS_REQUEST } from './action-types';
 import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
-import { fetchApiComplete, loadEventsFailire, loadEventsRequest, loadEventsSuccess } from './actions';
+import { fetchApiComplete, loadEventsFailure, loadEventsRequest, loadEventsSuccess } from './actions';
 import requestApi from './utils/request-api';
 import requestEvents from '../utils/request-events';
 
@@ -29,7 +29,7 @@ const loadEvents = function* () {
     const events = yield call(requestEvents);
     yield put(loadEventsSuccess(events));
   } catch (err) {
-    yield put(loadEventsFailire(err));
+    yield put(loadEventsFailure(err));
   }
 };
 

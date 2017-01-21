@@ -1,10 +1,10 @@
 import ListComponent from '../components/list.jsx';
 import { connect } from 'react-redux';
-import { loadEvents } from '../actions';
+import { loadEventsRequest } from '../actions';
 
 const mapDispatchToProps = dispatch => ({
   handleReloadClick: () => {
-    dispatch(loadEvents());
+    dispatch(loadEventsRequest());
   }
 });
 
