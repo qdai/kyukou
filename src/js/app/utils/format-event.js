@@ -1,4 +1,4 @@
-import 'moment/locale/ja';
+import 'moment/locale/ja'; // eslint-disable-line import/no-unassigned-import
 import moment from 'moment';
 
 moment.calendarFormat = (myMoment, now) => {
