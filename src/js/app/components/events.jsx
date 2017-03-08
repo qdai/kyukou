@@ -1,5 +1,5 @@
+import EventsOfADay, { propTypes as EventsOfADayPropTypes } from './events-of-a-day.jsx';
 import React, { PropTypes } from 'react';
-import EventsOfADay from './events-of-a-day.jsx';
 import LoadStatus from '../../components/load-status.jsx';
 
 const Events = ({ count, events, handleReloadClick, loadError, loading, selectedAbouts, selectedDepartments }) => {
@@ -38,7 +38,7 @@ const Events = ({ count, events, handleReloadClick, loadError, loading, selected
 
 Events.propTypes = {
   count: PropTypes.string.isRequired,
-  events: PropTypes.arrayOf(PropTypes.shape(EventsOfADay.propTypes)).isRequired,
+  events: PropTypes.arrayOf(PropTypes.shape(EventsOfADayPropTypes)).isRequired,
   handleReloadClick: PropTypes.func.isRequired,
   loadError: PropTypes.string,
   loading: PropTypes.bool.isRequired,

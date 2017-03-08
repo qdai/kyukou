@@ -4,12 +4,13 @@
     "node": false
   },
   "extends": [
+    "@egy186/eslint-config/modules",
     "@egy186/eslint-config/react"
   ],
   "parserOptions": {
     "sourceType": "module"
   },
   "rules": {
-    "react/no-unused-prop-types": "off"
+    "import/max-dependencies": "warn"
   }
 }
