@@ -1,6 +1,7 @@
 import Log, { propTypes as LogPropTypes } from './log.jsx';
-import React, { PropTypes } from 'react';
 import LoadStatus from '../../components/load-status.jsx';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 const Logs = ({ handleReloadClick, loadError, loading, logs }) =>
   <div className="panel-group">

@@ -1,5 +1,6 @@
-import React, { PropTypes } from 'react';
 import InputText from './input-text.jsx';
+import PropTypes from 'prop-types';
+import React from 'react';
 import SubmitButton from './submit-button.jsx';
 
 const Delete = ({ handleSubmit }) =>

@@ -1,7 +1,8 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { abouts, departments } from '../../utils/constant';
 import Checkbox from '../../components/checkbox.jsx';
 import Collapse from 'react-bootstrap/es/Collapse';
+import PropTypes from 'prop-types';
 
 class Settings extends Component {
   constructor (...args) {

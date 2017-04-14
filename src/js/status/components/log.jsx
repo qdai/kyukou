@@ -1,5 +1,6 @@
-import React, { PropTypes } from 'react';
 import Panel from 'react-bootstrap/es/Panel';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 const Log = ({ elapsedTime, level, log, name, time }) =>
   <Panel
