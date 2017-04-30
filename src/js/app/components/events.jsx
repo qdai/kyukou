@@ -1,6 +1,7 @@
 import EventsOfADay, { propTypes as EventsOfADayPropTypes } from './events-of-a-day.jsx';
-import React, { PropTypes } from 'react';
 import LoadStatus from '../../components/load-status.jsx';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 const Events = ({ count, events, handleReloadClick, loadError, loading, selectedAbouts, selectedDepartments }) => {
   const countNode = <p className="events-count">{`表示中：${count}`}</p>;

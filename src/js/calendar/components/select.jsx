@@ -1,5 +1,6 @@
-import React, { PropTypes } from 'react';
 import Checkbox from '../../components/checkbox.jsx';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { departments } from '../../utils/constant';
 
 const Select = ({ handleClick, selectedDepartments }) =>
