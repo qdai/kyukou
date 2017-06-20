@@ -47,6 +47,7 @@ module.exports = {
       filename: 'js/commons.js',
       name: 'js/commons'
     }),
+    new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.optimize.UglifyJsPlugin({ output: { comments: saveLicense } })
   ]
 };
