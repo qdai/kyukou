@@ -30,7 +30,7 @@
     "vobject": "^0.1.0"
   },
   "devDependencies": {
-    "@egy186/eslint-config": "~0.24.0",
+    "@egy186/eslint-config": "~0.25.1",
     "apidoc": "^0.17.0",
     "babel-core": "^6.16.0",
     "babel-loader": "^7.0.0",
