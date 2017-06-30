@@ -2,9 +2,9 @@ import Alert from './alert.jsx';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const Alerts = ({ alerts, handleDismiss }) =>
+const Alerts = ({ alerts, handleDismiss }) => (
   <div>
-    {alerts.map(alert =>
+    {alerts.map(alert => (
       <Alert
         key={alert.id}
         onDismiss={handleDismiss}
@@ -12,8 +12,9 @@ const Alerts = ({ alerts, handleDismiss }) =>
       >
         {alert.message}
       </Alert>
-    )}
-  </div>;
+    ))}
+  </div>
+);
 
 Alerts.propTypes = {
   alerts: PropTypes.arrayOf(PropTypes.shape({

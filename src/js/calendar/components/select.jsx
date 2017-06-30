@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { departments } from '../../utils/constant';
 
-const Select = ({ handleClick, selectedDepartments }) =>
+const Select = ({ handleClick, selectedDepartments }) => (
   <div>
     <h2 className="h3">{'Select'}</h2>
-    {departments.map(department =>
+    {departments.map(department => (
       <Checkbox
         isSelected={selectedDepartments.indexOf(department) >= 0}
         key={department}
@@ -15,8 +15,9 @@ const Select = ({ handleClick, selectedDepartments }) =>
       >
         {department}
       </Checkbox>
-    )}
-  </div>;
+    ))}
+  </div>
+);
 
 Select.propTypes = {
   handleClick: PropTypes.func.isRequired,

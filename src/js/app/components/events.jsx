@@ -26,12 +26,12 @@ const Events = ({ count, events, handleReloadClick, loadError, loading, selected
     <div className="events">
       {countNode}
       <div className="events-list">
-        {events.map(e =>
+        {events.map(e => (
           <EventsOfADay
             key={e.date}
             {...e}
           />
-        )}
+        ))}
       </div>
     </div>
   );

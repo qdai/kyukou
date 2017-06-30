@@ -2,10 +2,11 @@ import Download from '../containers/download';
 import React from 'react';
 import Select from '../containers/select';
 
-const App = () =>
+const App = () => (
   <div>
     <Select />
     <Download />
-  </div>;
+  </div>
+);
 
 export default App;

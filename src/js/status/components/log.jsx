@@ -2,7 +2,7 @@ import Panel from 'react-bootstrap/es/Panel';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const Log = ({ elapsedTime, level, log, name, time }) =>
+const Log = ({ elapsedTime, level, log, name, time }) => (
   <Panel
     bsStyle={level}
     collapsible
@@ -15,7 +15,8 @@ const Log = ({ elapsedTime, level, log, name, time }) =>
     }
   >
     <pre>{log}</pre>
-  </Panel>;
+  </Panel>
+);
 
 Log.propTypes = {
   elapsedTime: PropTypes.number.isRequired,

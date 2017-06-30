@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import SubmitButton from './submit-button.jsx';
 
-const Delete = ({ handleSubmit }) =>
+const Delete = ({ handleSubmit }) => (
   <div>
     <h2 className="sr-only">{'Delete'}</h2>
     <form
@@ -22,7 +22,8 @@ const Delete = ({ handleSubmit }) =>
         <SubmitButton bsStyle="danger">{'Delete'}</SubmitButton>
       </p>
     </form>
-  </div>;
+  </div>
+);
 
 Delete.propTypes = { handleSubmit: PropTypes.func.isRequired };
 

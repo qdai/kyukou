@@ -2,14 +2,16 @@ import Panel from 'react-bootstrap/es/Panel';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const EventsOfADay = ({ data, date, dateFormatted }) =>
+const EventsOfADay = ({ data, date, dateFormatted }) => (
   <section>
     <h2
       className="h3"
       title={date}
-    >{dateFormatted}</h2>
+    >
+      {dateFormatted}
+    </h2>
     <div className="panel-group">
-      {data.map(event =>
+      {data.map(event => (
         <Panel
           collapsible
           header={
@@ -41,9 +43,10 @@ const EventsOfADay = ({ data, date, dateFormatted }) =>
             </a>
           </p>
         </Panel>
-      )}
+      ))}
     </div>
-  </section>;
+  </section>
+);
 
 EventsOfADay.propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({

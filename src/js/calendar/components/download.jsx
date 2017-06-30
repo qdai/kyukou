@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const Download = ({ link }) =>
+const Download = ({ link }) => (
   <div>
     <h2 className="h3">{'Download'}</h2>
     <p>
@@ -15,7 +15,8 @@ const Download = ({ link }) =>
     <p>{'URL: '}
       <a href={link}>{link}</a>
     </p>
-  </div>;
+  </div>
+);
 
 Download.propTypes = { link: PropTypes.string.isRequired };
 

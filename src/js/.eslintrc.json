@@ -1,9 +1,6 @@
 {
-  "env": {
-    "browser": true,
-    "node": false
-  },
   "extends": [
+    "@egy186/eslint-config/browser",
     "@egy186/eslint-config/modules",
     "@egy186/eslint-config/react"
   ],
