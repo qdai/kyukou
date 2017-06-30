@@ -3,8 +3,8 @@
 const config = require('config');
 const jsonfile = require('jsonfile');
 const path = require('path');
-const saveLicense = require('uglify-save-license');
-const webpack = require('webpack');
+const saveLicense = require('uglify-save-license'); // eslint-disable-line node/no-unpublished-require
+const webpack = require('webpack'); // eslint-disable-line node/no-unpublished-require
 
 const dest = path.join(__dirname, 'public');
 const siteUrl = config.get('site.url');
@@ -33,9 +33,7 @@ module.exports = {
     path: dest
   },
   plugins: [
-    new webpack.EnvironmentPlugin([
-      'NODE_ENV'
-    ]),
+    new webpack.EnvironmentPlugin(['NODE_ENV']),
     new webpack.DefinePlugin({
       APP_VERSION: JSON.stringify(version),
       SITE_URL: JSON.stringify(siteUrl)
@@ -43,7 +41,12 @@ module.exports = {
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new webpack.LoaderOptionsPlugin({ minimize: true }),
     new webpack.optimize.CommonsChunkPlugin({
-      chunks: ['js/admin', 'js/app', 'js/calendar', 'js/status'],
+      chunks: [
+        'js/admin',
+        'js/app',
+        'js/calendar',
+        'js/status'
+      ],
       filename: 'js/commons.js',
       name: 'js/commons'
     }),

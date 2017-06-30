@@ -113,7 +113,11 @@ router.get('/events', () => {
 });
 
 router.get('/events/:method', req => {
-  if (['add', 'edit', 'delete'].indexOf(req.params.method) !== -1) {
+  if ([
+    'add',
+    'edit',
+    'delete'
+  ].indexOf(req.params.method) !== -1) {
     throw createHttpError(405);
   } else {
     throw createHttpError(400);

@@ -4,7 +4,7 @@ import React from 'react';
 import SubmitButton from './submit-button.jsx';
 import { eventKeys } from '../../utils/constant';
 
-const Edit = ({ handleSubmit }) =>
+const Edit = ({ handleSubmit }) => (
   <div>
     <h2 className="sr-only">{'Edit'}</h2>
     <form
@@ -53,7 +53,8 @@ const Edit = ({ handleSubmit }) =>
         <SubmitButton bsStyle="primary">{'Edit'}</SubmitButton>
       </p>
     </form>
-  </div>;
+  </div>
+);
 
 Edit.propTypes = { handleSubmit: PropTypes.func.isRequired };
 

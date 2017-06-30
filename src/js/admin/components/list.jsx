@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { eventKeys } from '../../utils/constant';
 
-const List = ({ events, handleReloadClick, loadError, loading }) =>
+const List = ({ events, handleReloadClick, loadError, loading }) => (
   <div>
     <h2 className="sr-only">{'List'}</h2>
     <LoadStatus
@@ -18,14 +18,15 @@ const List = ({ events, handleReloadClick, loadError, loading }) =>
         </tr>
       </thead>
       <tbody>
-        {events.map(event =>
+        {events.map(event => (
           <tr key={event.hash}>
             {eventKeys.map(key => <td key={key}>{event[key]}</td>)}
           </tr>
-        ) }
+        ))}
       </tbody>
     </table>
-  </div>;
+  </div>
+);
 
 List.propTypes = {
   events: PropTypes.arrayOf(PropTypes.shape(eventKeys.reduce((obj, key) => {

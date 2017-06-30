@@ -7,7 +7,7 @@ import React from 'react';
 import Tab from 'react-bootstrap/es/Tab';
 import Tabs from 'react-bootstrap/es/Tabs';
 
-const App = () =>
+const App = () => (
   <div>
     <Alerts />
     <Tabs
@@ -39,6 +39,7 @@ const App = () =>
         <Delete />
       </Tab>
     </Tabs>
-  </div>;
+  </div>
+);
 
 export default App;

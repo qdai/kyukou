@@ -4,9 +4,20 @@ import React from 'react';
 import SubmitButton from './submit-button.jsx';
 import { eventKeys } from '../../utils/constant';
 
-const requiredKeys = ['about', 'link', 'eventDate', 'pubDate', 'period', 'department', 'subject', 'raw', 'tweet.new', 'tweet.tomorrow'];
+const requiredKeys = [
+  'about',
+  'link',
+  'eventDate',
+  'pubDate',
+  'period',
+  'department',
+  'subject',
+  'raw',
+  'tweet.new',
+  'tweet.tomorrow'
+];
 
-const Add = ({ handleSubmit }) =>
+const Add = ({ handleSubmit }) => (
   <div>
     <h2 className="sr-only">{'Add'}</h2>
     <form
@@ -33,7 +44,8 @@ const Add = ({ handleSubmit }) =>
         <SubmitButton bsStyle="primary">{'Add'}</SubmitButton>
       </p>
     </form>
-  </div>;
+  </div>
+);
 
 Add.propTypes = { handleSubmit: PropTypes.func.isRequired };
 

@@ -15,7 +15,7 @@ class Settings extends Component {
   }
   render () {
     const { handleAboutClick, handleDepartmentClick, selectedAbouts, selectedDepartments } = this.props;
-    const departmentNodes = departments.map(department =>
+    const departmentNodes = departments.map(department => (
       <Checkbox
         isSelected={selectedDepartments.indexOf(department) >= 0}
         key={department}
@@ -24,8 +24,8 @@ class Settings extends Component {
       >
         {department}
       </Checkbox>
-    );
-    const aboutNodes = abouts.map(about =>
+    ));
+    const aboutNodes = abouts.map(about => (
       <Checkbox
         isSelected={selectedAbouts.indexOf(about) >= 0}
         key={about}
@@ -34,7 +34,7 @@ class Settings extends Component {
       >
         {about}
       </Checkbox>
-    );
+    ));
     return (
       <section className="settings">
         <h2 className="h3">
