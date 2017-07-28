@@ -43,7 +43,7 @@ router.get('/', () => {
  * @apiUse FormatLog
  */
 router.get('/:about.json', (req, res) => {
-  const about = req.params.about;
+  const { about } = req.params;
   if (about === 'task') {
     sendAPIResult(logsAPI.about('scrap').then(log => {
       log.name = 'task';

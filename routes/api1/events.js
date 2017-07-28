@@ -67,9 +67,7 @@ router.get('/', () => {
  * @apiUse FormatEvents
  */
 router.get('/list.json', (req, res) => {
-  const departments = req.query.departments;
-  const startIndex = req.query.start_index;
-  const count = req.query.count;
+  const { count, departments, start_index: startIndex } = req.query;
   sendAPIResult(eventsAPI.list(departments, startIndex, count), res);
 });
 
@@ -88,10 +86,7 @@ router.get('/list.json', (req, res) => {
  * @apiUse FormatEvents
  */
 router.get('/:yyyy-:mm-:dd.json', (req, res) => {
-  const yyyy = req.params.yyyy;
-  const mm = req.params.mm;
-  const dd = req.params.dd;
-  const count = req.query.count;
+  const { count, dd, mm, yyyy } = req.params;
   sendAPIResult(eventsAPI.yyyymmdd(yyyy, mm, dd, count), res);
 });
 
@@ -108,8 +103,7 @@ router.get('/:yyyy-:mm-:dd.json', (req, res) => {
  * @apiUse FormatEvents
  */
 router.get('/search.json', (req, res) => {
-  const q = req.query.q;
-  const count = req.query.count;
+  const { count, q } = req.query;
   sendAPIResult(eventsAPI.search(q, count), res);
 });
 
