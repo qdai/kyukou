@@ -28,7 +28,7 @@ html(lang=site.lang, prefix='og: http://ogp.me/ns#')
         h1=site.name
         p=site.description
         p#header-buttons
-          a.icon-twitter(target='_blank', href=`//twitter.com/${site.twitter}`, title='Twitter')
+          a.icon-twitter(target='_blank', rel='noopener noreferrer', href=`//twitter.com/${site.twitter}`, title='Twitter')
             svg.icon
               use(xlink:href='#icon-twitter')
           a.icon-calendar(href='/calendar', title='calendar')
