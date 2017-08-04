@@ -60,7 +60,7 @@
     "webpack": "^3.0.0"
   },
   "engines": {
-    "node": "^7.1.0"
+    "node": "^8.2.1"
   },
   "homepage": "https://kyukou-kyudai.herokuapp.com/",
   "keywords": [
@@ -80,9 +80,8 @@
     "build:static": "ncp src/static public",
     "clean": "rimraf public src/css views",
     "lint": "eslint --ext .js,.jsx . bin/**",
-    "postinstall": "run-p build reinstall",
+    "postinstall": "npm run build",
     "prebuild:html": "npm run build:css",
-    "reinstall": "npm install kyukou-api1 kyukou-scraper-kyudai1",
     "start": "node bin/www"
   }
 }
