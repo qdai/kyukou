@@ -1,10 +1,11 @@
 import { logNames, siteUrl } from '../../utils/constant';
 import fetch from 'isomorphic-fetch';
 
-const requestLogs = () =>
-  Promise.all(logNames.map(logName =>
+const requestLogs = () => {
+  const fetchLog = logName =>
     fetch(`${siteUrl}/api/1/logs/${logName}.json`)
-      .then(res => res.json())
-  ));
+      .then(res => res.json());
+  return Promise.all(logNames.map(fetchLog));
+};
 
 export default requestLogs;

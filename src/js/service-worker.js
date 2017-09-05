@@ -1,3 +1,5 @@
+/* eslint function-paren-newline: [error, consistent] */
+
 import { version } from './utils/constant';
 
 const cacheName = `kyukou-v${version}`;
@@ -32,7 +34,7 @@ self.addEventListener('fetch', evt => {
       caches.open(cacheName)
         .then(cache => cache.match(evt.request))
         .then(res => {
-          if (res) {
+          if (res.ok) {
             return res;
           }
           return Promise.reject(new Error());
