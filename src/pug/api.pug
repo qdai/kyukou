@@ -3,7 +3,6 @@ html(lang=site.lang, prefix='og: http://ogp.me/ns#')
   head
     meta(charset='utf-8')
     title=doc.project.title
-    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><![endif]-->
     meta(name='viewport', content='width=device-width')
     meta(name='author', content=site.author)
     meta(name='description', content=doc.project.description)
@@ -89,4 +88,4 @@ html(lang=site.lang, prefix='og: http://ogp.me/ns#')
               each example in api.success.examples
                 pre
                   code!=example.content
-      include ./includes/footer
+      include ./includes/footer.pug
