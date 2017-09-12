@@ -65,6 +65,10 @@ app.use(helmet({
   },
   hsts: { maxAge: 31536000 }
 }));
+app.use((req, res, next) => {
+  res.set('X-UA-Compatible', 'ie=edge');
+  next();
+});
 app.use(compression());
 app.use(favicon(path.join(__dirname, 'public/favicon.ico')));
 app.use(logger('dev'));
