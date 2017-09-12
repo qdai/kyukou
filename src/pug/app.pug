@@ -17,8 +17,7 @@ html(lang=site.lang, prefix='og: http://ogp.me/ns#')
     script(src='/js/app.js', defer)
     style
       include ../css/app.css
-    link(rel='icon', type='image/vnd.microsoft.icon', href='/favicon.ico')
-    link(rel='shortcut icon', type='image/vnd.microsoft.icon', href='/favicon.ico')
+    include ./includes/icons.pug
     link(rel='alternate', type='application/rss+xml', title=site.name, href=`${site.url}/rss`)
   body
     include ../icomoon/symbol-defs.svg
