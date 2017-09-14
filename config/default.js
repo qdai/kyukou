@@ -20,6 +20,8 @@ module.exports = {
     keywords: '',
     lang: 'ja',
     name: '',
+    short_name: '',
+    theme_color: '#ffffff',
     twitter: '',
     url: '',
     version: `v${pkg.version}`
