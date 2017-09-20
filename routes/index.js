@@ -18,6 +18,11 @@ router.get('/manifest.webmanifest', (req, res) => {
     display: 'standalone',
     icons: [
       {
+        sizes: '144x144',
+        src: '/android-chrome-144x144.png',
+        type: 'image/png'
+      },
+      {
         sizes: '192x192',
         src: '/android-chrome-192x192.png',
         type: 'image/png'
