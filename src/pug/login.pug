@@ -7,6 +7,7 @@ html(lang=site.lang)
     meta(name='author', content=site.author)
     style
       include ../css/bundle.css
+    include ./includes/icons.pug
   body.container
     h1.page-header=`Login - ${site.name}`
     form(action='/admin/login', method='post')
