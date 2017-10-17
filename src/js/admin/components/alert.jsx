@@ -7,12 +7,15 @@ class Alert extends Component {
     super(...args);
     this.handleClick = this.handleClick.bind(this);
   }
+
   shouldComponentUpdate (nextProps) {
     return this.props.message !== nextProps.message;
   }
+
   handleClick () {
     this.props.onDismiss(this.props.id);
   }
+
   render () {
     const { message, type } = this.props;
     return (

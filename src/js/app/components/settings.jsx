@@ -10,9 +10,11 @@ class Settings extends Component {
     this.state = { open: false };
     this.handleClick = this.handleClick.bind(this);
   }
+
   handleClick () {
     this.setState({ open: !this.state.open });
   }
+
   render () {
     const { handleAboutClick, handleDepartmentClick, selectedAbouts, selectedDepartments } = this.props;
     const departmentNodes = departments.map(department => (
