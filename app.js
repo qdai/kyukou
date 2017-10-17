@@ -95,16 +95,20 @@ app.use((req, res, next) => {
 
 // Error handlers
 
-// Development error handler
-// Will print stacktrace
+/*
+ * Development error handler
+ * Will print stacktrace
+ */
 if (app.get('env') === 'development') {
   app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
     res.status(err.status || 500).type('text/plain').send(err.stack);
   });
 }
 
-// Production error handler
-// No stacktraces leaked to user
+/*
+ * Production error handler
+ * No stacktraces leaked to user
+ */
 app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   res.status(err.status || 500).type('text/plain').send(err.message);
 });

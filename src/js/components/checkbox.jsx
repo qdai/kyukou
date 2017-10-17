@@ -6,12 +6,15 @@ class Checkbox extends Component {
     super(...args);
     this.handleClick = this.handleClick.bind(this);
   }
+
   shouldComponentUpdate (nextProps) {
     return this.props.isSelected !== nextProps.isSelected;
   }
+
   handleClick () {
     this.props.onClick(this.props.value);
   }
+
   render () {
     const { isSelected, value } = this.props;
     return (
