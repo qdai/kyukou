@@ -12,10 +12,12 @@ class Settings extends Component {
   }
 
   handleClick () {
-    this.setState({ open: !this.state.open });
+    const { open } = this.state;
+    this.setState({ open: !open });
   }
 
   render () {
+    const { open } = this.state;
     const { handleAboutClick, handleDepartmentClick, selectedAbouts, selectedDepartments } = this.props;
     const departmentNodes = departments.map(department => (
       <Checkbox
@@ -50,14 +52,24 @@ class Settings extends Component {
             {'Settings'}
           </a>
         </h2>
-        <Collapse in={this.state.open}>
+        <Collapse in={open}>
           <div>
-            <h3>{'表示する情報'}</h3>
+            <h3>
+              {'表示する情報'}
+            </h3>
             <dl>
-              <dt>{'学部'}</dt>
-              <dd>{departmentNodes}</dd>
-              <dt>{'種別'}</dt>
-              <dd>{aboutNodes}</dd>
+              <dt>
+                {'学部'}
+              </dt>
+              <dd>
+                {departmentNodes}
+              </dd>
+              <dt>
+                {'種別'}
+              </dt>
+              <dd>
+                {aboutNodes}
+              </dd>
             </dl>
           </div>
         </Collapse>

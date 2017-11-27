@@ -5,7 +5,9 @@ import SubmitButton from './submit-button.jsx';
 
 const Delete = ({ handleSubmit }) => (
   <div>
-    <h2 className="sr-only">{'Delete'}</h2>
+    <h2 className="sr-only">
+      {'Delete'}
+    </h2>
     <form
       className="form-inline"
       onSubmit={handleSubmit}
@@ -19,7 +21,9 @@ const Delete = ({ handleSubmit }) => (
         />
       </p>
       <p>
-        <SubmitButton bsStyle="danger">{'Delete'}</SubmitButton>
+        <SubmitButton bsStyle="danger">
+          {'Delete'}
+        </SubmitButton>
       </p>
     </form>
   </div>

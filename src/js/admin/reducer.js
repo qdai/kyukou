@@ -2,7 +2,7 @@ import { DISMISS_ALERT, FETCH_API_COMPLETE, LOAD_EVENTS_FAILURE, LOAD_EVENTS_REQ
 import formatEvent from './utils/format-event';
 import { handleActions } from 'redux-actions';
 
-export const initialState = {
+const initialState = {
   alerts: [],
   events: [],
   loadError: null,
@@ -34,4 +34,7 @@ const reducer = handleActions({
   })
 }, initialState);
 
-export default reducer;
+export {
+  initialState,
+  reducer as default
+};

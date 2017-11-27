@@ -6,7 +6,9 @@ import { eventKeys } from '../../utils/constant';
 
 const Edit = ({ handleSubmit }) => (
   <div>
-    <h2 className="sr-only">{'Edit'}</h2>
+    <h2 className="sr-only">
+      {'Edit'}
+    </h2>
     <form
       className="form-inline"
       onSubmit={handleSubmit}
@@ -20,7 +22,10 @@ const Edit = ({ handleSubmit }) => (
         />
       </p>
       <p>
-        <label htmlFor="edit-key">{'key'}</label>{' '}
+        <label htmlFor="edit-key">
+          {'key'}
+        </label>
+        {' '}
         <select
           className="form-control"
           id="edit-key"
@@ -50,7 +55,9 @@ const Edit = ({ handleSubmit }) => (
         />
       </p>
       <p>
-        <SubmitButton bsStyle="primary">{'Edit'}</SubmitButton>
+        <SubmitButton bsStyle="primary">
+          {'Edit'}
+        </SubmitButton>
       </p>
     </form>
   </div>

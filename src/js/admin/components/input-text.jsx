@@ -2,10 +2,18 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 const InputText = ({ id, name, required }) => {
-  const requiredLabel = required ? <span>{'*'}</span> : null;
+  const requiredLabel = required ? (
+    <span>
+      {'*'}
+    </span>
+  ) : null;
   return (
     <span>
-      <label htmlFor={id}>{name}{requiredLabel}</label>{' '}
+      <label htmlFor={id}>
+        {name}
+        {requiredLabel}
+      </label>
+      {' '}
       <input
         className="form-control"
         id={id}

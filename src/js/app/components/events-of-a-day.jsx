@@ -16,19 +16,39 @@ const EventsOfADay = ({ data, date, dateFormatted }) => (
           collapsible
           header={
             <h3 className="h4 row">
-              <span className="col-sm-2 col-xs-3">{event.about}</span>
-              <span className="col-sm-2 col-xs-3">{`${event.period}時限`}</span>
-              <span className="col-sm-3 hidden-xs">{event.department}</span>
-              <span className="col-sm-5 col-xs-6">{event.subject}</span>
+              <span className="col-sm-2 col-xs-3">
+                {event.about}
+              </span>
+              <span className="col-sm-2 col-xs-3">
+                {`${event.period}時限`}
+              </span>
+              <span className="col-sm-3 hidden-xs">
+                {event.department}
+              </span>
+              <span className="col-sm-5 col-xs-6">
+                {event.subject}
+              </span>
             </h3>
           }
           key={event.hash}
           title={event.raw}
         >
           <ul>
-            <li className="hidden-sm hidden-md hidden-lg">{event.department}</li>
-            <li>{`教員：${event.teacher}`}</li>
-            { event.note || event.campus || event.room ? <li>{event.note} {event.campus} {event.room}</li> : null }
+            <li className="hidden-sm hidden-md hidden-lg">
+              {event.department}
+            </li>
+            <li>
+              {`教員：${event.teacher}`}
+            </li>
+            {event.note || event.campus || event.room ? (
+              <li>
+                {event.note}
+                {' '}
+                {event.campus}
+                {' '}
+                {event.room}
+              </li>
+            ) : null}
           </ul>
           <p>
             <a

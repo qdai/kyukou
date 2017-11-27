@@ -9,11 +9,13 @@ class Alert extends Component {
   }
 
   shouldComponentUpdate (nextProps) {
-    return this.props.message !== nextProps.message;
+    const { message } = this.props;
+    return message !== nextProps.message;
   }
 
   handleClick () {
-    this.props.onDismiss(this.props.id);
+    const { id, onDismiss } = this.props;
+    onDismiss(id);
   }
 
   render () {
