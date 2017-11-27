@@ -2,7 +2,7 @@ import { LOAD_LOGS_FAILURE, LOAD_LOGS_REQUEST, LOAD_LOGS_SUCCESS } from './actio
 import formatLog from './utils/format-log';
 import { handleActions } from 'redux-actions';
 
-export const initialState = {
+const initialState = {
   loadError: null,
   loading: false,
   logs: []
@@ -27,4 +27,7 @@ const reducer = handleActions({
   }
 }, initialState);
 
-export default reducer;
+export {
+  initialState,
+  reducer as default
+};

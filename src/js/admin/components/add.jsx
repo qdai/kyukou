@@ -19,7 +19,9 @@ const requiredKeys = [
 
 const Add = ({ handleSubmit }) => (
   <div>
-    <h2 className="sr-only">{'Add'}</h2>
+    <h2 className="sr-only">
+      {'Add'}
+    </h2>
     <form
       className="form-inline"
       onSubmit={handleSubmit}
@@ -41,7 +43,9 @@ const Add = ({ handleSubmit }) => (
         );
       })}
       <p>
-        <SubmitButton bsStyle="primary">{'Add'}</SubmitButton>
+        <SubmitButton bsStyle="primary">
+          {'Add'}
+        </SubmitButton>
       </p>
     </form>
   </div>

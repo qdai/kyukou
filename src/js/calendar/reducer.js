@@ -2,7 +2,7 @@ import { TOGGLE_DEPARTMENT } from './action-types';
 import { handleActions } from 'redux-actions';
 import toggle from '../utils/toggle-array-item';
 
-export const initialState = { selectedDepartments: [] };
+const initialState = { selectedDepartments: [] };
 
 const reducer = handleActions({
   [TOGGLE_DEPARTMENT]: (state, action) => {
@@ -11,4 +11,7 @@ const reducer = handleActions({
   }
 }, initialState);
 
-export default reducer;
+export {
+  initialState,
+  reducer as default
+};

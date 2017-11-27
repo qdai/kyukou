@@ -8,7 +8,9 @@ const LoadStatus = ({ loadError, loading, onReload }) => {
         className="alert alert-info"
         role="alert"
       >
-        <p className="lead">{'Now loading...'}</p>
+        <p className="lead">
+          {'Now loading...'}
+        </p>
       </div>
     );
   }

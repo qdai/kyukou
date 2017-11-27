@@ -4,7 +4,7 @@ import formatEvent from './utils/format-event';
 import { handleActions } from 'redux-actions';
 import toggle from '../utils/toggle-array-item';
 
-export const initialState = {
+const initialState = {
   events: [],
   loadError: null,
   loading: false,
@@ -36,4 +36,7 @@ const reducer = handleActions({
   }
 }, initialState);
 
-export default reducer;
+export {
+  initialState,
+  reducer as default
+};

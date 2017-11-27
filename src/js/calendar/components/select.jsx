@@ -5,7 +5,9 @@ import { departments } from '../../utils/constant';
 
 const Select = ({ handleClick, selectedDepartments }) => (
   <div>
-    <h2 className="h3">{'Select'}</h2>
+    <h2 className="h3">
+      {'Select'}
+    </h2>
     {departments.map(department => (
       <Checkbox
         isSelected={selectedDepartments.indexOf(department) >= 0}

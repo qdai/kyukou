@@ -8,11 +8,13 @@ class Checkbox extends Component {
   }
 
   shouldComponentUpdate (nextProps) {
-    return this.props.isSelected !== nextProps.isSelected;
+    const { isSelected } = this.props;
+    return isSelected !== nextProps.isSelected;
   }
 
   handleClick () {
-    this.props.onClick(this.props.value);
+    const { onClick, value } = this.props;
+    onClick(value);
   }
 
   render () {

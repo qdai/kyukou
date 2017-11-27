@@ -4,7 +4,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 const Events = ({ count, events, handleReloadClick, loadError, loading, selectedAbouts, selectedDepartments }) => {
-  const countNode = <p className="events-count">{`表示中：${count}`}</p>;
+  const countNode = (
+    <p className="events-count">
+      {`表示中：${count}`}
+    </p>
+  );
   if (loading || loadError) {
     return (
       <LoadStatus
@@ -18,7 +22,9 @@ const Events = ({ count, events, handleReloadClick, loadError, loading, selected
     return (
       <div>
         {countNode}
-        <p>{`${selectedDepartments.join('、')}の${selectedAbouts.join('、')}に関する情報はありません。`}</p>
+        <p>
+          {`${selectedDepartments.join('、')}の${selectedAbouts.join('、')}に関する情報はありません。`}
+        </p>
       </div>
     );
   }

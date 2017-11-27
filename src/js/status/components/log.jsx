@@ -10,11 +10,15 @@ const Log = ({ elapsedTime, level, log, name, time }) => (
     header={
       <h2>
         {`${name} (${elapsedTime} ms) `}
-        <time>{time}</time>
+        <time>
+          {time}
+        </time>
       </h2>
     }
   >
-    <pre>{log}</pre>
+    <pre>
+      {log}
+    </pre>
   </Panel>
 );
 

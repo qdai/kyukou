@@ -5,7 +5,9 @@ import { eventKeys } from '../../utils/constant';
 
 const List = ({ events, handleReloadClick, loadError, loading }) => (
   <div>
-    <h2 className="sr-only">{'List'}</h2>
+    <h2 className="sr-only">
+      {'List'}
+    </h2>
     <LoadStatus
       loadError={loadError}
       loading={loading}
@@ -14,13 +16,21 @@ const List = ({ events, handleReloadClick, loadError, loading }) => (
     <table className="table table-bordered table-hover">
       <thead>
         <tr>
-          {eventKeys.map(key => <th key={key}>{key}</th>)}
+          {eventKeys.map(key => (
+            <th key={key}>
+              {key}
+            </th>
+          ))}
         </tr>
       </thead>
       <tbody>
         {events.map(event => (
           <tr key={event.hash}>
-            {eventKeys.map(key => <td key={key}>{event[key]}</td>)}
+            {eventKeys.map(key => (
+              <td key={key}>
+                {event[key]}
+              </td>
+            ))}
           </tr>
         ))}
       </tbody>
