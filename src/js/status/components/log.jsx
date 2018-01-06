@@ -5,20 +5,26 @@ import React from 'react';
 const Log = ({ elapsedTime, level, log, name, time }) => (
   <Panel
     bsStyle={level}
-    collapsible
     defaultExpanded={level !== 'success'}
-    header={
-      <h2>
+  >
+    <Panel.Heading>
+      <Panel.Title
+        componentClass="h2"
+        toggle
+      >
         {`${name} (${elapsedTime} ms) `}
         <time>
           {time}
         </time>
-      </h2>
-    }
-  >
-    <pre>
-      {log}
-    </pre>
+      </Panel.Title>
+    </Panel.Heading>
+    <Panel.Collapse>
+      <Panel.Body>
+        <pre>
+          {log}
+        </pre>
+      </Panel.Body>
+    </Panel.Collapse>
   </Panel>
 );
 
