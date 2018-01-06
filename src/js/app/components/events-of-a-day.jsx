@@ -13,9 +13,15 @@ const EventsOfADay = ({ data, date, dateFormatted }) => (
     <div className="panel-group">
       {data.map(event => (
         <Panel
-          collapsible
-          header={
-            <h3 className="h4 row">
+          key={event.hash}
+          title={event.raw}
+        >
+          <Panel.Heading>
+            <Panel.Title
+              className="row" // eslint-disable-line react/forbid-component-props
+              componentClass="h3"
+              toggle
+            >
               <span className="col-sm-2 col-xs-3">
                 {event.about}
               </span>
@@ -28,40 +34,41 @@ const EventsOfADay = ({ data, date, dateFormatted }) => (
               <span className="col-sm-5 col-xs-6">
                 {event.subject}
               </span>
-            </h3>
-          }
-          key={event.hash}
-          title={event.raw}
-        >
-          <ul>
-            <li className="hidden-sm hidden-md hidden-lg">
-              {event.department}
-            </li>
-            <li>
-              {`教員：${event.teacher}`}
-            </li>
-            {event.note || event.campus || event.room ? (
-              <li>
-                {event.note}
-                {' '}
-                {event.campus}
-                {' '}
-                {event.room}
-              </li>
-            ) : null}
-          </ul>
-          <p>
-            <a
-              href={event.link}
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              {'情報取得元'}
-              <svg className="icon">
-                <use xlinkHref="#icon-new-tab" />
-              </svg>
-            </a>
-          </p>
+            </Panel.Title>
+          </Panel.Heading>
+          <Panel.Collapse>
+            <Panel.Body>
+              <ul>
+                <li className="hidden-sm hidden-md hidden-lg">
+                  {event.department}
+                </li>
+                <li>
+                  {`教員：${event.teacher}`}
+                </li>
+                {event.note || event.campus || event.room ? (
+                  <li>
+                    {event.note}
+                    {' '}
+                    {event.campus}
+                    {' '}
+                    {event.room}
+                  </li>
+                ) : null}
+              </ul>
+              <p>
+                <a
+                  href={event.link}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  {'情報取得元'}
+                  <svg className="icon">
+                    <use xlinkHref="#icon-new-tab" />
+                  </svg>
+                </a>
+              </p>
+            </Panel.Body>
+          </Panel.Collapse>
         </Panel>
       ))}
     </div>
