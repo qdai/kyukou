@@ -59,7 +59,7 @@
     "redux-saga": "^0.16.0",
     "rimraf": "^2.5.2",
     "uglify-save-license": "^0.4.1",
-    "webpack": "^3.0.0"
+    "webpack": "^4.0.0"
   },
   "engines": {
     "node": "^10.3.0"
