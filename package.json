@@ -84,7 +84,7 @@
     "build:static": "ncp src/static public",
     "clean": "rimraf public src/css views",
     "lint": "run-p lint:*",
-    "lint:js": "eslint --ext .js,.jsx . bin/**",
+    "lint:js": "eslint --ext .js,.jsx .",
     "lint:pug": "pug-lint src/pug",
     "postinstall": "npm run build",
     "prebuild:html": "npm run build:css",
