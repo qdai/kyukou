@@ -115,7 +115,7 @@ router.get('/events/:method', req => {
     'add',
     'edit',
     'delete'
-  ].indexOf(req.params.method) !== -1) {
+  ].includes(req.params.method)) {
     throw createHttpError(405);
   } else {
     throw createHttpError(400);

@@ -8,6 +8,7 @@
     "sourceType": "module"
   },
   "rules": {
-    "import/max-dependencies": "warn"
+    "import/max-dependencies": "warn",
+    "react/jsx-max-depth": "off"
   }
 }
