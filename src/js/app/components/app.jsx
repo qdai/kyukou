@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Settings from '../containers/settings';
 import VisibleEvents from '../containers/visible-events';
 
 const App = () => (
-  <div>
+  <Fragment>
     <Settings />
     <VisibleEvents />
-  </div>
+  </Fragment>
 );
 
 export default App;

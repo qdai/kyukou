@@ -1,9 +1,9 @@
+import React, { Fragment } from 'react';
 import Alert from './alert.jsx';
 import PropTypes from 'prop-types';
-import React from 'react';
 
 const Alerts = ({ alerts, handleDismiss }) => (
-  <div>
+  <Fragment>
     {alerts.map(alert => (
       <Alert
         key={alert.id}
@@ -13,7 +13,7 @@ const Alerts = ({ alerts, handleDismiss }) => (
         {alert.message}
       </Alert>
     ))}
-  </div>
+  </Fragment>
 );
 
 Alerts.propTypes = {

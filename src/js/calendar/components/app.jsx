@@ -1,12 +1,12 @@
+import React, { Fragment } from 'react';
 import Download from '../containers/download';
-import React from 'react';
 import Select from '../containers/select';
 
 const App = () => (
-  <div>
+  <Fragment>
     <Select />
     <Download />
-  </div>
+  </Fragment>
 );
 
 export default App;
