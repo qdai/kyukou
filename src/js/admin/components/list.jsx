@@ -1,10 +1,10 @@
+import React, { Fragment } from 'react';
 import LoadStatus from '../../components/load-status.jsx';
 import PropTypes from 'prop-types';
-import React from 'react';
 import { eventKeys } from '../../utils/constant';
 
 const List = ({ events, handleReloadClick, loadError, loading }) => (
-  <div>
+  <Fragment>
     <h2 className="sr-only">
       {'List'}
     </h2>
@@ -35,7 +35,7 @@ const List = ({ events, handleReloadClick, loadError, loading }) => (
         ))}
       </tbody>
     </table>
-  </div>
+  </Fragment>
 );
 
 List.propTypes = {

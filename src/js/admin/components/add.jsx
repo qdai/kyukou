@@ -1,6 +1,6 @@
+import React, { Fragment } from 'react';
 import InputText from './input-text.jsx';
 import PropTypes from 'prop-types';
-import React from 'react';
 import SubmitButton from './submit-button.jsx';
 import { eventKeys } from '../../utils/constant';
 
@@ -18,7 +18,7 @@ const requiredKeys = [
 ];
 
 const Add = ({ handleSubmit }) => (
-  <div>
+  <Fragment>
     <h2 className="sr-only">
       {'Add'}
     </h2>
@@ -48,7 +48,7 @@ const Add = ({ handleSubmit }) => (
         </SubmitButton>
       </p>
     </form>
-  </div>
+  </Fragment>
 );
 
 Add.propTypes = { handleSubmit: PropTypes.func.isRequired };

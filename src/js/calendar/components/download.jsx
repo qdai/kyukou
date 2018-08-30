@@ -1,8 +1,8 @@
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import React from 'react';
 
 const Download = ({ link }) => (
-  <div>
+  <Fragment>
     <h2 className="h3">
       {'Download'}
     </h2>
@@ -20,7 +20,7 @@ const Download = ({ link }) => (
         {link}
       </a>
     </p>
-  </div>
+  </Fragment>
 );
 
 Download.propTypes = { link: PropTypes.string.isRequired };

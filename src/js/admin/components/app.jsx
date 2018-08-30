@@ -1,14 +1,14 @@
+import React, { Fragment } from 'react';
 import Add from '../containers/add';
 import Alerts from '../containers/alerts';
 import Delete from '../containers/delete';
 import Edit from '../containers/edit';
 import List from '../containers/list';
-import React from 'react';
 import Tab from 'react-bootstrap/es/Tab';
 import Tabs from 'react-bootstrap/es/Tabs';
 
 const App = () => (
-  <div>
+  <Fragment>
     <Alerts />
     <Tabs
       defaultActiveKey={1}
@@ -39,7 +39,7 @@ const App = () => (
         <Delete />
       </Tab>
     </Tabs>
-  </div>
+  </Fragment>
 );
 
 export default App;

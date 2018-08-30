@@ -1,7 +1,7 @@
 import EventsOfADay, { propTypes as EventsOfADayPropTypes } from './events-of-a-day.jsx';
+import React, { Fragment } from 'react';
 import LoadStatus from '../../components/load-status.jsx';
 import PropTypes from 'prop-types';
-import React from 'react';
 
 const Events = ({ count, events, handleReloadClick, loadError, loading, selectedAbouts, selectedDepartments }) => {
   const countNode = (
@@ -20,12 +20,12 @@ const Events = ({ count, events, handleReloadClick, loadError, loading, selected
   }
   if (events.length === 0) {
     return (
-      <div>
+      <Fragment>
         {countNode}
         <p>
           {`${selectedDepartments.join('、')}の${selectedAbouts.join('、')}に関する情報はありません。`}
         </p>
-      </div>
+      </Fragment>
     );
   }
   return (
