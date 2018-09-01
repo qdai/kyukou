@@ -44,7 +44,7 @@
     "highlight.js": "^9.1.0",
     "isomorphic-fetch": "^2.2.1",
     "ncp": "^2.0.0",
-    "node-sass": "^4.9.0",
+    "node-sass": "^4.9.3",
     "npm-run-all": "^4.0.0",
     "prop-types": "^15.5.8",
     "pug-cli": "^1.0.0-alpha6",
