@@ -12,7 +12,7 @@ NOTICE: This is **Unofficial** web site.
 ## For development
 
 1. Set environment variables: `NODE_ENV`, `PORT` and `TZ`
-2. Configure: Edit `config/${NODE_ENV}.json` (kyukou uses [node-config](https://github.com/lorenwest/node-config) to load config)
+2. Configure: `cp .env.example .env` then edit `.env`
 3. Install: `NODE_ENV=development npm install`
 4. Build: `npm run build`
 5. Start: `npm start`
