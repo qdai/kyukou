@@ -3,6 +3,25 @@ node_js:
 - '10'
 sudo: false
 services: mongodb
+env:
+- SECRET=secret
+- TZ=Asia/Tokyo
+- ADMIN_HASH=admin_hash
+- ADMIN_NAME=admin_name
+- DB_API_VERSION_1_MONGO_URI=mongodb://localhost/kyukou
+- DB_MONGO_URI=mongodb://localhost/kyukou
+- SITE_DESCRIPTION=site_description
+- SITE_KEYWORDS=site_keywords
+- SITE_LANG=ja
+- SITE_NAME=site_name
+- SITE_SHORT_NAME=site_short_name
+- SITE_THEME_COLOR=#ffffff
+- SITE_URL=site_url
+- TWITTER_ACCESS_TOKEN=twitter_access_token
+- TWITTER_ACCESS_TOKEN_SECRET=twitter_access_token_secret
+- TWITTER_CONSUMER_KEY=twitter_consumer_key
+- TWITTER_CONSUMER_SECRET=twitter_consumer_secret
+- TWITTER_SCREEN_NAME=twitter_screen_name
 before_install: npm install -g greenkeeper-lockfile@1
 install: if [[ $TRAVIS_BRANCH == greenkeeper/* ]] && [[ -v TRAVIS_COMMIT_RANGE ]]; then npm install; else npm ci; fi
 before_script: greenkeeper-lockfile-update
