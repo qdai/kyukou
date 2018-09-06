@@ -1,13 +1,12 @@
 'use strict';
 
-const config = require('config');
 const express = require('express');
 const moment = require('moment');
 const path = require('path');
+const site = require('../lib/site');
 const vobject = require('vobject');
 
 const router = express.Router();
-const site = config.get('site');
 
 const eventsAPI = require('../api1').events;
 

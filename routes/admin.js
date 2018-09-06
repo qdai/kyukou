@@ -1,14 +1,16 @@
 'use strict';
 
 const bcrypt = require('bcrypt');
-const config = require('config');
 const createHttpError = require('http-errors');
 const express = require('express');
 const passport = require('passport');
 const path = require('path');
 const { Strategy: LocalStrategy } = require('passport-local');
 
-const admin = config.get('admin');
+const admin = {
+  hash: process.env.ADMIN_HASH,
+  name: process.env.ADMIN_NAME
+};
 const router = express.Router();
 
 passport.use(new LocalStrategy({

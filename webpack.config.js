@@ -1,14 +1,13 @@
 'use strict';
 
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin'); // eslint-disable-line node/no-unpublished-require
-const config = require('config');
 const jsonfile = require('jsonfile');
 const path = require('path');
 const saveLicense = require('uglify-save-license'); // eslint-disable-line node/no-unpublished-require
+const site = require('./lib/site');
 const webpack = require('webpack'); // eslint-disable-line node/no-unpublished-require
 
 const dest = path.join(__dirname, 'public');
-const siteUrl = config.get('site.url');
 const src = path.join(__dirname, 'src');
 const { version } = jsonfile.readFileSync(path.join(__dirname, './package.json'));
 
@@ -46,7 +45,7 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       APP_VERSION: JSON.stringify(version),
-      SITE_URL: JSON.stringify(siteUrl)
+      SITE_URL: JSON.stringify(site.url)
     }),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
   ]

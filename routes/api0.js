@@ -1,12 +1,12 @@
 'use strict';
 
-const config = require('config');
 const createHttpError = require('http-errors');
 const express = require('express');
+const site = require('../lib/site');
 
 const router = express.Router();
 
-const errorMessage = `API v0 is no longer active. Please migrate to API v1 (${config.get('site.url')}/api/1).`;
+const errorMessage = `API v0 is no longer active. Please migrate to API v1 (${site.url}/api/1).`;
 
 router.get('/list.json', () => {
   throw createHttpError(410, errorMessage);

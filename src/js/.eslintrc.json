@@ -9,6 +9,7 @@
   },
   "rules": {
     "import/max-dependencies": "warn",
+    "no-process-env": "error",
     "react/jsx-max-depth": "off"
   }
 }

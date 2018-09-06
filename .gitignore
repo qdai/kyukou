@@ -1,4 +1,5 @@
-config/development.*
+.env*
+!.env.example
 node_modules
 public
 src/css

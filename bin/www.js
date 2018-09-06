@@ -1,8 +1,9 @@
 /* eslint no-console: 0 */
-/* eslint no-process-env: 0 */
 /* eslint no-process-exit: 0 */
 
 'use strict';
+
+require('dotenv-safe').config();
 
 /**
  * Module dependencies.
