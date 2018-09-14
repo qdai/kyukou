@@ -51,7 +51,7 @@
     "pug-lint": "^2.5.0",
     "react": "^16.5.1",
     "react-bootstrap": "^0.32.3",
-    "react-dom": "^16.4.2",
+    "react-dom": "^16.5.1",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
     "redux-actions": "^2.0.1",
