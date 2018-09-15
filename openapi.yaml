@@ -1,0 +1,267 @@
+openapi: 3.0.0
+info:
+  title: 九州大学休講情報 API v1
+  description: 九州大学休講情報のAPIです。教育学部、文学部、法学部、理学部、経済学部に対応しています。
+  contact:
+    name: qdai
+    url: https://github.com/qdai
+  version: 1.1.0
+servers:
+  - description: 九州大学休講情報 API v1
+    url: https://kyukou-kyudai.herokuapp.com/api/1
+tags:
+  - name: event
+    description: Events API
+  - name: log
+    description: Logs API
+paths:
+  /events/list.json:
+    get:
+      tags:
+        - event
+      summary: get sheduled events
+      parameters:
+        - name: departments
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - edu
+                - lit
+                - law
+                - sci
+                - econ
+          description: specify department
+        - name: start_index
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 0
+          description: starting index
+        - $ref: '#/components/parameters/countParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/ScheduledEvents'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /events/search.json:
+    get:
+      tags:
+        - event
+      summary: get sheduled events matched search query
+      parameters:
+        - name: q
+          in: query
+          required: true
+          schema:
+            type: string
+          description: query string
+        - $ref: '#/components/parameters/countParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/ScheduledEvents'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /events/{YYYY}-{MM}-{DD}.json:
+    get:
+      tags:
+        - event
+      summary: get YYYY-MM-DD's events
+      parameters:
+        - name: YYYY
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: year
+        - name: MM
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: month
+        - name: DD
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: day
+        - $ref: '#/components/parameters/countParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/ScheduledEvents'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /logs/{about}.json:
+    get:
+      tags:
+        - log
+      summary: get latest log
+      parameters:
+        - name: about
+          in: path
+          required: true
+          schema:
+            type: string
+            enum:
+              - task
+              - twit_new
+              - twit_tomorrow
+              - delete
+          description: log name to get
+      responses:
+        '200':
+          description: log object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Log'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+components:
+  schemas:
+    Event:
+      type: object
+      required:
+        - about
+        - department
+        - subject
+        - period
+        - link
+        - eventDate
+        - pubDate
+        - raw
+        - hash
+        - tweet
+      properties:
+        about:
+          type: string
+          description: event type
+          example: 休講
+        department:
+          type: string
+          description: department
+          example: 教育学部
+        subject:
+          type: string
+          description: subject
+          example: 教科名
+        period:
+          type: string
+          description: period
+          example: '1'
+        link:
+          type: string
+          description: event URL
+          example: http://www.education.kyushu-u.ac.jp/topics/student_index
+        eventDate:
+          type: string
+          format: date-time
+          description: event date
+          example: '2015-01-18T15:00:00.000Z'
+        pubDate:
+          type: string
+          format: date-time
+          description: date the event published
+          example: '2015-01-15T15:00:00.000Z'
+        raw:
+          type: string
+          description: event source
+          example: 【休講】1月19日（月） 1限 「教科名」（教員名教員）
+        hash:
+          type: string
+          description: event ID
+          example: 89c5918f7d1decffcfd72eebec6413ac7f3795d71f335bd97129df0c69818e8f
+        tweet:
+          type: object
+          required:
+            - new
+            - tomorrow
+          properties:
+            new:
+              type: boolean
+            tomorrow:
+              type: boolean
+          description: tweet flags
+        campus:
+          type: string
+          description: campus
+        room:
+          type: string
+          description: room
+        teacher:
+          type: string
+          description: teacher
+        note:
+          type: string
+          description: notes
+    Log:
+      type: object
+      required:
+        - name
+        - log
+        - level
+        - time
+        - elapsedTime
+      properties:
+        name:
+          type: string
+          description: log type
+          example: task
+        log:
+          type: string
+          description: log content
+          example: 'msg: 0 event(s) created\nmsg: 19 event(s) already exist'
+        level:
+          type: integer
+          description: error level
+          example: 1
+        time:
+          type: string
+          format: date-time
+          description: loged date time
+          example: '2015-01-21T11:05:00.298Z'
+        elapsedTime:
+          type: number
+          description: elapsed time in ms
+          example: 915.768167
+    Error:
+      type: object
+      required:
+        - error
+      properties:
+        error:
+          type: object
+          required:
+            - message
+          properties:
+            message:
+              type: string
+              description: error message
+  parameters:
+    countParam:
+      name: count
+      in: query
+      required: false
+      schema:
+        type: integer
+      description: returns all event if `count` is not specified
+  responses:
+    ScheduledEvents:
+      description: an array of scheduled events sorted by `eventDate` and `period`
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Event'
+    BadRequest:
+      description: bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'

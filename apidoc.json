@@ -1,8 +1,0 @@
-{
-  "name": "九州大学休講情報 API v1",
-  "description": "九州大学休講情報のAPIです。教育学部、文学部、法学部、理学部、経済学部に対応しています。",
-  "version": "1.1.0",
-  "keywords": "九州大学休講情報 API,九州大学,九大,休講情報,休講,API",
-  "title": "九州大学休講情報 API v1",
-  "url": "https://kyukou-kyudai.herokuapp.com/api/1"
-}

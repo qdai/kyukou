@@ -1,12 +1,16 @@
 'use strict';
 
-const createApiDoc = require('./lib/create-api-doc');
+const fs = require('fs');
 const path = require('path');
 const site = require('./lib/site');
+const yaml = require('js-yaml');
 
-const api = path.join(__dirname, 'routes/api1');
+const { info: { description, title } } = yaml.safeLoad(fs.readFileSync(path.resolve(__dirname, 'openapi.yaml'), 'utf8'));
 
 module.exports = {
-  doc: createApiDoc(api),
+  api: {
+    description,
+    title
+  },
   site
 };
