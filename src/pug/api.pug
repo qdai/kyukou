@@ -2,91 +2,20 @@ doctype html
 html(lang=site.lang, prefix='og: http://ogp.me/ns#')
   head
     meta(charset='utf-8')
-    title=doc.project.title
+    title=api.title
     meta(name='viewport', content='width=device-width')
     meta(name='author', content=site.author)
-    meta(name='description', content=doc.project.description)
-    meta(name='keywords', content=doc.project.keywords)
-    meta(property='og:title', content=doc.project.title)
+    meta(name='description', content=api.description)
+    meta(name='keywords', content=`API,${site.keywords}`)
+    meta(property='og:title', content=api.title)
     meta(property='og:type', content='website')
-    meta(property='og:description', content=doc.project.description)
+    meta(property='og:description', content=api.description)
     meta(property='og:url', content=`${site.url}/api/1`)
     meta(property='og:site_name', content=site.name)
     style
-      include ../css/api.css
+      include ../css/bundle.css
     include ./includes/icons.pug
   body
-    div.container
-      header.page-header
-        h1=doc.project.title
-        p=doc.project.description
-      div.row
-        nav.col-md-3(role='navigation')
-          h2.sr-only Table of Contents
-          ul.list-unstyled
-            each apis, index in doc.list
-              li
-                h3=`${index}/`
-                ul.nav.nav-pills.nav-stacked
-                  each api in apis
-                    li
-                      a(href=`#${index}-${api}`)=api
-        main.col-md-9(role='main')
-          each api in doc.data
-            section(id=`${api.group}-${api.title}`)
-              h2.page-header
-                span=api.type
-                |  
-                =`${api.groupTitle}/${api.title}`
-                |  
-                small=`v${api.version}`
-              !=api.description
-              h3 Resource URL
-              code=doc.project.url
-                wbr
-                =api.url
-              h3 Parameter
-              table.table.table-striped.table-hover
-                thead
-                  tr
-                    th Field
-                    th Type
-                    th Description
-                tbody
-                  each param in api.parameter.fields.Parameter
-                    tr
-                      td=param.field
-                        if param.optional
-                          span.text-muted  (optional)
-                      td.hljs-variable=param.type
-                      td!=param.description
-                        if param.defaultValue
-                          p='Default value: '
-                            code=param.defaultValue
-                        if param.allowedValues
-                          p='Allowed values: '
-                            each val, index in param.allowedValues
-                              code=val
-                              if index+1!==param.allowedValues.length
-                                | , 
-              h3 Response Format
-              each fields, index in api.success.fields
-                table.table.table-striped.table-hover
-                  thead
-                    tr
-                      th Field
-                      th Type
-                      th Description
-                  tbody
-                    each field in fields
-                      tr
-                        td=field.field
-                          if field.optional
-                            span.text-muted  (optional)
-                        td.hljs-variable=field.type
-                        td!=field.description
-              h3 Example
-              each example in api.success.examples
-                pre
-                  code!=example.content
-      include ./includes/footer.pug
+    redoc(spec-url='/api/1/openapi.json', disable-search)
+    script(src='/lib/redoc.standalone.js')
+    include ./includes/footer.pug
