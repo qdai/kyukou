@@ -58,7 +58,7 @@ app.use(helmet({
       objectSrc: ["'none'"],
       styleSrc: [
         "'unsafe-inline'",
-        ...createHashes(hashAlgorithm, path.join(__dirname, 'src/css/*.css'))
+        ...createHashes(hashAlgorithm, path.join(__dirname, 'styles/*.css'))
           .map(hash => `'${hashAlgorithm}-${hash}'`)
       ]
     }
