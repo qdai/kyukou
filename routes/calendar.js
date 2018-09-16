@@ -2,7 +2,6 @@
 
 const express = require('express');
 const moment = require('moment');
-const path = require('path');
 const site = require('../lib/site');
 const vobject = require('vobject');
 
@@ -11,7 +10,7 @@ const router = express.Router();
 const eventsAPI = require('../api1').events;
 
 router.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../views/calendar.html'));
+  res.render('calendar', { site });
 });
 
 router.get('/kyukou.ics', (req, res) => {

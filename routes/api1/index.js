@@ -3,6 +3,7 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
+const site = require('../../lib/site');
 const yaml = require('js-yaml');
 const { contentSecurityPolicy } = require('helmet');
 
@@ -27,7 +28,10 @@ router.get('/', contentSecurityPolicy({
     styleSrc: ["'unsafe-inline'"]
   }
 }), (req, res) => {
-  res.sendFile(path.join(__dirname, '../../views/api.html'));
+  res.render('api', {
+    api: openapi.info,
+    site
+  });
 });
 
 module.exports = router;

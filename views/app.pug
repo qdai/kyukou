@@ -16,11 +16,11 @@ html(lang=site.lang, prefix='og: http://ogp.me/ns#')
     script(src='/js/commons.js', defer)
     script(src='/js/app.js', defer)
     style
-      include ../css/app.css
+      include ../src/css/app.css
     include ./includes/icons.pug
     link(rel='alternate', type='application/rss+xml', title=site.name, href=`${site.url}/rss`)
   body
-    include ../icomoon/symbol-defs.svg
+    include ../src/icomoon/symbol-defs.svg
     div.container
       header.page-header
         h1=site.name

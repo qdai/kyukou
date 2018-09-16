@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const createHttpError = require('http-errors');
 const express = require('express');
 const passport = require('passport');
-const path = require('path');
+const site = require('../lib/site');
 const { Strategy: LocalStrategy } = require('passport-local');
 
 const admin = {
@@ -48,7 +48,7 @@ const sendAPIResult = require('../lib/sendapiresult');
 
 router.get('/', (req, res) => {
   if (req.isAuthenticated()) {
-    res.sendFile(path.join(__dirname, '../views/admin.html'));
+    res.render('admin', { site });
   } else {
     res.redirect('/admin/login');
   }
@@ -58,7 +58,7 @@ router.get('/login', (req, res) => {
   if (req.isAuthenticated()) {
     res.redirect('/admin');
   } else {
-    res.sendFile(path.join(__dirname, '../views/login.html'));
+    res.render('login', { site });
   }
 });
 

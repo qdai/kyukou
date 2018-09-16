@@ -42,9 +42,11 @@ const admin = require('./routes/admin');
 
 // Cron job
 require('./cron');
-// Additional setting
+// Settings
 app.set('trust proxy', true);
 app.set('x-powered-by', false);
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
 
 if (app.get('env') === 'production') {
   app.use(enforcesSsl());
