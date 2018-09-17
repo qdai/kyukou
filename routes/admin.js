@@ -43,7 +43,7 @@ passport.deserializeUser((serializedAccount, done) => {
   }
 });
 
-const eventsAPI = require('../api1').events;
+const eventsAPI = require('../api-v1').events;
 const sendAPIResult = require('../lib/sendapiresult');
 
 router.get('/', (req, res) => {

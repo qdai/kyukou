@@ -1,13 +1,10 @@
 'use strict';
 
 const express = require('express');
-const fs = require('fs');
-const path = require('path');
+const openapi = require('../openapi');
 const site = require('../../lib/site');
-const yaml = require('js-yaml');
 const { contentSecurityPolicy } = require('helmet');
 
-const openapi = yaml.safeLoad(fs.readFileSync(path.resolve(__dirname, '../../openapi.yaml'), 'utf8'));
 const router = express.Router();
 
 const events = require('./events');
@@ -30,7 +27,7 @@ router.get('/', contentSecurityPolicy({
 }), (req, res) => {
   res.render('api', {
     api: openapi.info,
-    site
+    site: Object.assign(site, { url: `${site.url}/${openapi.servers[0].variables.basePath.default}` })
   });
 });
 

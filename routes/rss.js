@@ -7,7 +7,7 @@ const site = require('../lib/site');
 
 const router = express.Router();
 
-const eventsAPI = require('../api1').events;
+const eventsAPI = require('../api-v1').events;
 
 router.get('/', (req, res) => {
   eventsAPI.list().then(events => {

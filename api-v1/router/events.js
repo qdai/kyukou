@@ -5,7 +5,7 @@ const express = require('express');
 
 const router = express.Router();
 
-const eventsAPI = require('../../api1').events;
+const eventsAPI = require('../api').events;
 const sendAPIResult = require('../../lib/sendapiresult');
 
 router.get('/', () => {
