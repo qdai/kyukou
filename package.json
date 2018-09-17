@@ -20,6 +20,7 @@
     "glob": "^7.1.3",
     "helmet": "^3.12.1",
     "http-errors": "^1.3.1",
+    "ical-generator": "^1.1.1",
     "js-yaml": "^3.12.0",
     "jsonfile": "^5.0.0",
     "kyukou-api1": "file:packages/kyukou-api1",
@@ -29,8 +30,7 @@
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "rss": "^1.2.0",
-    "serve-favicon": "^2.5.0",
-    "vobject": "^0.1.0"
+    "serve-favicon": "^2.5.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
