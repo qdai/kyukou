@@ -1,18 +1,18 @@
 import fetch from 'isomorphic-fetch';
 import { siteUrl } from '../../utils/constant';
 
-const requestApi = (method, formData) => {
+const requestApi = async (method, formData) => {
   const body = [...formData.entries()].reduce((obj, [key, value]) => ({
     ...obj,
     [key]: value
   }), {});
-  return fetch(`${siteUrl}/admin/events/${method}`, {
+  const res = await fetch(`${siteUrl}/admin/events/${method}`, {
     body: JSON.stringify(body),
     credentials: 'same-origin',
     headers: { 'Content-Type': 'application/json' },
     method: 'POST'
-  })
-    .then(res => res.json());
+  });
+  return res.json();
 };
 
 export default requestApi;

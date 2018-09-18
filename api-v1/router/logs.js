@@ -1,27 +1,20 @@
 'use strict';
 
 const createHttpError = require('http-errors');
-const express = require('express');
-
-const router = express.Router();
-
-const logsAPI = require('../api').logs;
-const sendAPIResult = require('../../lib/sendapiresult');
+const router = require('express-promise-router')();
+const { logs: logsAPI } = require('../api');
 
 router.get('/', () => {
   throw createHttpError(400);
 });
 
-router.get('/:about.json', (req, res) => {
+router.get('/:about.json', async (req, res) => {
   const { about } = req.params;
-  if (about === 'task') {
-    sendAPIResult(logsAPI.about('scrap').then(log => ({
-      ...log,
-      name: 'task'
-    })), res);
-  } else {
-    sendAPIResult(logsAPI.about(about), res);
-  }
+  const log = await logsAPI.about(about === 'task' ? 'scrap' : about);
+  res.json({
+    ...log,
+    name: about
+  });
 });
 
 module.exports = router;

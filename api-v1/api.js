@@ -17,29 +17,29 @@ const api = new Api({
   }
 });
 
-const reportTaskResult = task => {
-  task
-    .then(tasklog => `msg: ${tasklog.name} done`)
-    .catch(err => `err: ${err.stack}`)
-    .then(msg => {
-      console.log(msg); // eslint-disable-line no-console
-    });
+const logsTaskResult = async task => {
+  try {
+    const { name } = await task;
+    console.log(`msg: ${name} done`); // eslint-disable-line no-console
+  } catch (err) {
+    console.error(`err: ${err.stack}`); // eslint-disable-line no-console
+  }
 };
 
 const jobScrap = new CronJob('0 25,55 * * * *', () => {
-  reportTaskResult(api.tasks.scrap());
+  logsTaskResult(api.tasks.scrap());
 }, null, true, 'Asia/Tokyo');
 
 const jobTwitNew = new CronJob('0 */15 0-21,23 * * *', () => {
-  reportTaskResult(api.tasks.twitNew());
+  logsTaskResult(api.tasks.twitNew());
 }, null, true, 'Asia/Tokyo');
 
 const jobTwitTomorrow = new CronJob('0 */15 22 * * *', () => {
-  reportTaskResult(api.tasks.twitTomorrow());
+  logsTaskResult(api.tasks.twitTomorrow());
 }, null, true, 'Asia/Tokyo');
 
 const jobDelete = new CronJob('0 5 2 * * *', () => {
-  reportTaskResult(api.tasks.delete());
+  logsTaskResult(api.tasks.delete());
 }, null, true, 'Asia/Tokyo');
 
 /* eslint-disable no-console */

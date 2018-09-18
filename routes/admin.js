@@ -2,16 +2,16 @@
 
 const bcrypt = require('bcrypt');
 const createHttpError = require('http-errors');
-const express = require('express');
 const passport = require('passport');
+const router = require('express-promise-router')();
 const site = require('../lib/site');
 const { Strategy: LocalStrategy } = require('passport-local');
+const { events: eventsAPI } = require('../api-v1');
 
 const admin = {
   hash: process.env.ADMIN_HASH,
   name: process.env.ADMIN_NAME
 };
-const router = express.Router();
 
 passport.use(new LocalStrategy({
   passReqToCallback: true,
@@ -43,8 +43,6 @@ passport.deserializeUser((serializedAccount, done) => {
   }
 });
 
-const eventsAPI = require('../api-v1').events;
-const sendAPIResult = require('../lib/sendapiresult');
 
 router.get('/', (req, res) => {
   if (req.isAuthenticated()) {
@@ -74,29 +72,32 @@ router.get('/logout', (req, res) => {
   req.session.destroy(() => res.redirect('/'));
 });
 
-router.post('/events/add', (req, res) => {
+router.post('/events/add', async (req, res) => {
   if (req.isAuthenticated()) {
     const event = req.body;
-    sendAPIResult(eventsAPI.add(event), res);
+    const result = await eventsAPI.add(event);
+    res.json(result);
   } else {
     throw createHttpError(403);
   }
 });
 
-router.post('/events/edit', (req, res) => {
+router.post('/events/edit', async (req, res) => {
   if (req.isAuthenticated()) {
     const { hash, key, value } = req.body;
     const data = { [key]: value };
-    sendAPIResult(eventsAPI.edit(hash, data), res);
+    const result = await eventsAPI.edit(hash, data);
+    res.json(result);
   } else {
     throw createHttpError(403);
   }
 });
 
-router.post('/events/delete', (req, res) => {
+router.post('/events/delete', async (req, res) => {
   if (req.isAuthenticated()) {
     const { hash } = req.body;
-    sendAPIResult(eventsAPI.delete(hash), res);
+    const result = await eventsAPI.delete(hash);
+    res.json(result);
   } else {
     throw createHttpError(403);
   }

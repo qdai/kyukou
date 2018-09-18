@@ -1,15 +1,15 @@
 import { logNames, siteUrl } from '../../utils/constant';
 import fetch from 'isomorphic-fetch';
 
-const requestLogs = () => {
-  const fetchLog = logName => fetch(`${siteUrl}/api/1/logs/${logName}.json`)
-    .then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-      return res.json().then(result => Promise.reject(new Error(result.error.message)));
-    });
-  return Promise.all(logNames.map(fetchLog));
+const fetchLog = async logName => {
+  const res = await fetch(`${siteUrl}/api/1/logs/${logName}.json`);
+  const result = await res.json();
+  if (!res.ok) {
+    throw new Error(result.error.message);
+  }
+  return result;
 };
+
+const requestLogs = () => Promise.all(logNames.map(fetchLog));
 
 export default requestLogs;
