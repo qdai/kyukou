@@ -27,7 +27,10 @@ router.get('/', contentSecurityPolicy({
 }), (req, res) => {
   res.render('api', {
     api: openapi.info,
-    site: Object.assign(site, { url: `${site.url}/${openapi.servers[0].variables.basePath.default}` })
+    site: {
+      ...site,
+      url: `${site.url}/${openapi.servers[0].variables.basePath.default}`
+    }
   });
 });
 

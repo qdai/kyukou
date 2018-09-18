@@ -86,8 +86,7 @@ router.post('/events/add', (req, res) => {
 router.post('/events/edit', (req, res) => {
   if (req.isAuthenticated()) {
     const { hash, key, value } = req.body;
-    const data = {};
-    data[key] = value;
+    const data = { [key]: value };
     sendAPIResult(eventsAPI.edit(hash, data), res);
   } else {
     throw createHttpError(403);

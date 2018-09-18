@@ -39,10 +39,10 @@ const List = ({ events, handleReloadClick, loadError, loading }) => (
 );
 
 List.propTypes = {
-  events: PropTypes.arrayOf(PropTypes.shape(eventKeys.reduce((obj, key) => {
-    obj[key] = PropTypes.string;
-    return obj;
-  }, {})).isRequired).isRequired,
+  events: PropTypes.arrayOf(PropTypes.shape(eventKeys.reduce((obj, key) => ({
+    ...obj,
+    [key]: PropTypes.string
+  }), {})).isRequired).isRequired,
   handleReloadClick: PropTypes.func.isRequired,
   loadError: PropTypes.string,
   loading: PropTypes.bool.isRequired

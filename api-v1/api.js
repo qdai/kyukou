@@ -4,7 +4,7 @@ const Api = require('kyukou-api1');
 const scraperObject = require('kyukou-scraper-kyudai1');
 const { CronJob } = require('cron');
 
-const scrapers = Object.keys(scraperObject).map(key => scraperObject[key]);
+const scrapers = Object.values(scraperObject);
 
 const api = new Api({
   mongoURI: process.env.DB_API_VERSION_1_MONGO_URI,

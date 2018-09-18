@@ -9,21 +9,24 @@ const initialState = {
 };
 
 const reducer = handleActions({
-  [LOAD_LOGS_FAILURE]: (state, action) => Object.assign({}, state, {
+  [LOAD_LOGS_FAILURE]: (state, action) => ({
+    ...state,
     loadError: action.payload.message,
     loading: false
   }),
-  [LOAD_LOGS_REQUEST]: state => Object.assign({}, state, {
+  [LOAD_LOGS_REQUEST]: state => ({
+    ...state,
     loadError: null,
     loading: true
   }),
   [LOAD_LOGS_SUCCESS]: (state, action) => {
     const logs = action.payload.map(formatLog);
-    return Object.assign({}, state, {
+    return {
+      ...state,
       loadError: null,
       loading: false,
       logs
-    });
+    };
   }
 }, initialState);
 

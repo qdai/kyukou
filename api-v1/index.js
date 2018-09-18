@@ -4,7 +4,8 @@ const api = require('./api');
 const router = require('./router');
 const { servers: [{ variables: { basePath: { default: route } } }] } = require('./openapi');
 
-module.exports = Object.assign({
+module.exports = {
+  ...api,
   route: `/${route}`,
   router
-}, api);
+};

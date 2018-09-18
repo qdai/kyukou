@@ -13,26 +13,35 @@ const initialState = {
 };
 
 const reducer = handleActions({
-  [LOAD_EVENTS_FAILURE]: (state, action) => Object.assign({}, state, {
+  [LOAD_EVENTS_FAILURE]: (state, action) => ({
+    ...state,
     loadError: action.payload.message,
     loading: false
   }),
-  [LOAD_EVENTS_REQUEST]: state => Object.assign({}, state, {
+  [LOAD_EVENTS_REQUEST]: state => ({
+    ...state,
     loadError: null,
     loading: true
   }),
-  [LOAD_EVENTS_SUCCESS]: (state, action) => Object.assign({}, state, {
+  [LOAD_EVENTS_SUCCESS]: (state, action) => ({
+    ...state,
     events: action.payload.map(formatEvent),
     loadError: null,
     loading: false
   }),
   [TOGGLE_ABOUT]: (state, action) => {
     const selectedAbouts = toggle(state.selectedAbouts, action.payload);
-    return Object.assign({}, state, { selectedAbouts });
+    return {
+      ...state,
+      selectedAbouts
+    };
   },
   [TOGGLE_DEPARTMENT]: (state, action) => {
     const selectedDepartments = toggle(state.selectedDepartments, action.payload);
-    return Object.assign({}, state, { selectedDepartments });
+    return {
+      ...state,
+      selectedDepartments
+    };
   }
 }, initialState);
 

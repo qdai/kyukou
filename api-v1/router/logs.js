@@ -15,10 +15,10 @@ router.get('/', () => {
 router.get('/:about.json', (req, res) => {
   const { about } = req.params;
   if (about === 'task') {
-    sendAPIResult(logsAPI.about('scrap').then(log => {
-      log.name = 'task';
-      return log;
-    }), res);
+    sendAPIResult(logsAPI.about('scrap').then(log => ({
+      ...log,
+      name: 'task'
+    })), res);
   } else {
     sendAPIResult(logsAPI.about(about), res);
   }
