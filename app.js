@@ -36,15 +36,15 @@ const routes = require('./routes/index');
 const apiStatus = require('./routes/status');
 const rss = require('./routes/rss');
 const calendar = require('./routes/calendar');
-const api1 = require('./routes/api1');
+const api1 = require('./api-v1');
 const api0 = require('./routes/api0');
 const admin = require('./routes/admin');
 
-// Cron job
-require('./cron');
-// Additional setting
+// Settings
 app.set('trust proxy', true);
 app.set('x-powered-by', false);
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
 
 if (app.get('env') === 'production') {
   app.use(enforcesSsl());
@@ -56,7 +56,7 @@ app.use(helmet({
       objectSrc: ["'none'"],
       styleSrc: [
         "'unsafe-inline'",
-        ...createHashes(hashAlgorithm, path.join(__dirname, 'src/css/*.css'))
+        ...createHashes(hashAlgorithm, path.join(__dirname, 'styles/*.css'))
           .map(hash => `'${hashAlgorithm}-${hash}'`)
       ]
     }
@@ -82,7 +82,7 @@ app.use('/', routes);
 app.use('/status', apiStatus);
 app.use('/rss', rss);
 app.use('/calendar', calendar);
-app.use('/api/1', api1);
+app.use(api1.route, api1.router);
 app.use('/api', api0);
 app.use('/admin', admin);
 

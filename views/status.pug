@@ -2,19 +2,17 @@ doctype html
 html(lang=site.lang)
   head
     meta(charset='utf-8')
-    title=`Calendar - ${site.name}`
+    title=`Status - ${site.name}`
     meta(name='viewport', content='width=device-width')
     meta(name='author', content=site.author)
     script(src='/js/commons.js', defer)
-    script(src='/js/calendar.js', defer)
+    script(src='/js/status.js', defer)
     style
-      include ../css/calendar.css
+      include ../styles/bundle.css
     include ./includes/icons.pug
   body
-    include ../icomoon/symbol-defs.svg
     div.container
       header.page-header
-        h1=`Calendar - ${site.name}`
-        p 休講情報をiCalendar形式で配信しています。
+        h1=`Status - ${site.name}`
       include ./includes/main.pug
       include ./includes/footer.pug

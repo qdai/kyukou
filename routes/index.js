@@ -1,13 +1,12 @@
 'use strict';
 
 const express = require('express');
-const path = require('path');
 const site = require('../lib/site');
 
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../views/app.html'));
+  res.render('app', { site });
 });
 
 router.get('/manifest.webmanifest', (req, res) => {

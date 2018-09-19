@@ -1,13 +1,13 @@
-const formatLog = log => {
-  log.time = new Date(log.time).toString();
-  log.level = [
+const formatLog = log => ({
+  ...log,
+  time: new Date(log.time).toString(),
+  level: [
     '',
     'success',
     'info',
     'warning',
     'danger'
-  ][log.level];
-  return log;
-};
+  ][log.level]
+});
 
 export default formatLog;

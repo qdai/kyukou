@@ -12,22 +12,34 @@ const initialState = {
 const reducer = handleActions({
   [DISMISS_ALERT]: (state, action) => {
     const alerts = [...state.alerts].filter(alert => alert.id !== action.payload);
-    return Object.assign({}, state, { alerts });
+    return {
+      ...state,
+      alerts
+    };
   },
   [FETCH_API_COMPLETE]: (state, action) => {
-    const alert = Object.assign({ id: new Date().getTime() }, action.payload);
+    const alert = {
+      id: new Date().getTime(),
+      ...action.payload
+    };
     const alerts = [...state.alerts, alert];
-    return Object.assign({}, state, { alerts });
+    return {
+      ...state,
+      alerts
+    };
   },
-  [LOAD_EVENTS_FAILURE]: (state, action) => Object.assign({}, state, {
+  [LOAD_EVENTS_FAILURE]: (state, action) => ({
+    ...state,
     loadError: action.payload.message,
     loading: false
   }),
-  [LOAD_EVENTS_REQUEST]: state => Object.assign({}, state, {
+  [LOAD_EVENTS_REQUEST]: state => ({
+    ...state,
     loadError: null,
     loading: true
   }),
-  [LOAD_EVENTS_SUCCESS]: (state, action) => Object.assign({}, state, {
+  [LOAD_EVENTS_SUCCESS]: (state, action) => ({
+    ...state,
     events: action.payload.map(formatEvent),
     loadError: null,
     loading: false

@@ -7,7 +7,10 @@ const initialState = { selectedDepartments: [] };
 const reducer = handleActions({
   [TOGGLE_DEPARTMENT]: (state, action) => {
     const selectedDepartments = toggle(state.selectedDepartments, action.payload);
-    return Object.assign({}, state, { selectedDepartments });
+    return {
+      ...state,
+      selectedDepartments
+    };
   }
 }, initialState);
 

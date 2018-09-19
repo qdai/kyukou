@@ -10,7 +10,7 @@ html(lang=site.lang, prefix='og: http://ogp.me/ns#')
     meta(property='og:title', content=api.title)
     meta(property='og:type', content='website')
     meta(property='og:description', content=api.description)
-    meta(property='og:url', content=`${site.url}/api/1`)
+    meta(property='og:url', content=site.url)
     meta(property='og:site_name', content=site.name)
     style.
       body {
@@ -19,5 +19,5 @@ html(lang=site.lang, prefix='og: http://ogp.me/ns#')
       }
     include ./includes/icons.pug
   body
-    redoc(spec-url='/api/1/openapi.json', disable-search)
+    redoc(spec-url=`${site.url}/openapi.json`, disable-search)
     script(src='/lib/redoc.standalone.js')

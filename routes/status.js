@@ -1,12 +1,12 @@
 'use strict';
 
 const express = require('express');
-const path = require('path');
+const site = require('../lib/site');
 
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../views/status.html'));
+  res.render('status', { site });
 });
 
 module.exports = router;
