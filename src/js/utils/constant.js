@@ -12,16 +12,14 @@ const departments = [
   '教育学部',
   '文学部',
   '法学部',
-  '理学部',
-  '経済学部'
+  '理学部'
 ];
 
 const departmentsEnShort = [
   'edu',
   'lit',
   'law',
-  'sci',
-  'econ'
+  'sci'
 ];
 
 const eventKeys = [
