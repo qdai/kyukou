@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: 九州大学休講情報 API v1
-  description: 九州大学休講情報のAPIです。教育学部、文学部、法学部、理学部、経済学部に対応しています。
+  description: 九州大学休講情報のAPIです。教育学部、文学部、法学部、理学部に対応しています。
   contact:
     name: qdai
     url: https://github.com/qdai
@@ -36,7 +36,6 @@ paths:
                 - lit
                 - law
                 - sci
-                - econ
           description: specify department
         - name: start_index
           in: query

@@ -4,7 +4,7 @@
   "version": "1.0.1",
   "author": "qdai",
   "dependencies": {
-    "kyukou-scraper-kyudai": "github:qdai/kyukou-scraper-kyudai#v3.0.0"
+    "kyukou-scraper-kyudai": "github:qdai/kyukou-scraper-kyudai#v4.0.0"
   },
   "license": "MIT",
   "main": "index.js"
