@@ -1,7 +1,7 @@
 {
   "name": "kyukou",
   "description": "Alert information about cancellation of a lecture.",
-  "version": "1.11.0",
+  "version": "1.12.0",
   "author": "qdai",
   "bugs": {
     "url": "https://github.com/qdai/kyukou/issues"
