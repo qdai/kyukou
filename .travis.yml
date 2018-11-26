@@ -1,7 +1,6 @@
 language: node_js
 node_js:
 - '10'
-sudo: false
 services: mongodb
 env:
   global:
@@ -24,7 +23,7 @@ env:
   - TWITTER_CONSUMER_SECRET=twitter_consumer_secret
   - TWITTER_SCREEN_NAME=twitter_screen_name
 before_install: npm install -g greenkeeper-lockfile@1
-install: if [[ $TRAVIS_BRANCH == greenkeeper/* ]] && [[ -v TRAVIS_COMMIT_RANGE ]]; then npm install; else npm ci; fi
+install: if [[ $TRAVIS_BRANCH == greenkeeper/* ]] && [[ -v TRAVIS_COMMIT_RANGE ]]; then npm install && npm dedupe && npm install; else npm ci; fi
 before_script: greenkeeper-lockfile-update
 script:
 - npm run lint
