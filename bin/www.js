@@ -11,6 +11,16 @@ require('dotenv-safe').config();
 
 const app = require('../app');
 const http = require('http');
+const mongoose = require('mongoose');
+
+mongoose.connection.on('error', err => {
+  throw err;
+});
+mongoose.connect(process.env.DB_MONGO_URI);
+process.on('SIGINT', async () => {
+  await mongoose.connection.close();
+  process.exit(0);
+});
 
 /**
  * Normalize a port into a number, string, or false.

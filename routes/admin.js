@@ -1,48 +1,35 @@
 'use strict';
 
-const bcrypt = require('bcrypt');
 const createHttpError = require('http-errors');
 const passport = require('passport');
 const router = require('express-promise-router')();
 const site = require('../lib/site');
 const { Strategy: LocalStrategy } = require('passport-local');
 const { events: eventsAPI } = require('../api-v1');
-
-const admin = {
-  hash: process.env.ADMIN_HASH,
-  name: process.env.ADMIN_NAME
-};
+const User = require('../models/user');
 
 passport.use(new LocalStrategy({
-  passReqToCallback: true,
   passwordField: 'password',
   usernameField: 'name'
-}, (req, name, password, done) => {
-  if (name === admin.name) {
-    bcrypt.compare(password, admin.hash, (err, match) => {
-      if (err) {
-        return done(err);
-      }
-      if (match) {
-        return done(null, admin);
-      }
-      return done(null, false);
-    });
-  } else {
-    done(null, false);
+}, async (name, password, done) => {
+  try {
+    const user = await User.findOne({ name });
+    if (user && await user.verifyPassword(password)) {
+      return done(null, user);
+    }
+    return done(null, false);
+  } catch (err) {
+    return done(err);
   }
 }));
-passport.serializeUser((account, done) => {
-  done(null, account.name);
+passport.serializeUser((user, done) => {
+  done(null, user.name);
 });
-passport.deserializeUser((serializedAccount, done) => {
-  if (serializedAccount === admin.name) {
-    done(null, admin);
-  } else {
-    done(new Error('Unknown account'));
-  }
+passport.deserializeUser((name, done) => {
+  User.findOne({ name }, (err, user) => {
+    done(err, user);
+  });
 });
-
 
 router.get('/', (req, res) => {
   if (req.isAuthenticated()) {
