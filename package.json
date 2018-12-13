@@ -57,7 +57,7 @@
     "redux": "^4.0.1",
     "redux-actions": "^2.6.4",
     "redux-persist": "^5.10.0",
-    "redux-saga": "^0.16.0",
+    "redux-saga": "^0.16.2",
     "rimraf": "^2.5.2",
     "uglify-save-license": "^0.4.1",
     "uglifyjs-webpack-plugin": "^2.0.0",
