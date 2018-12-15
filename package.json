@@ -12,7 +12,7 @@
     "compression": "^1.7.3",
     "connect-mongo": "^2.0.3",
     "cron": "^1.6.0",
-    "dotenv-safe": "^6.0.0",
+    "dotenv-safe": "^6.1.0",
     "encoding": "^0.1.12",
     "express": "^4.16.4",
     "express-enforces-ssl": "^1.1.0",
