@@ -6,8 +6,8 @@ import requestEvents from '../utils/request-events';
 
 const fetchApi = function* (action) {
   try {
-    const { method, formData } = action.payload;
-    const result = yield call(requestApi, method, formData);
+    const { method, param, url } = action.payload;
+    const result = yield call(requestApi, method, url, param);
     if (result.error) {
       throw new Error(result.error.message);
     }

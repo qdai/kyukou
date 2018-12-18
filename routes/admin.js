@@ -8,10 +8,7 @@ const { Strategy: LocalStrategy } = require('passport-local');
 const { events: eventsAPI } = require('../api-v1');
 const User = require('../models/user');
 
-passport.use(new LocalStrategy({
-  passwordField: 'password',
-  usernameField: 'name'
-}, async (name, password, done) => {
+passport.use(new LocalStrategy(async (name, password, done) => {
   try {
     const user = await User.findOne({ name });
     if (user && await user.verifyPassword(password)) {
@@ -59,7 +56,7 @@ router.get('/logout', (req, res) => {
   req.session.destroy(() => res.redirect('/'));
 });
 
-router.post('/events/add', async (req, res) => {
+router.post('/events', async (req, res) => {
   if (req.isAuthenticated()) {
     const event = req.body;
     const result = await eventsAPI.add(event);
@@ -69,10 +66,10 @@ router.post('/events/add', async (req, res) => {
   }
 });
 
-router.post('/events/edit', async (req, res) => {
+router.put('/events/:hash', async (req, res) => {
   if (req.isAuthenticated()) {
-    const { hash, key, value } = req.body;
-    const data = { [key]: value };
+    const data = req.body;
+    const { hash } = req.params;
     const result = await eventsAPI.edit(hash, data);
     res.json(result);
   } else {
@@ -80,9 +77,9 @@ router.post('/events/edit', async (req, res) => {
   }
 });
 
-router.post('/events/delete', async (req, res) => {
+router.delete('/events/:hash', async (req, res) => {
   if (req.isAuthenticated()) {
-    const { hash } = req.body;
+    const { hash } = req.params;
     const result = await eventsAPI.delete(hash);
     res.json(result);
   } else {
@@ -92,22 +89,6 @@ router.post('/events/delete', async (req, res) => {
 
 router.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   res.status(err.status || 500).json({ error: { message: err.message } });
-});
-
-router.get('/events', () => {
-  throw createHttpError(400);
-});
-
-router.get('/events/:method', req => {
-  if ([
-    'add',
-    'edit',
-    'delete'
-  ].includes(req.params.method)) {
-    throw createHttpError(405);
-  } else {
-    throw createHttpError(400);
-  }
 });
 
 module.exports = router;
