@@ -1,6 +1,6 @@
 'use strict';
 
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin'); // eslint-disable-line node/no-unpublished-require
+const TerserPlugin = require('terser-webpack-plugin'); // eslint-disable-line node/no-unpublished-require
 const jsonfile = require('jsonfile');
 const path = require('path');
 const saveLicense = require('uglify-save-license'); // eslint-disable-line node/no-unpublished-require
@@ -30,7 +30,7 @@ module.exports = {
     ]
   },
   optimization: {
-    minimizer: [new UglifyJsPlugin({ uglifyOptions: { output: { comments: saveLicense } } })],
+    minimizer: [new TerserPlugin({ terserOptions: { output: { comments: saveLicense } } })],
     splitChunks: {
       chunks (chunk) {
         return chunk.name !== 'service-worker';
