@@ -3,7 +3,6 @@
 [![GitHub release](https://img.shields.io/github/release/qdai/kyukou.svg)](https://github.com/qdai/kyukou/releases/latest)
 [![dependencies Status](https://david-dm.org/qdai/kyukou/status.svg)](https://david-dm.org/qdai/kyukou)
 [![devDependencies Status](https://david-dm.org/qdai/kyukou/dev-status.svg)](https://david-dm.org/qdai/kyukou?type=dev)
-[![Greenkeeper badge](https://badges.greenkeeper.io/qdai/kyukou.svg)](https://greenkeeper.io/)
 
 Alert information about cancellation of a lecture.
 
