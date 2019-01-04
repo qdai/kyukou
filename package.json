@@ -58,7 +58,7 @@
     "redux-actions": "^2.6.4",
     "redux-persist": "^5.10.0",
     "redux-saga": "^0.16.2",
-    "rimraf": "^2.5.2",
+    "rimraf": "^2.6.3",
     "terser-webpack-plugin": "^1.2.1",
     "uglify-save-license": "^0.4.1",
     "webpack": "^4.28.3",
