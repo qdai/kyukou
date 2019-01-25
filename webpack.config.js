@@ -1,6 +1,6 @@
 'use strict';
 
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin'); // eslint-disable-line node/no-unpublished-require
+const TerserPlugin = require('terser-webpack-plugin'); // eslint-disable-line node/no-unpublished-require
 const jsonfile = require('jsonfile');
 const path = require('path');
 const saveLicense = require('uglify-save-license'); // eslint-disable-line node/no-unpublished-require
@@ -23,14 +23,14 @@ module.exports = {
   module: {
     rules: [
       {
-        exclude: /node_modules/,
+        exclude: /node_modules/u,
         loader: 'babel-loader',
-        test: /\.(js|jsx)$/
+        test: /\.(js|jsx)$/u
       }
     ]
   },
   optimization: {
-    minimizer: [new UglifyJsPlugin({ uglifyOptions: { output: { comments: saveLicense } } })],
+    minimizer: [new TerserPlugin({ terserOptions: { output: { comments: saveLicense } } })],
     splitChunks: {
       chunks (chunk) {
         return chunk.name !== 'service-worker';
@@ -47,6 +47,6 @@ module.exports = {
       APP_VERSION: JSON.stringify(version),
       SITE_URL: JSON.stringify(site.url)
     }),
-    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
+    new webpack.IgnorePlugin(/^\.\/locale$/u, /moment$/u)
   ]
 };
