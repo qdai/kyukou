@@ -41,7 +41,7 @@ const formatEvent = event => {
   const eventDate = moment(event.eventDate).utcOffset(540);
   event.date = eventDate.format('LL');
   event.dateFormatted = eventDate.calendar();
-  event.raw = event.raw.replace(/\s+/g, ' ');
+  event.raw = event.raw.replace(/\s+/gu, ' ');
   return event;
 };
 
