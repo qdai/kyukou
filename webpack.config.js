@@ -23,9 +23,9 @@ module.exports = {
   module: {
     rules: [
       {
-        exclude: /node_modules/,
+        exclude: /node_modules/u,
         loader: 'babel-loader',
-        test: /\.(js|jsx)$/
+        test: /\.(js|jsx)$/u
       }
     ]
   },
@@ -47,6 +47,6 @@ module.exports = {
       APP_VERSION: JSON.stringify(version),
       SITE_URL: JSON.stringify(site.url)
     }),
-    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
+    new webpack.IgnorePlugin(/^\.\/locale$/u, /moment$/u)
   ]
 };
