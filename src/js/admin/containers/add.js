@@ -1,13 +1,19 @@
 import AddComponent from '../components/add.jsx';
 import { connect } from 'react-redux';
 import { fetchApiRequest } from '../actions';
+import { siteUrl } from '../../utils/constant';
 
 const mapDispatchToProps = dispatch => ({
   handleSubmit: evt => {
     evt.preventDefault();
+    const param = [...new FormData(evt.currentTarget).entries()].reduce((obj, [key, value]) => ({
+      ...obj,
+      [key]: value
+    }), {});
     dispatch(fetchApiRequest({
-      formData: new FormData(evt.currentTarget),
-      method: 'add'
+      method: 'POST',
+      param,
+      url: `${siteUrl}/admin/events`
     }));
   }
 });
