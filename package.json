@@ -43,7 +43,7 @@
     "babel-loader": "^8.0.5",
     "bootstrap-sass": "^3.4.0",
     "copyfiles": "^2.1.0",
-    "core-js": "^2.6.3",
+    "core-js": "^2.6.5",
     "eslint": "~5.13.0",
     "isomorphic-fetch": "^2.2.1",
     "node-sass": "^4.10.0",
