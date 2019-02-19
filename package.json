@@ -62,7 +62,7 @@
     "rimraf": "^2.6.3",
     "terser-webpack-plugin": "^1.2.1",
     "uglify-save-license": "^0.4.1",
-    "webpack": "^4.29.0",
+    "webpack": "^4.29.5",
     "webpack-cli": "^3.2.1"
   },
   "engines": {
