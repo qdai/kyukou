@@ -41,7 +41,7 @@
     "@babel/preset-react": "^7.0.0",
     "@egy186/eslint-config": "~0.35.1",
     "babel-loader": "^8.0.5",
-    "bootstrap-sass": "^3.4.0",
+    "bootstrap-sass": "^3.4.1",
     "copyfiles": "^2.1.0",
     "core-js": "^2.6.3",
     "eslint": "~5.13.0",
