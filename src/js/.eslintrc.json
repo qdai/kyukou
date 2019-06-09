@@ -10,6 +10,12 @@
   "rules": {
     "import/max-dependencies": "warn",
     "no-process-env": "error",
-    "react/jsx-max-depth": "off"
+    "react/jsx-max-depth": "off",
+    "react/static-property-placement":  "off"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   }
 }

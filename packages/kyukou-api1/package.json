@@ -4,7 +4,7 @@
   "version": "1.0.1",
   "author": "qdai",
   "dependencies": {
-    "kyukou-api": "github:qdai/kyukou-api#v4.0.0"
+    "kyukou-api": "github:qdai/kyukou-api#v4.0.1"
   },
   "license": "MIT",
   "main": "index.js"
