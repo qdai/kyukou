@@ -3,7 +3,6 @@
 const TerserPlugin = require('terser-webpack-plugin'); // eslint-disable-line node/no-unpublished-require
 const jsonfile = require('jsonfile');
 const path = require('path');
-const saveLicense = require('uglify-save-license'); // eslint-disable-line node/no-unpublished-require
 const site = require('./lib/site');
 const webpack = require('webpack'); // eslint-disable-line node/no-unpublished-require
 
@@ -30,7 +29,7 @@ module.exports = {
     ]
   },
   optimization: {
-    minimizer: [new TerserPlugin({ terserOptions: { output: { comments: saveLicense } } })],
+    minimizer: [new TerserPlugin()],
     splitChunks: {
       chunks (chunk) {
         return chunk.name !== 'service-worker';
