@@ -1,20 +1,16 @@
-import React, { Fragment } from 'react';
 import Alert from './alert.jsx';
 import PropTypes from 'prop-types';
+import React from 'react';
 
-const Alerts = ({ alerts, handleDismiss }) => (
-  <Fragment>
-    {alerts.map(alert => (
-      <Alert
-        key={alert.id}
-        onDismiss={handleDismiss}
-        {...alert}
-      >
-        {alert.message}
-      </Alert>
-    ))}
-  </Fragment>
-);
+const Alerts = ({ alerts, handleDismiss }) => alerts.map(alert => (
+  <Alert
+    key={alert.id}
+    onDismiss={handleDismiss}
+    {...alert}
+  >
+    {alert.message}
+  </Alert>
+));
 
 Alerts.propTypes = {
   alerts: PropTypes.arrayOf(PropTypes.shape({
