@@ -36,8 +36,8 @@
     "serve-favicon": "^2.5.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.7.2",
-    "@babel/preset-env": "^7.7.1",
+    "@babel/core": "^7.7.5",
+    "@babel/preset-env": "^7.7.5",
     "@babel/preset-react": "^7.7.0",
     "@egy186/eslint-config": "~0.42.0",
     "babel-loader": "^8.0.6",
