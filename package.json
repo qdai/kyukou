@@ -29,7 +29,7 @@
     "moment": "^2.24.0",
     "mongoose": "^5.8.0",
     "morgan": "^1.9.1",
-    "passport": "^0.4.0",
+    "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "pug": "^2.0.4",
     "rss": "^1.2.2",
