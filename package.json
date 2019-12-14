@@ -27,7 +27,7 @@
     "kyukou-api1": "file:packages/kyukou-api1",
     "kyukou-scraper-kyudai1": "file:packages/kyukou-scraper-kyudai1",
     "moment": "^2.24.0",
-    "mongoose": "^5.8.0",
+    "mongoose": "^5.8.1",
     "morgan": "^1.9.1",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
