@@ -19,7 +19,7 @@
     "express-promise-router": "^3.0.3",
     "express-session": "^1.17.0",
     "glob": "^7.1.6",
-    "helmet": "^3.21.2",
+    "helmet": "^3.21.3",
     "http-errors": "^1.7.3",
     "ical-generator": "^1.9.2",
     "js-yaml": "^3.13.1",
