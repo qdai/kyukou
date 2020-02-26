@@ -23,7 +23,7 @@
     "http-errors": "^1.7.3",
     "ical-generator": "^1.9.2",
     "js-yaml": "^3.13.1",
-    "jsonfile": "^5.0.0",
+    "jsonfile": "^6.0.0",
     "kyukou-api1": "file:packages/kyukou-api1",
     "kyukou-scraper-kyudai1": "file:packages/kyukou-scraper-kyudai1",
     "moment": "^2.24.0",
