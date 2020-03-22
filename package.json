@@ -40,7 +40,7 @@
     "@babel/preset-env": "^7.9.0",
     "@babel/preset-react": "^7.9.0",
     "@egy186/eslint-config": "^0.43.0",
-    "babel-loader": "^8.0.6",
+    "babel-loader": "^8.1.0",
     "bootstrap-sass": "^3.4.1",
     "copyfiles": "^2.2.0",
     "core-js": "^3.6.4",
