@@ -1,4 +1,4 @@
-import Panel from 'react-bootstrap/es/Panel';
+import { Panel } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import React from 'react';
 

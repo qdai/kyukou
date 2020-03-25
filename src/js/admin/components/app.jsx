@@ -1,11 +1,10 @@
 import React, { Fragment } from 'react';
+import { Tab, Tabs } from 'react-bootstrap';
 import Add from '../containers/add';
 import Alerts from '../containers/alerts';
 import Delete from '../containers/delete';
 import Edit from '../containers/edit';
 import List from '../containers/list';
-import Tab from 'react-bootstrap/es/Tab';
-import Tabs from 'react-bootstrap/es/Tabs';
 
 const App = () => (
   <Fragment>

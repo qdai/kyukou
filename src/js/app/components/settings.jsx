@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { abouts, departments } from '../../utils/constant';
 import Checkbox from '../../components/checkbox.jsx';
-import Collapse from 'react-bootstrap/es/Collapse';
+import { Collapse } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 
 class Settings extends PureComponent {
