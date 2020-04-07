@@ -30,7 +30,7 @@ passport.deserializeUser((name, done) => {
 
 router.get('/', (req, res) => {
   if (req.isAuthenticated()) {
-    res.render('admin', { site });
+    res.redirect('/');
   } else {
     res.redirect('/admin/login');
   }
@@ -38,7 +38,7 @@ router.get('/', (req, res) => {
 
 router.get('/login', (req, res) => {
   if (req.isAuthenticated()) {
-    res.redirect('/admin');
+    res.redirect('/');
   } else {
     res.render('login', { site });
   }

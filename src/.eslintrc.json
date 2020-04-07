@@ -1,0 +1,41 @@
+{
+  "extends": [
+    "@egy186/eslint-config/browser",
+    "@egy186/eslint-config/modules",
+    "@egy186/eslint-config/react"
+  ],
+  "rules": {
+    "max-lines-per-function": [
+      "error",
+      200
+    ],
+    "react/jsx-no-bind": [
+      "error",
+      {
+        "allowArrowFunctions": true
+      }
+    ],
+    "react/forbid-component-props": [
+      "error",
+      {
+        "forbid": [
+          "style"
+        ]
+      }
+    ],
+    "react/jsx-max-depth": "off"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    },
+    "react": {
+      "version": "detect"
+    }
+  }
+}

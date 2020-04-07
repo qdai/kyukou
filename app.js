@@ -12,10 +12,9 @@ const logger = require('morgan');
 const passport = require('passport');
 const path = require('path');
 const session = require('express-session');
-const createHashes = require('./lib/create-hashes');
+const { v4: uuidv4 } = require('uuid');
 
 const app = express();
-const hashAlgorithm = 'sha256';
 const MongoStore = connectMongo(session);
 const sessionOptions = {
   cookie: {},
@@ -33,7 +32,6 @@ if (app.get('env') === 'production') {
 
 // Routes
 const routes = require('./routes/index');
-const apiStatus = require('./routes/status');
 const rss = require('./routes/rss');
 const calendar = require('./routes/calendar');
 const api1 = require('./api-v1');
@@ -49,16 +47,16 @@ app.set('view engine', 'pug');
 if (app.get('env') === 'production') {
   app.use(enforcesSsl());
 }
+app.use((req, res, next) => {
+  res.locals.styleNonce = Buffer.from(uuidv4()).toString('base64');
+  next();
+});
 app.use(helmet({
   contentSecurityPolicy: {
     directives: {
       defaultSrc: ["'self'"],
       objectSrc: ["'none'"],
-      styleSrc: [
-        "'unsafe-inline'",
-        ...createHashes(hashAlgorithm, path.join(__dirname, 'styles/*.css'))
-          .map(hash => `'${hashAlgorithm}-${hash}'`)
-      ]
+      styleSrc: ["'unsafe-inline'", (req, res) => `'nonce-${res.locals.styleNonce}'`]
     }
   },
   hsts: { maxAge: 31536000 }
@@ -79,7 +77,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/', routes);
-app.use('/status', apiStatus);
 app.use('/rss', rss);
 app.use('/calendar', calendar);
 app.use(api1.route, api1.router);

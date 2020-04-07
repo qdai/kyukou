@@ -12,7 +12,8 @@ html(lang=site.lang, prefix='og: http://ogp.me/ns#')
     meta(property='og:description', content=api.description)
     meta(property='og:url', content=site.url)
     meta(property='og:site_name', content=site.name)
-    style.
+    meta(property='csp-nonce', content=styleNonce)
+    style(nonce=styleNonce).
       body {
         margin: 0;
         padding: 0;

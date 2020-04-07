@@ -28,7 +28,8 @@ router.get('/', contentSecurityPolicy({
     site: {
       ...site,
       url: `${site.url}/${openapi.servers[0].variables.basePath.default}`
-    }
+    },
+    styleNonce: res.locals.styleNonce
   });
 });
 
