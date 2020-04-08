@@ -3,7 +3,7 @@
 const ical = require('ical-generator');
 const moment = require('moment');
 const router = require('express-promise-router')();
-const site = require('../lib/site');
+const { SITE: site } = require('../env');
 const { events: eventsAPI } = require('../api-v1');
 
 router.get([

@@ -4,8 +4,8 @@ const events = require('./events');
 const logs = require('./logs');
 const openapi = require('../openapi');
 const router = require('express-promise-router')();
-const site = require('../../lib/site');
 const { NotFound } = require('http-errors');
+const { SITE: site } = require('../../env');
 const { contentSecurityPolicy } = require('helmet');
 
 router.use('/events', events);

@@ -5,6 +5,7 @@ const compression = require('compression');
 const connectMongo = require('connect-mongo');
 const createHttpError = require('http-errors');
 const enforcesSsl = require('express-enforces-ssl');
+const env = require('./env');
 const express = require('express');
 const favicon = require('serve-favicon');
 const helmet = require('helmet');
@@ -20,10 +21,10 @@ const sessionOptions = {
   cookie: {},
   resave: false,
   saveUninitialized: false,
-  secret: process.env.SECRET,
+  secret: env.SECRET,
   store: new MongoStore({
     autoReconnect: true,
-    url: process.env.DB_MONGO_URI
+    url: env.DB_MONGO_URI
   })
 };
 if (app.get('env') === 'production') {

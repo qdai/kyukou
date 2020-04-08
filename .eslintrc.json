@@ -17,6 +17,6 @@
         ]
       }
     ],
-    "no-process-env": "off"
+    "no-process-env": "error"
   }
 }

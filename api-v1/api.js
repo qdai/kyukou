@@ -1,20 +1,16 @@
 'use strict';
 
 const Api = require('kyukou-api1');
+const env = require('../env');
 const scraperObject = require('kyukou-scraper-kyudai1');
 const { CronJob } = require('cron');
 
 const scrapers = Object.values(scraperObject);
 
 const api = new Api({
-  mongoURI: process.env.DB_API_VERSION_1_MONGO_URI,
+  mongoURI: env.DB_API_VERSION_1_MONGO_URI,
   scrapers,
-  twitter: {
-    access_token: process.env.TWITTER_ACCESS_TOKEN,
-    access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
-    consumer_key: process.env.TWITTER_CONSUMER_KEY,
-    consumer_secret: process.env.TWITTER_CONSUMER_SECRET
-  }
+  twitter: env.TWITTER
 });
 
 const logsTaskResult = async task => {

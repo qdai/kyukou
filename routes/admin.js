@@ -1,12 +1,12 @@
 'use strict';
 
+const User = require('../models/user');
 const createHttpError = require('http-errors');
 const passport = require('passport');
 const router = require('express-promise-router')();
-const site = require('../lib/site');
+const { SITE: site } = require('../env');
 const { Strategy: LocalStrategy } = require('passport-local');
 const { events: eventsAPI } = require('../api-v1');
-const User = require('../models/user');
 
 passport.use(new LocalStrategy(async (name, password, done) => {
   try {

@@ -2,7 +2,7 @@
 
 const createHttpError = require('http-errors');
 const express = require('express');
-const site = require('../lib/site');
+const { SITE: site } = require('../env');
 
 const router = express.Router();
 

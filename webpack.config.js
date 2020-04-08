@@ -1,8 +1,8 @@
 'use strict';
 
 const TerserPlugin = require('terser-webpack-plugin'); // eslint-disable-line node/no-unpublished-require
+const env = require('./env');
 const path = require('path');
-const site = require('./lib/site');
 const webpack = require('webpack'); // eslint-disable-line node/no-unpublished-require
 
 const dest = path.join(__dirname, 'public');
@@ -29,6 +29,6 @@ module.exports = {
     filename: '[name].js',
     path: dest
   },
-  plugins: [new webpack.DefinePlugin({ SITE: JSON.stringify(site) }), new webpack.IgnorePlugin(/^\.\/locale$/u, /moment$/u)],
+  plugins: [new webpack.DefinePlugin({ SITE: JSON.stringify(env.SITE) }), new webpack.IgnorePlugin(/^\.\/locale$/u, /moment$/u)],
   resolve: { extensions: ['.js', '.jsx'] }
 };
