@@ -1,46 +1,42 @@
-import 'moment/locale/ja'; // eslint-disable-line import/no-unassigned-import
-import moment from 'moment';
+import { format, formatRelative, isSameWeek, parseJSON, startOfToday } from 'date-fns';
+import { ja } from 'date-fns/locale';
 
-moment.calendarFormat = (myMoment, now) => {
-  const daysDiff = myMoment.diff(now, 'days', true);
-  const weeksDiff = myMoment.diff(now.clone().startOf('week'), 'weeks', true);
-  if (daysDiff < -1) {
-    if (weeksDiff < -1) {
-      return 'sameElse';
-    } else if (weeksDiff < 0) {
-      return 'lastWeek';
+const formatRelativeLocale = {
+  lastWeek (date, baseDate) {
+    if (isSameWeek(date, baseDate)) {
+      return '今週eeee';
     }
-    return 'thisWeek';
-  } else if (daysDiff < 0) {
-    return 'lastDay';
-  } else if (daysDiff < 1) {
-    return 'sameDay';
-  } else if (daysDiff < 2) {
-    return 'nextDay';
-  } else if (weeksDiff < 1) {
-    return 'thisWeek';
-  } else if (weeksDiff < 2) {
-    return 'nextWeek';
-  }
-  return 'sameElse';
+    return '先週eeee';
+  },
+  nextWeek (date, baseDate) {
+    if (isSameWeek(date, baseDate)) {
+      return '今週eeee';
+    }
+    return '来週eeee';
+  },
+  other: 'PPP（eee）',
+  today: '今日',
+  tomorrow: '明日',
+  yesterday: '昨日'
 };
 
-moment.updateLocale('ja', {
-  calendar: {
-    lastDay: '[昨日]',
-    lastWeek: '先週dddd',
-    nextDay: '[明日]',
-    nextWeek: '来週dddd',
-    sameDay: '[今日]',
-    sameElse: 'M月D日（dd）',
-    thisWeek: '今週dddd'
+const locale = {
+  ...ja,
+  formatRelative (token, date, baseDate) {
+    const formatLocale = formatRelativeLocale[token];
+
+    if (typeof formatLocale === 'function') {
+      return formatLocale(date, baseDate);
+    }
+
+    return formatLocale;
   }
-});
+};
 
 const formatEvent = event => {
-  const eventDate = moment(event.eventDate).utcOffset(540);
-  event.date = eventDate.format('LL');
-  event.dateFormatted = eventDate.calendar();
+  const eventDate = parseJSON(event.eventDate);
+  event.date = format(eventDate, 'PPP', { locale });
+  event.dateFormatted = formatRelative(eventDate, startOfToday(), { locale });
   event.raw = event.raw.replace(/\s+/gu, ' ');
   event['tweet.new'] = event.tweet.new.toString();
   event['tweet.tomorrow'] = event.tweet.tomorrow.toString();

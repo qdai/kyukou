@@ -29,6 +29,6 @@ module.exports = {
     filename: '[name].js',
     path: dest
   },
-  plugins: [new webpack.DefinePlugin({ SITE: JSON.stringify(env.SITE) }), new webpack.IgnorePlugin(/^\.\/locale$/u, /moment$/u)],
+  plugins: [new webpack.DefinePlugin({ SITE: JSON.stringify(env.SITE) })],
   resolve: { extensions: ['.js', '.jsx'] }
 };

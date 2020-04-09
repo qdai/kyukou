@@ -1,7 +1,7 @@
 'use strict';
 
 const RSS = require('rss');
-const moment = require('moment');
+const dateFns = require('date-fns');
 const router = require('express-promise-router')();
 const { SITE: site } = require('../env');
 const { events: eventsAPI } = require('../api-v1');
@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
     ttl: 180
   });
   events
-    .sort((a, b) => moment(b.pubDate).diff(moment(a.pubDate)))
+    .sort((a, b) => dateFns.compareDesc(a.pubDate, b.pubDate))
     .slice(0, 20).forEach(event => {
       feed.item({
         date: event.pubDate.toISOString(),

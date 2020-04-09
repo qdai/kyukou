@@ -1,7 +1,7 @@
 'use strict';
 
+const dateFns = require('date-fns');
 const ical = require('ical-generator');
-const moment = require('moment');
 const router = require('express-promise-router')();
 const { SITE: site } = require('../env');
 const { events: eventsAPI } = require('../api-v1');
@@ -55,18 +55,14 @@ router.get('/kyukou.ics', async (req, res) => {
   const events = await eventsAPI.list(departments);
   const cal = ical({
     domain: new URL(site.url).hostname,
-    events: events.map(event => {
-      const start = moment(event.eventDate);
-      const end = start.clone().add(1, 'day');
-      return {
-        description: event.asString('note'),
-        end,
-        start,
-        summary: event.asString('title'),
-        timestamp: moment(event.pubDate),
-        uid: event.hash
-      };
-    }),
+    events: events.map(event => ({
+      description: event.asString('note'),
+      end: dateFns.add(event.eventDate, { days: 1 }),
+      start: event.eventDate,
+      summary: event.asString('title'),
+      timestamp: event.pubDate,
+      uid: event.hash
+    })),
     prodId: `//${site.author}//${site.generator}//EN`
   });
   cal.serve(res);
