@@ -1,15 +1,15 @@
-import { CircularProgress, Container, Fab, List, Typography } from '@material-ui/core';
-import React, { Fragment, useContext } from 'react';
-import { Add as AddIcon } from '@material-ui/icons';
+import { Container, LinearProgress, List, Typography } from '@material-ui/core';
+import React, { Fragment, Suspense, lazy, useContext } from 'react';
 import AppBar from '../AppBar';
 import AppContext from '../../app-context';
 import EventsOfADay from './EventsOfADay';
-import { Link } from 'react-router-dom';
 import createEventsFilter from './create-events-filter';
 import createEventsOfADay from './create-events-of-a-day';
 import { site } from '../../constant';
 import useEvents from '../../hooks/use-events';
-import useSettings from '../../hooks/use-settings'; // eslint-disable-line import/max-dependencies
+import useSettings from '../../hooks/use-settings';
+
+const Fab = lazy(() => import('./Fab'));
 
 const Events = () => {
   const { admin } = useContext(AppContext);
@@ -24,7 +24,7 @@ const Events = () => {
         {site.name}
       </AppBar>
       <Container>
-        {status === 'loading' && <CircularProgress />}
+        {status === 'loading' && <LinearProgress />}
         {error
           ? (
             <Typography paragraph>
@@ -50,13 +50,9 @@ const Events = () => {
           ))}
         </List>
         {admin && (
-          <Fab
-            color="primary"
-            component={Link}
-            to="/events"
-          >
-            <AddIcon />
-          </Fab>
+          <Suspense fallback={<LinearProgress />}>
+            <Fab />
+          </Suspense>
         )}
       </Container>
     </Fragment>

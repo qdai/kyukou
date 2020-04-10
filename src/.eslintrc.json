@@ -4,6 +4,7 @@
     "@egy186/eslint-config/modules",
     "@egy186/eslint-config/react"
   ],
+  "parser": "babel-eslint",
   "rules": {
     "max-lines-per-function": [
       "error",

@@ -1,9 +1,10 @@
-import React, { Fragment, useContext } from 'react';
+import { Container, LinearProgress } from '@material-ui/core';
+import React, { Fragment, Suspense, lazy, useContext } from 'react';
 import AppBar from '../AppBar';
 import AppContext from '../../app-context';
-import { Container } from '@material-ui/core';
-import Edit from './Edit';
 import Table from './Table';
+
+const Edit = lazy(() => import('./Edit'));
 
 const Event = () => {
   const { admin } = useContext(AppContext);
@@ -12,7 +13,13 @@ const Event = () => {
     <Fragment>
       <AppBar />
       <Container>
-        {admin ? <Edit /> : <Table />}
+        {admin
+          ? (
+            <Suspense fallback={<LinearProgress />}>
+              <Edit />
+            </Suspense>
+          )
+          : <Table />}
       </Container>
     </Fragment>
   );

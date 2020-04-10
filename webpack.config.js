@@ -10,8 +10,8 @@ const src = path.join(__dirname, 'src');
 
 module.exports = {
   entry: {
-    'js/admin': path.join(src, 'admin.jsx'),
-    'js/app': path.join(src, 'app.jsx'),
+    admin: path.join(src, 'admin.jsx'),
+    app: path.join(src, 'app.jsx'),
     'service-worker': path.join(src, 'service-worker.js')
   },
   mode: 'production',
@@ -26,8 +26,8 @@ module.exports = {
   },
   optimization: { minimizer: [new TerserPlugin()] },
   output: {
-    filename: '[name].js',
-    path: dest
+    path: dest,
+    publicPath: '/'
   },
   plugins: [new webpack.DefinePlugin({ SITE: JSON.stringify(env.SITE) })],
   resolve: { extensions: ['.js', '.jsx'] }

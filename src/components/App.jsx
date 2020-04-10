@@ -1,16 +1,18 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { CssBaseline, SwipeableDrawer } from '@material-ui/core';
-import React, { Fragment, useState } from 'react';
-import Add from './Add';
+import { CssBaseline, LinearProgress, SwipeableDrawer } from '@material-ui/core';
+import React, { Fragment, Suspense, lazy, useState } from 'react';
 import AppContext from '../app-context';
 import DrawerContent from './DrawerContent';
+import ErrorBoundary from './ErrorBoundary';
 import Event from './Event';
 import Events from './Events';
 import PropTypes from 'prop-types';
 import Settings from './Settings';
 import SnackbarDismiss from './SnackbarDismiss';
 import { SnackbarProvider } from 'notistack';
-import Status from './Status'; // eslint-disable-line import/max-dependencies
+import Status from './Status';// eslint-disable-line import/max-dependencies
+
+const Add = lazy(() => import('./Add'));
 
 const App = ({ admin = false }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -33,33 +35,38 @@ const App = ({ admin = false }) => {
             >
               <DrawerContent />
             </SwipeableDrawer>
-            <Switch>
-              <Route
-                component={Events}
-                exact
-                path="/"
-              />
-              <Route
-                component={Settings}
-                exact
-                path="/settings"
-              />
-              <Route
-                component={Status}
-                exact
-                path="/status"
-              />
-              <Route
-                component={Add}
-                exact
-                path="/events"
-              />
-              <Route
-                component={Event}
-                exact
-                path="/events/:hash"
-              />
-            </Switch>
+            <ErrorBoundary>
+              <Switch>
+                <Route
+                  component={Events}
+                  exact
+                  path="/"
+                />
+                <Route
+                  component={Settings}
+                  exact
+                  path="/settings"
+                />
+                <Route
+                  component={Status}
+                  exact
+                  path="/status"
+                />
+                <Route
+                  exact
+                  path="/events"
+                >
+                  <Suspense fallback={<LinearProgress />}>
+                    <Add />
+                  </Suspense>
+                </Route>
+                <Route
+                  component={Event}
+                  exact
+                  path="/events/:hash"
+                />
+              </Switch>
+            </ErrorBoundary>
           </Fragment>
         </BrowserRouter>
       </SnackbarProvider>

@@ -1,4 +1,4 @@
-import { CircularProgress, Link, Typography } from '@material-ui/core';
+import { LinearProgress, Link, Typography } from '@material-ui/core';
 import React, { Fragment } from 'react';
 import { Launch as LaunchIcon } from '@material-ui/icons';
 import useEvents from '../../hooks/use-events';
@@ -9,7 +9,7 @@ const Event = () => {
   const { error, events, status } = useEvents();
 
   if (status === 'loading') {
-    return <CircularProgress />;
+    return <LinearProgress />;
   }
   if (status === 'error') {
     return (

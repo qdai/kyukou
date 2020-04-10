@@ -1,9 +1,11 @@
-import { Link as AnchorLink, AppBar, Button, IconButton, List, ListItem, ListItemIcon, ListItemText, Toolbar, Typography, makeStyles } from '@material-ui/core';
+import { Link as AnchorLink, AppBar, IconButton, LinearProgress, List, ListItem, ListItemIcon, ListItemText, Toolbar, Typography, makeStyles } from '@material-ui/core';
 import { Check as CheckIcon, Code as CodeIcon, GitHub as GitHubIcon, Home as HomeIcon, RssFeed as RssFeedIcon, Settings as SettingsIcon, Twitter as TwitterIcon } from '@material-ui/icons';
-import React, { Fragment, useContext } from 'react';
-import AppContext from '../app-context';
+import React, { Fragment, Suspense, lazy, useContext } from 'react';
+import AppContext from '../../app-context';
 import { Link } from 'react-router-dom';
-import { site } from '../constant';
+import { site } from '../../constant';
+
+const LogoutButton = lazy(() => import('./LogoutButton'));
 
 const useStyles = makeStyles(theme => ({
   li: { listStyleType: 'none' },
@@ -93,12 +95,9 @@ const DrawerContent = () => {
         </ul>
       </List>
       {admin && (
-        <Button
-          href="/admin/logout"
-          variant="contained"
-        >
-          {'Logout'}
-        </Button>
+        <Suspense fallback={<LinearProgress />}>
+          <LogoutButton />
+        </Suspense>
       )}
       <IconButton
         href={`https://twitter.com/${site.twitter}`}

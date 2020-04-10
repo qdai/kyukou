@@ -15,9 +15,9 @@ html(lang=site.lang, prefix='og: http://ogp.me/ns#')
     meta(property='og:site_name', content=site.name)
     meta(property='csp-nonce', content=styleNonce)
     if loggedin
-      script(src='/js/admin.js', defer)
+      script(src='/admin.js', defer)
     else
-      script(src='/js/app.js', defer)
+      script(src='/app.js', defer)
     style(nonce=styleNonce).
       body {
         font-family: "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
