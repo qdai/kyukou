@@ -9,7 +9,7 @@ const fetchEvents = async () => {
 };
 
 const useEvents = () => {
-  const { error, data, status } = useQuery('events', fetchEvents);
+  const { error, data, status } = useQuery('events', fetchEvents, { refetchOnWindowFocus: false });
 
   return {
     error,

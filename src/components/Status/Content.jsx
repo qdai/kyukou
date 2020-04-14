@@ -17,7 +17,7 @@ const fetchLogs = () => Promise.all(logNames.map(fetchLog));
 
 const Status = () => {
   const classes = useStyles();
-  const { status, data: logs = [], error } = useQuery('logs', fetchLogs);
+  const { status, data: logs = [], error } = useQuery('logs', fetchLogs, { refetchOnWindowFocus: false });
 
   return (
     <Fragment>
