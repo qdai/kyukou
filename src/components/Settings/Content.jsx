@@ -1,4 +1,4 @@
-import { Link as AnchorLink, Button, Checkbox, FormControlLabel, Typography } from '@material-ui/core';
+import { Button, Checkbox, FormControlLabel, Link, Typography } from '@material-ui/core';
 import React, { Fragment } from 'react';
 import { abouts, departments } from '../../constant';
 import createCalendarURL from './create-calendar-url';
@@ -16,7 +16,11 @@ const Settings = () => {
 
   return (
     <Fragment>
-      <Typography variant="h4">
+      <Typography
+        component="h3"
+        gutterBottom
+        variant="h5"
+      >
         {'表示する情報'}
       </Typography>
       <dl>
@@ -59,7 +63,11 @@ const Settings = () => {
           ))}
         </dd>
       </dl>
-      <Typography variant="h4">
+      <Typography
+        component="h3"
+        gutterBottom
+        variant="h5"
+      >
         {'カレンダー'}
       </Typography>
       <Typography paragraph>
@@ -76,9 +84,9 @@ const Settings = () => {
       </Typography>
       <Typography paragraph>
         {'URL: '}
-        <AnchorLink href={calendarURL}>
+        <Link href={calendarURL}>
           {calendarURL}
-        </AnchorLink>
+        </Link>
       </Typography>
     </Fragment>
   );

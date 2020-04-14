@@ -1,6 +1,7 @@
-import { LinearProgress, Link, Typography } from '@material-ui/core';
-import React, { Fragment } from 'react';
+import { Button, LinearProgress, Typography } from '@material-ui/core';
+import Container from '../Container';
 import { Launch as LaunchIcon } from '@material-ui/icons';
+import React from 'react';
 import useEvents from '../../hooks/use-events';
 import { useParams } from 'react-router-dom';
 
@@ -13,35 +14,48 @@ const Event = () => {
   }
   if (status === 'error') {
     return (
-      <Typography paragraph>
-        {error.message}
-      </Typography>
+      <Container>
+        <Typography
+          color="error"
+          paragraph
+        >
+          {error.message}
+        </Typography>
+      </Container>
     );
   }
 
   const event = events.find(e => e.hash === hash);
   if (!event) {
     return (
-      <Typography paragraph>
-        {`${hash} not found`}
-      </Typography>
+      <Container>
+        <Typography paragraph>
+          {`${hash} not found`}
+        </Typography>
+      </Container>
     );
   }
 
   return (
-    <Fragment>
-      <Typography variant="h2">
+    <Container>
+      <Typography paragraph>
+        <time dateTime={event.eventDate}>
+          {event.date}
+        </time>
+      </Typography>
+      <Typography
+        component="h3"
+        gutterBottom
+        variant="h5"
+      >
         {`${event.about} ${event.subject}`}
-      </Typography>
-      <Typography paragraph>
-        {event.date}
-      </Typography>
-      <Typography paragraph>
-        {`${event.department} ${event.period}時限`}
       </Typography>
       <ul>
         <li>
           {event.department}
+        </li>
+        <li>
+          {`${event.period}時限`}
         </li>
         <li>
           {`教員：${event.teacher}`}
@@ -62,17 +76,26 @@ const Event = () => {
           </li>
         ) : null}
       </ul>
+      <Typography
+        color="textSecondary"
+        paragraph
+        variant="body2"
+      >
+        {`（元データ：${event.raw}）`}
+        {event.raw}
+      </Typography>
       <Typography paragraph>
-        <Link
+        <Button
+          endIcon={<LaunchIcon />}
           href={event.link}
           rel="noopener noreferrer"
           target="_blank"
+          variant="outlined"
         >
           {'情報取得元'}
-          <LaunchIcon />
-        </Link>
+        </Button>
       </Typography>
-    </Fragment>
+    </Container>
   );
 };
 

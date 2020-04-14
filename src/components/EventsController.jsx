@@ -29,6 +29,7 @@ const EventsController = ({ control, defaultValues }) => (
           as={(
             <TextField
               defaultValue={defaultValues && defaultValues[key]}
+              fullWidth
               label={key}
               margin="normal"
               required={requiredKeys.includes(key)}

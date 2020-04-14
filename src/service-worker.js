@@ -3,7 +3,7 @@
 import { site } from './constant';
 
 const cacheName = `kyukou-${site.version}`;
-const files = ['/', '/js/app.js'];
+const files = ['/', '/app.js'];
 
 self.addEventListener('install', evt => {
   evt.waitUntil(

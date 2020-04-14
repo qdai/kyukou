@@ -5,16 +5,20 @@ import AppContext from '../../app-context';
 import { Link } from 'react-router-dom';
 import { site } from '../../constant';
 
-const LogoutButton = lazy(() => import('./LogoutButton'));
+const Logout = lazy(() => import('./Logout'));
 
 const useStyles = makeStyles(theme => ({
-  li: { listStyleType: 'none' },
-  lists: {
-    backgroundColor: theme.palette.background.paper,
-    maxWidth: '80vw',
-    minWidth: '240px'
+  content: {
+    marginBottom: theme.spacing(1),
+    marginLeft: theme.spacing(2),
+    marginRight: theme.spacing(2),
+    marginTop: theme.spacing(1)
   },
-  ul: { padding: 0 }
+  ul: {
+    listStyleType: 'none',
+    margin: 0,
+    padding: 0
+  }
 }));
 
 const DrawerContent = () => {
@@ -37,13 +41,10 @@ const DrawerContent = () => {
           </Typography>
         </Toolbar>
       </AppBar>
-      <Typography paragraph>
+      <Typography className={classes.content}>
         {site.description}
       </Typography>
-      <List
-        className={classes.lists}
-        component="nav"
-      >
+      <List component="nav">
         <ul className={classes.ul}>
           {[
             {
@@ -62,10 +63,7 @@ const DrawerContent = () => {
               to: '/status'
             }
           ].map(({ Icon, primary, to }) => (
-            <li
-              className={classes.li}
-              key={`${primary}${to}`}
-            >
+            <li key={`${primary}${to}`}>
               <ListItem
                 button
                 component={Link}
@@ -79,12 +77,12 @@ const DrawerContent = () => {
               </ListItem>
             </li>
           ))}
-          <li className={classes.li}>
+          <li>
             <ListItem
               button
               component={AnchorLink}
               href="/api/1"
-              onClick={() => setDrawerOpen(false)}
+              underline="none"
             >
               <ListItemIcon>
                 <CodeIcon />
@@ -92,36 +90,46 @@ const DrawerContent = () => {
               <ListItemText primary="API v1" />
             </ListItem>
           </li>
+          {admin && (
+            <Suspense fallback={<LinearProgress />}>
+              <li>
+                <Logout />
+              </li>
+            </Suspense>
+          )}
         </ul>
       </List>
-      {admin && (
-        <Suspense fallback={<LinearProgress />}>
-          <LogoutButton />
-        </Suspense>
-      )}
-      <IconButton
-        href={`https://twitter.com/${site.twitter}`}
-        rel="noopener noreferrer"
-        target="_blank"
-        title="Twitter"
+      <Typography
+        align="center"
+        className={classes.content}
       >
-        <TwitterIcon />
-      </IconButton>
-      <IconButton
-        href="/rss"
-        title="RSS"
+        <IconButton
+          href={`https://twitter.com/${site.twitter}`}
+          rel="noopener noreferrer"
+          target="_blank"
+          title="Twitter"
+        >
+          <TwitterIcon />
+        </IconButton>
+        <IconButton
+          href="/rss"
+          title="RSS"
+        >
+          <RssFeedIcon />
+        </IconButton>
+        <IconButton
+          href={`https://github.com/${site.author}/kyukou`}
+          rel="noopener noreferrer"
+          target="_blank"
+          title="GitHub"
+        >
+          <GitHubIcon />
+        </IconButton>
+      </Typography>
+      <Typography
+        align="center"
+        className={classes.content}
       >
-        <RssFeedIcon />
-      </IconButton>
-      <IconButton
-        href={`https://github.com/${site.author}/kyukou`}
-        rel="noopener noreferrer"
-        target="_blank"
-        title="GitHub"
-      >
-        <GitHubIcon />
-      </IconButton>
-      <Typography paragraph>
         <AnchorLink
           href="/"
           title={site.name}

@@ -1,6 +1,7 @@
-import { Container, LinearProgress } from '@material-ui/core';
 import React, { Fragment, Suspense, lazy } from 'react';
 import AppBar from '../AppBar';
+import Container from '../Container';
+import { LinearProgress } from '@material-ui/core';
 
 const Content = lazy(() => import('./Content'));
 
@@ -9,11 +10,11 @@ const Settings = () => (
     <AppBar>
       {'Settings'}
     </AppBar>
-    <Container>
-      <Suspense fallback={<LinearProgress />}>
+    <Suspense fallback={<LinearProgress />}>
+      <Container>
         <Content />
-      </Suspense>
-    </Container>
+      </Container>
+    </Suspense>
   </Fragment>
 );
 

@@ -1,13 +1,14 @@
-import { Button, Container } from '@material-ui/core';
 import React, { Fragment, useCallback, useContext } from 'react';
 import AppBar from './AppBar';
 import AppContext from '../app-context';
+import { Button } from '@material-ui/core';
+import Container from './Container';
 import EventsController from './EventsController';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import { site } from '../constant';
 import { useForm } from 'react-hook-form';
-import { useSnackbar } from 'notistack';
+import { useSnackbar } from 'notistack'; // eslint-disable-line import/max-dependencies
 
 const Add = () => {
   const { admin } = useContext(AppContext);
@@ -37,7 +38,6 @@ const Add = () => {
       </AppBar>
       <Container>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <EventsController control={control} />
           <Button
             color="primary"
             disabled={formState.isSubmitting}
@@ -46,9 +46,9 @@ const Add = () => {
           >
             {'Add'}
           </Button>
+          <EventsController control={control} />
         </form>
       </Container>
-
     </Fragment>
   );
 };

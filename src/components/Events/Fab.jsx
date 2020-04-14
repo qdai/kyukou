@@ -1,16 +1,30 @@
+import { Fab as MUIFab, makeStyles } from '@material-ui/core';
 import { Add as AddIcon } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
-import { Fab as MUIFab } from '@material-ui/core';
 import React from 'react';
 
-const Fab = () => (
-  <MUIFab
-    color="primary"
-    component={Link}
-    to="/events"
-  >
-    <AddIcon />
-  </MUIFab>
-);
+const useStyles = makeStyles(theme => ({
+  fab: {
+    bottom: theme.spacing(2),
+    position: 'fixed',
+    right: theme.spacing(2),
+    zIndex: theme.zIndex.appBar
+  }
+}));
+
+const Fab = () => {
+  const classes = useStyles();
+
+  return (
+    <MUIFab
+      className={classes.fab}
+      color="primary"
+      component={Link}
+      to="/events"
+    >
+      <AddIcon />
+    </MUIFab>
+  );
+};
 
 export default Fab;

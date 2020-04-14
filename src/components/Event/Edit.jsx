@@ -1,15 +1,19 @@
-import { Button, Container } from '@material-ui/core';
+import { Button, makeStyles } from '@material-ui/core';
 import React, { useCallback } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
+import Container from '../Container';
 import EventsController from '../EventsController';
 import axios from 'axios';
 import flatten from 'flat';
 import { site } from '../../constant';
 import useEvents from '../../hooks/use-events';
 import { useForm } from 'react-hook-form';
-import { useSnackbar } from 'notistack';
+import { useSnackbar } from 'notistack'; // eslint-disable-line import/max-dependencies
+
+const useStyles = makeStyles(theme => ({ button: { marginRight: theme.spacing(2) } }));
 
 const Edit = () => {
+  const classes = useStyles();
   const { hash } = useParams();
   const { events } = useEvents();
   const { control, formState, handleSubmit } = useForm();
@@ -52,19 +56,9 @@ const Edit = () => {
 
   return (
     <Container>
-      <Button
-        color="secondary"
-        onClick={handleDeleteClick}
-        variant="contained"
-      >
-        {'Delete'}
-      </Button>
       <form onSubmit={handleSubmit(onEditSubmit)}>
-        <EventsController
-          control={control}
-          defaultValues={event}
-        />
         <Button
+          className={classes.button}
           color="primary"
           disabled={formState.isSubmitting}
           type="submit"
@@ -72,6 +66,18 @@ const Edit = () => {
         >
           {'Edit'}
         </Button>
+        <Button
+          className={classes.button}
+          color="secondary"
+          onClick={handleDeleteClick}
+          variant="contained"
+        >
+          {'Delete'}
+        </Button>
+        <EventsController
+          control={control}
+          defaultValues={event}
+        />
       </form>
     </Container>
   );

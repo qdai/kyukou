@@ -1,13 +1,14 @@
-import { Container, LinearProgress, List, Typography } from '@material-ui/core';
+import { LinearProgress, List, Typography } from '@material-ui/core';
 import React, { Fragment, Suspense, lazy, useContext } from 'react';
 import AppBar from '../AppBar';
 import AppContext from '../../app-context';
+import Container from '../Container';
 import EventsOfADay from './EventsOfADay';
 import createEventsFilter from './create-events-filter';
 import createEventsOfADay from './create-events-of-a-day';
 import { site } from '../../constant';
 import useEvents from '../../hooks/use-events';
-import useSettings from '../../hooks/use-settings';
+import useSettings from '../../hooks/use-settings'; // eslint-disable-line import/max-dependencies
 
 const Fab = lazy(() => import('./Fab'));
 
@@ -23,32 +24,37 @@ const Events = () => {
       <AppBar>
         {site.name}
       </AppBar>
+      {status === 'loading' && <LinearProgress />}
       <Container>
-        {status === 'loading' && <LinearProgress />}
-        {error
-          ? (
-            <Typography paragraph>
-              {error.message}
-            </Typography>
-          ) : (
-            <Typography paragraph>
-              {`表示中：${filteredEvents.length}/${events.length}`}
-            </Typography>
-          )}
-        {filteredEvents.length === 0 && !error ? (
+        {status === 'error' ? (
+          <Typography
+            color="error"
+            paragraph
+          >
+            {error.message}
+          </Typography>
+        ) : (
+          <Typography
+            align="right"
+
+          >
+            {`表示中：${filteredEvents.length}/${events.length}`}
+          </Typography>
+        )}
+        {status === 'success' && filteredEvents.length === 0 ? (
           <Typography paragraph>
             {`${selectedDepartments.join('、')}の${selectedAbouts.join('、')}に関する情報はありません。`}
           </Typography>
         ) : null}
-        <List subheader={<li />}>
-          {createEventsOfADay(filteredEvents).map(daysEvents => (
-            <li key={daysEvents.date}>
-              <ul>
+        {status === 'success' ? (
+          <List>
+            {createEventsOfADay(filteredEvents).map(daysEvents => (
+              <li key={daysEvents.date}>
                 <EventsOfADay {...daysEvents} />
-              </ul>
-            </li>
-          ))}
-        </List>
+              </li>
+            ))}
+          </List>
+        ) : null}
         {admin && (
           <Suspense fallback={<LinearProgress />}>
             <Fab />
