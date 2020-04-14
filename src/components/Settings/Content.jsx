@@ -1,10 +1,12 @@
-import { Button, Checkbox, FormControlLabel, Link, Typography } from '@material-ui/core';
+import { Button, Checkbox, FormControlLabel, Typography } from '@material-ui/core';
 import React, { Fragment } from 'react';
 import { abouts, departments } from '../../constant';
 import createCalendarURL from './create-calendar-url';
+import { useCopyToClipboard } from 'react-use';
 import useSettings from '../../hooks/use-settings';
 
 const Settings = () => {
+  const [clipboardState, copyToClipboard] = useCopyToClipboard();
   const {
     selectedAbouts,
     selectedDepartments,
@@ -76,17 +78,19 @@ const Settings = () => {
       <Typography paragraph>
         <Button
           color="primary"
-          href={calendarURL}
+          onClick={() => copyToClipboard(calendarURL)}
           variant="contained"
         >
-          {'Get iCalendar'}
+          {'カレンダーのURLをコピー'}
         </Button>
       </Typography>
-      <Typography paragraph>
-        {'URL: '}
-        <Link href={calendarURL}>
-          {calendarURL}
-        </Link>
+      <Typography
+        color={clipboardState.error ? 'error' : 'primary'}
+        paragraph
+      >
+        {clipboardState.error
+          ? `${calendarURL}のコピーに失敗しました（state.error.message）。`
+          : clipboardState.value === calendarURL && 'URLをコピーしました。'}
       </Typography>
     </Fragment>
   );
