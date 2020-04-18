@@ -42,17 +42,17 @@ const Status = () => {
             </AlertTitle>
             <Typography
               color="textSecondary"
-              component="p"
+              gutterBottom
               variant="body2"
             >
               <time>
                 {time}
               </time>
             </Typography>
-            <Typography paragraph>
-              <pre>
+            <Typography component="pre">
+              <code>
                 {log}
-              </pre>
+              </code>
             </Typography>
           </Alert>
         ))}
