@@ -10,7 +10,7 @@ const dest = path.join(__dirname, 'public');
 const src = path.join(__dirname, 'src');
 
 module.exports = {
-  entry: { app: path.join(src, 'App.jsx') },
+  entry: { app: path.join(src, 'app.jsx') },
   mode: 'production',
   module: {
     rules: [
