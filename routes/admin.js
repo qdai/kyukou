@@ -1,12 +1,11 @@
 'use strict';
 
+const User = require('../models/user');
 const createHttpError = require('http-errors');
 const passport = require('passport');
 const router = require('express-promise-router')();
-const site = require('../lib/site');
 const { Strategy: LocalStrategy } = require('passport-local');
 const { events: eventsAPI } = require('../api-v1');
-const User = require('../models/user');
 
 passport.use(new LocalStrategy(async (name, password, done) => {
   try {
@@ -29,31 +28,29 @@ passport.deserializeUser((name, done) => {
 });
 
 router.get('/', (req, res) => {
-  if (req.isAuthenticated()) {
-    res.render('admin', { site });
-  } else {
-    res.redirect('/admin/login');
-  }
-});
-
-router.get('/login', (req, res) => {
-  if (req.isAuthenticated()) {
-    res.redirect('/admin');
-  } else {
-    res.render('login', { site });
-  }
+  res.json({ isAdmin: req.isAuthenticated() });
 });
 
 router.post('/login', (req, res, next) => {
-  passport.authenticate('local', {
-    failureRedirect: '/admin/login',
-    successRedirect: '/admin'
+  passport.authenticate('local', (err, user) => {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      return res.status(401).json({});
+    }
+    return req.logIn(user, logInErr => {
+      if (logInErr) {
+        return next(logInErr);
+      }
+      return res.json({});
+    });
   })(req, res, next);
 });
 
 router.get('/logout', (req, res) => {
   req.logout();
-  req.session.destroy(() => res.redirect('/'));
+  req.session.destroy(() => res.json({}));
 });
 
 router.post('/events', async (req, res) => {

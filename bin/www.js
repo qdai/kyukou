@@ -10,13 +10,14 @@ require('dotenv-safe').config();
  */
 
 const app = require('../app');
+const env = require('../env');
 const http = require('http');
 const mongoose = require('mongoose');
 
 mongoose.connection.on('error', err => {
   throw err;
 });
-mongoose.connect(process.env.DB_MONGO_URI);
+mongoose.connect(env.DB_MONGO_URI);
 process.on('SIGINT', async () => {
   await mongoose.connection.close();
   process.exit(0);
@@ -46,7 +47,7 @@ const normalizePort = val => {
  * Get port from environment and store in Express.
  */
 
-const port = normalizePort(process.env.PORT || '3000');
+const port = normalizePort(env.PORT || '3000');
 app.set('port', port);
 
 /**

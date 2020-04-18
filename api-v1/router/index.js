@@ -4,8 +4,8 @@ const events = require('./events');
 const logs = require('./logs');
 const openapi = require('../openapi');
 const router = require('express-promise-router')();
-const site = require('../../lib/site');
 const { NotFound } = require('http-errors');
+const { SITE: site } = require('../../env');
 const { contentSecurityPolicy } = require('helmet');
 
 router.use('/events', events);
@@ -28,7 +28,8 @@ router.get('/', contentSecurityPolicy({
     site: {
       ...site,
       url: `${site.url}/${openapi.servers[0].variables.basePath.default}`
-    }
+    },
+    styleNonce: res.locals.styleNonce
   });
 });
 

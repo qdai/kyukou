@@ -1,12 +1,25 @@
 'use strict';
 
-const express = require('express');
-const site = require('../lib/site');
+const dateFns = require('date-fns');
+const ical = require('ical-generator');
+const router = require('express-promise-router')();
+const { SITE: site } = require('../env');
+const { events: eventsAPI } = require('../api-v1');
 
-const router = express.Router();
-
-router.get('/', (req, res) => {
-  res.render('app', { site });
+router.get([
+  '/',
+  '/calendar',
+  '/events',
+  '/events/:hash',
+  '/login',
+  '/settings',
+  '/status'
+], (req, res) => {
+  res.render('app', {
+    loggedin: req.isAuthenticated(),
+    site,
+    styleNonce: res.locals.styleNonce
+  });
 });
 
 router.get('/manifest.webmanifest', (req, res) => {
@@ -36,6 +49,24 @@ router.get('/manifest.webmanifest', (req, res) => {
     start_url: '/',
     theme_color: site.theme_color
   });
+});
+
+router.get('/kyukou.ics', async (req, res) => {
+  const departments = req.query.departments || req.query.department;
+  const events = await eventsAPI.list(departments);
+  const cal = ical({
+    domain: new URL(site.url).hostname,
+    events: events.map(event => ({
+      description: event.asString('note'),
+      end: dateFns.add(event.eventDate, { days: 1 }),
+      start: event.eventDate,
+      summary: event.asString('title'),
+      timestamp: event.pubDate,
+      uid: event.hash
+    })),
+    prodId: `//${site.author}//${site.generator}//EN`
+  });
+  cal.serve(res);
 });
 
 module.exports = router;
