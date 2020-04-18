@@ -8,6 +8,7 @@ const SnackbarDismiss = ({ id }) => {
   const { closeSnackbar } = useSnackbar();
   return (
     <IconButton
+      aria-label="閉じる"
       color="inherit"
       onClick={() => closeSnackbar(id)}
       size="small"

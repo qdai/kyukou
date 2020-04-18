@@ -8,12 +8,7 @@ import { site } from '../../constant';
 const Logout = lazy(() => import('./Logout'));
 
 const useStyles = makeStyles(theme => ({
-  content: {
-    marginBottom: theme.spacing(1),
-    marginLeft: theme.spacing(2),
-    marginRight: theme.spacing(2),
-    marginTop: theme.spacing(1)
-  },
+  content: { margin: theme.spacing(1, 2) },
   ul: {
     listStyleType: 'none',
     margin: 0,
@@ -23,7 +18,7 @@ const useStyles = makeStyles(theme => ({
 
 const DrawerContent = () => {
   const classes = useStyles();
-  const { admin } = useContext(AppContext);
+  const { isAdmin } = useContext(AppContext);
   const { setDrawerOpen } = useContext(AppContext);
 
   return (
@@ -49,17 +44,17 @@ const DrawerContent = () => {
           {[
             {
               Icon: HomeIcon,
-              primary: 'Home',
+              primary: 'ホーム',
               to: '/'
             },
             {
               Icon: SettingsIcon,
-              primary: 'Settings',
+              primary: '設定',
               to: '/settings'
             },
             {
               Icon: CheckIcon,
-              primary: 'Status',
+              primary: 'ステータス',
               to: '/status'
             }
           ].map(({ Icon, primary, to }) => (
@@ -90,7 +85,7 @@ const DrawerContent = () => {
               <ListItemText primary="API v1" />
             </ListItem>
           </li>
-          {admin && (
+          {isAdmin && (
             <Suspense fallback={<LinearProgress />}>
               <li>
                 <Logout />
@@ -104,24 +99,24 @@ const DrawerContent = () => {
         className={classes.content}
       >
         <IconButton
+          aria-label="Twitter"
           href={`https://twitter.com/${site.twitter}`}
           rel="noopener noreferrer"
           target="_blank"
-          title="Twitter"
         >
           <TwitterIcon />
         </IconButton>
         <IconButton
+          aria-label="RSS"
           href="/rss"
-          title="RSS"
         >
           <RssFeedIcon />
         </IconButton>
         <IconButton
+          aria-label="GitHub"
           href={`https://github.com/${site.author}/kyukou`}
           rel="noopener noreferrer"
           target="_blank"
-          title="GitHub"
         >
           <GitHubIcon />
         </IconButton>
@@ -130,10 +125,7 @@ const DrawerContent = () => {
         align="center"
         className={classes.content}
       >
-        <AnchorLink
-          href="/"
-          title={site.name}
-        >
+        <AnchorLink href="/">
           {site.name}
         </AnchorLink>
         {` ${site.version} by `}

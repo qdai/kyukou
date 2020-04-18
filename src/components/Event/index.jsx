@@ -7,13 +7,13 @@ import Table from './Table';
 const Edit = lazy(() => import('./Edit'));
 
 const Event = () => {
-  const { admin } = useContext(AppContext);
+  const { isAdmin } = useContext(AppContext);
 
   return (
     <Fragment>
       <AppBar />
       <Suspense fallback={<LinearProgress />}>
-        {admin ? <Edit /> : <Table /> }
+        {isAdmin ? <Edit /> : <Table /> }
       </Suspense>
     </Fragment>
   );

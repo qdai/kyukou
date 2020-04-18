@@ -21,6 +21,7 @@ const AppBar = ({ children = null }) => {
               path="/"
             >
               <IconButton
+                aria-label="メニューを開く"
                 className={classes.menuButton}
                 color="inherit"
                 edge="start"
@@ -33,6 +34,7 @@ const AppBar = ({ children = null }) => {
               path="*"
             >
               <IconButton
+                aria-label="ホームに戻る"
                 className={classes.menuButton}
                 color="inherit"
                 component={Link}

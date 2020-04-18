@@ -8,7 +8,7 @@ const Content = lazy(() => import('./Content'));
 const Settings = () => (
   <Fragment>
     <AppBar>
-      {'Settings'}
+      {'設定'}
     </AppBar>
     <Suspense fallback={<LinearProgress />}>
       <Container>

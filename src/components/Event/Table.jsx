@@ -50,32 +50,37 @@ const Event = () => {
       >
         {`${event.about} ${event.subject}`}
       </Typography>
-      <ul>
-        <li>
-          {event.department}
-        </li>
-        <li>
-          {`${event.period}時限`}
-        </li>
-        <li>
-          {`教員：${event.teacher}`}
-        </li>
-        {event.note ? (
+      <Typography
+        component="div"
+        paragraph
+      >
+        <ul>
           <li>
-            {`備考：${event.note}`}
+            {event.department}
           </li>
-        ) : null}
-        {event.campus ? (
           <li>
-            {`キャンパス：${event.campus}`}
+            {`${event.period}時限`}
           </li>
-        ) : null}
-        {event.room ? (
           <li>
-            {`教室：${event.room}`}
+            {`教員：${event.teacher}`}
           </li>
-        ) : null}
-      </ul>
+          {event.note ? (
+            <li>
+              {`備考：${event.note}`}
+            </li>
+          ) : null}
+          {event.campus ? (
+            <li>
+              {`キャンパス：${event.campus}`}
+            </li>
+          ) : null}
+          {event.room ? (
+            <li>
+              {`教室：${event.room}`}
+            </li>
+          ) : null}
+        </ul>
+      </Typography>
       <Typography
         color="textSecondary"
         paragraph

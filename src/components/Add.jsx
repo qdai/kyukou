@@ -11,7 +11,7 @@ import { useForm } from 'react-hook-form';
 import { useSnackbar } from 'notistack'; // eslint-disable-line import/max-dependencies
 
 const Add = () => {
-  const { admin } = useContext(AppContext);
+  const { isAdmin } = useContext(AppContext);
   const { control, formState, handleSubmit } = useForm();
   const { enqueueSnackbar } = useSnackbar();
 
@@ -27,7 +27,7 @@ const Add = () => {
     }
   }, [enqueueSnackbar]);
 
-  if (!admin) {
+  if (!isAdmin) {
     return <Redirect to="/" />;
   }
 

@@ -13,7 +13,7 @@ import useSettings from '../../hooks/use-settings'; // eslint-disable-line impor
 const Fab = lazy(() => import('./Fab'));
 
 const Events = () => {
-  const { admin } = useContext(AppContext);
+  const { isAdmin } = useContext(AppContext);
   const { status, events, error } = useEvents();
   const { selectedAbouts, selectedDepartments } = useSettings();
 
@@ -55,7 +55,7 @@ const Events = () => {
             ))}
           </List>
         ) : null}
-        {admin && (
+        {isAdmin && (
           <Suspense fallback={<LinearProgress />}>
             <Fab />
           </Suspense>

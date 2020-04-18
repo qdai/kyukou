@@ -14,10 +14,7 @@ html(lang=site.lang, prefix='og: http://ogp.me/ns#')
     meta(property='og:url', content=site.url)
     meta(property='og:site_name', content=site.name)
     meta(property='csp-nonce', content=styleNonce)
-    if loggedin
-      script(src='/admin.js', defer)
-    else
-      script(src='/app.js', defer)
+    script(src='/app.js', defer)
     include ./includes/icons.pug
     link(rel='alternate', type='application/rss+xml', title=site.name, href=`${site.url}/rss`)
   body

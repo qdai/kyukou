@@ -11,6 +11,7 @@ router.get([
   '/calendar',
   '/events',
   '/events/:hash',
+  '/login',
   '/settings',
   '/status'
 ], (req, res) => {

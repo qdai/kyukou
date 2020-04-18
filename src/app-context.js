@@ -1,10 +1,13 @@
 import { createContext } from 'react';
 
 const AppContext = createContext({
-  admin: false,
+  isAdmin: false,
   /** @type {function(boolean): void} */
   // eslint-disable-next-line no-empty-function
-  setDrawerOpen: () => {}
+  setDrawerOpen: () => {},
+  /** @type {function(boolean): void} */
+  // eslint-disable-next-line no-empty-function
+  setIsAdmin: () => {}
 });
 
 export default AppContext;

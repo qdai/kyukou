@@ -10,10 +10,7 @@ const dest = path.join(__dirname, 'public');
 const src = path.join(__dirname, 'src');
 
 module.exports = {
-  entry: {
-    admin: path.join(src, 'admin.jsx'),
-    app: path.join(src, 'app.jsx')
-  },
+  entry: { app: path.join(src, 'App.jsx') },
   mode: 'production',
   module: {
     rules: [
@@ -29,6 +26,6 @@ module.exports = {
     path: dest,
     publicPath: '/'
   },
-  plugins: [new webpack.DefinePlugin({ SITE: JSON.stringify(env.SITE) }), new GenerateSW({ exclude: ['admin'] })],
+  plugins: [new webpack.DefinePlugin({ SITE: JSON.stringify(env.SITE) }), new GenerateSW()],
   resolve: { extensions: ['.js', '.jsx'] }
 };
