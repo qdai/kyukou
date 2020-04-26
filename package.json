@@ -63,7 +63,7 @@
     "react-use": "^14.2.0",
     "redoc": "^2.0.0-rc.26",
     "rimraf": "^3.0.2",
-    "terser-webpack-plugin": "^2.3.5",
+    "terser-webpack-plugin": "^2.3.6",
     "use-persisted-state": "^0.3.0",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11",
