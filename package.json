@@ -60,7 +60,7 @@
     "react-hook-form": "^5.5.0",
     "react-query": "^1.2.7",
     "react-router-dom": "^5.1.2",
-    "react-use": "^14.1.1",
+    "react-use": "^14.2.0",
     "redoc": "^2.0.0-rc.26",
     "rimraf": "^3.0.2",
     "terser-webpack-plugin": "^2.3.5",
