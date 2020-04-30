@@ -34,7 +34,7 @@
     "pug": "^2.0.4",
     "rss": "^1.2.2",
     "serve-favicon": "^2.5.0",
-    "uuid": "^7.0.3"
+    "uuid": "^8.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
