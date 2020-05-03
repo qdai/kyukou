@@ -1,10 +1,8 @@
-import createPersistedState from 'use-persisted-state';
 import { useCallback } from 'react';
+import { useLocalStorage } from 'react-use';
 
 const usePersistedList = (storageKey, initialList) => {
-  const usePersistedState = createPersistedState(storageKey);
-
-  const [list, setList] = usePersistedState(initialList);
+  const [list, setList] = useLocalStorage(storageKey, initialList);
 
   const toggleListItem = useCallback(item => {
     setList(prevList => {
