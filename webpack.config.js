@@ -6,18 +6,21 @@ const path = require('path');
 const webpack = require('webpack'); // eslint-disable-line node/no-unpublished-require
 const { GenerateSW } = require('workbox-webpack-plugin'); // eslint-disable-line node/no-unpublished-require
 
-const dest = path.join(__dirname, 'public');
-const src = path.join(__dirname, 'src');
+const dest = path.resolve(__dirname, 'public');
+const src = path.resolve(__dirname, 'src');
 
 module.exports = {
-  entry: { app: path.join(src, 'app.jsx') },
+  entry: { app: ['./node_modules/core-js/es/object/entries.js', path.resolve(src, 'app.jsx')] },
   mode: 'production',
   module: {
     rules: [
       {
-        exclude: /node_modules/u,
         loader: 'babel-loader',
-        test: /\.(?:js|jsx)$/u
+        test: [
+          src,
+          path.resolve(__dirname, 'node_modules/nano-css'),
+          path.resolve(__dirname, 'node_modules/react-query')
+        ]
       }
     ]
   },
