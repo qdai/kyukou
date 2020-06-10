@@ -87,7 +87,6 @@ const Event = () => {
         variant="body2"
       >
         {`（元データ：${event.raw}）`}
-        {event.raw}
       </Typography>
       <Typography paragraph>
         <Button
