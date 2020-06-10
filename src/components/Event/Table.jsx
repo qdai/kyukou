@@ -64,21 +64,21 @@ const Event = () => {
           <li>
             {`教員：${event.teacher}`}
           </li>
-          {event.note ? (
+          {event.note && (
             <li>
               {`備考：${event.note}`}
             </li>
-          ) : null}
-          {event.campus ? (
+          )}
+          {event.campus && (
             <li>
               {`キャンパス：${event.campus}`}
             </li>
-          ) : null}
-          {event.room ? (
+          )}
+          {event.room && (
             <li>
               {`教室：${event.room}`}
             </li>
-          ) : null}
+          )}
         </ul>
       </Typography>
       <Typography

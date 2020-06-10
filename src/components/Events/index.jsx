@@ -26,27 +26,29 @@ const Events = () => {
       </AppBar>
       {status === 'loading' && <LinearProgress />}
       <Container>
-        {status === 'error' ? (
-          <Typography
-            color="error"
-            paragraph
-          >
-            {error.message}
-          </Typography>
-        ) : (
-          <Typography
-            align="right"
+        {status === 'error'
+          ? (
+            <Typography
+              color="error"
+              paragraph
+            >
+              {error.message}
+            </Typography>
+          )
+          : (
+            <Typography
+              align="right"
 
-          >
-            {`表示中：${filteredEvents.length}/${events.length}`}
-          </Typography>
-        )}
-        {status === 'success' && filteredEvents.length === 0 ? (
+            >
+              {`表示中：${filteredEvents.length}/${events.length}`}
+            </Typography>
+          )}
+        {(status === 'success' && filteredEvents.length === 0) && (
           <Typography paragraph>
             {`${selectedDepartments.join('、')}の${selectedAbouts.join('、')}に関する情報はありません。`}
           </Typography>
-        ) : null}
-        {status === 'success' ? (
+        )}
+        {status === 'success' && (
           <List>
             {createEventsOfADay(filteredEvents).map(daysEvents => (
               <li key={daysEvents.date}>
@@ -54,7 +56,7 @@ const Events = () => {
               </li>
             ))}
           </List>
-        ) : null}
+        )}
         {isAdmin && (
           <Suspense fallback={<LinearProgress />}>
             <Fab />
