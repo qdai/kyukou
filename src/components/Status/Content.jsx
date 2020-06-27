@@ -21,7 +21,7 @@ const Status = () => {
 
   return (
     <Fragment>
-      {status === 'loading' && <LinearProgress />}
+      {(status === 'loading' || status === 'idle') && <LinearProgress />}
       <Container>
         {error && (
           <Typography

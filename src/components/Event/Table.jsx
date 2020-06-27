@@ -9,7 +9,7 @@ const Event = () => {
   const { hash } = useParams();
   const { error, events, status } = useEvents();
 
-  if (status === 'loading') {
+  if (status === 'loading' || status === 'idle') {
     return <LinearProgress />;
   }
   if (status === 'error') {

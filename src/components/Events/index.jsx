@@ -24,7 +24,7 @@ const Events = () => {
       <AppBar>
         {site.name}
       </AppBar>
-      {status === 'loading' && <LinearProgress />}
+      {(status === 'loading' || status === 'idle') && <LinearProgress />}
       <Container>
         {status === 'error'
           ? (
