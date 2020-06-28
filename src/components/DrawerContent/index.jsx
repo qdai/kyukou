@@ -5,7 +5,7 @@ import AppContext from '../../app-context';
 import { Link } from 'react-router-dom';
 import { site } from '../../constant';
 
-const Logout = lazy(() => import('./Logout'));
+const Logout = lazy(() => import(/* webpackChunkName: "drawer-content-logout" */'./Logout'));
 
 const useStyles = makeStyles(theme => ({
   content: { margin: theme.spacing(1, 2) },

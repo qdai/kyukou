@@ -4,7 +4,7 @@ import AppContext from '../../app-context';
 import { LinearProgress } from '@material-ui/core';
 import Table from './Table';
 
-const Edit = lazy(() => import('./Edit'));
+const Edit = lazy(() => import(/* webpackChunkName: "event-edit" */'./Edit'));
 
 const Event = () => {
   const { isAdmin } = useContext(AppContext);
