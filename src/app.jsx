@@ -16,8 +16,8 @@ import { site } from './constant';
 import theme from './theme';
 import { useEffectOnce } from 'react-use'; // eslint-disable-line import/max-dependencies
 
-const Add = lazy(() => import('./components/Add'));
-const Login = lazy(() => import('./components/Login'));
+const Add = lazy(() => import(/* webpackChunkName: "add" */'./components/Add'));
+const Login = lazy(() => import(/* webpackChunkName: "login" */'./components/Login'));
 
 const useStyles = makeStyles(() => ({
   drawer: {

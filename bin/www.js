@@ -1,5 +1,5 @@
-/* eslint no-console: 0 */
-/* eslint no-process-exit: 0 */
+/* eslint-disable no-console */
+/* eslint-disable node/no-process-exit */
 
 'use strict';
 

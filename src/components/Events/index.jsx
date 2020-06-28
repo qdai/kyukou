@@ -10,7 +10,7 @@ import { site } from '../../constant';
 import useEvents from '../../hooks/use-events';
 import useSettings from '../../hooks/use-settings'; // eslint-disable-line import/max-dependencies
 
-const Fab = lazy(() => import('./Fab'));
+const Fab = lazy(() => import(/* webpackChunkName: "events-fab" */'./Fab'));
 
 const Events = () => {
   const { isAdmin } = useContext(AppContext);

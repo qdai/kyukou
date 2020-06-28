@@ -6,6 +6,13 @@
   ],
   "parser": "babel-eslint",
   "rules": {
+    "capitalized-comments": [
+      "error",
+      "always",
+      {
+        "ignorePattern": "webpack.+"
+      }
+    ],
     "max-lines-per-function": [
       "error",
       200

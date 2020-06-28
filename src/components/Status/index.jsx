@@ -2,7 +2,7 @@ import React, { Fragment, Suspense, lazy } from 'react';
 import AppBar from '../AppBar';
 import { LinearProgress } from '@material-ui/core';
 
-const Content = lazy(() => import('./Content'));
+const Content = lazy(() => import(/* webpackChunkName: "status-content" */'./Content'));
 
 const Status = () => (
   <Fragment>
