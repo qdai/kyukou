@@ -48,20 +48,22 @@ app.set('view engine', 'pug');
 if (app.get('env') === 'production') {
   app.use(enforcesSsl());
 }
+app.use(helmet({
+  contentSecurityPolicy: false,
+  hsts: { maxAge: 31536000 }
+}));
 app.use((req, res, next) => {
   res.locals.styleNonce = Buffer.from(uuidv4()).toString('base64');
-  next();
-});
-app.use(helmet({
-  contentSecurityPolicy: {
+  const cspMiddleware = helmet.contentSecurityPolicy({
     directives: {
       defaultSrc: ["'self'"],
       objectSrc: ["'none'"],
-      styleSrc: ["'unsafe-inline'", (req, res) => `'nonce-${res.locals.styleNonce}'`]
+      styleSrc: ["'unsafe-inline'", `'nonce-${res.locals.styleNonce}'`]
     }
-  },
-  hsts: { maxAge: 31536000 }
-}));
+  });
+
+  cspMiddleware(res, res, next);
+});
 app.use((req, res, next) => {
   res.set('X-UA-Compatible', 'ie=edge');
   next();

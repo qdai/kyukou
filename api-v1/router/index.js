@@ -18,7 +18,7 @@ router.get('/openapi.json', (req, res) => {
 router.get('/', contentSecurityPolicy({
   directives: {
     defaultSrc: ["'self'"],
-    imgSrc: ['data:'],
+    imgSrc: ["'self'", 'data:'],
     objectSrc: ["'none'"],
     styleSrc: ["'unsafe-inline'"]
   }
