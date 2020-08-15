@@ -18,7 +18,6 @@ const requiredKeys = [
 ];
 
 const EventsController = ({ control, defaultValues }) => (
-  // eslint-disable-next-line react/jsx-no-useless-fragment
   <Fragment>
     {eventKeys.map(key => {
       if (key === 'hash') {
