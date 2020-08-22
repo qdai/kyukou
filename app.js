@@ -54,16 +54,18 @@ app.use(helmet({
 }));
 app.use((req, res, next) => {
   res.locals.styleNonce = Buffer.from(uuidv4()).toString('base64');
-  const cspMiddleware = helmet.contentSecurityPolicy({
+  next();
+});
+app.use(helmet({
+  contentSecurityPolicy: {
     directives: {
       defaultSrc: ["'self'"],
       objectSrc: ["'none'"],
-      styleSrc: ["'unsafe-inline'", `'nonce-${res.locals.styleNonce}'`]
+      styleSrc: ["'unsafe-inline'", (req, res) => `'nonce-${res.locals.styleNonce}'`]
     }
-  });
-
-  cspMiddleware(res, res, next);
-});
+  },
+  hsts: { maxAge: 31536000 }
+}));
 app.use((req, res, next) => {
   res.set('X-UA-Compatible', 'ie=edge');
   next();
