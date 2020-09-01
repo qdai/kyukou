@@ -12,7 +12,7 @@
     "compression": "^1.7.4",
     "connect-mongo": "^3.2.0",
     "cron": "^1.8.2",
-    "date-fns": "^2.16.0",
+    "date-fns": "^2.16.1",
     "dotenv-safe": "^8.2.0",
     "encoding": "^0.1.13",
     "express": "^4.17.1",
