@@ -1,5 +1,6 @@
 'use strict';
 
+const CopyPlugin = require('copy-webpack-plugin'); // eslint-disable-line node/no-unpublished-require
 const TerserPlugin = require('terser-webpack-plugin'); // eslint-disable-line node/no-unpublished-require
 const env = require('./env');
 const path = require('path');
@@ -9,7 +10,7 @@ const { GenerateSW } = require('workbox-webpack-plugin'); // eslint-disable-line
 const dest = path.resolve(__dirname, 'public');
 const src = path.resolve(__dirname, 'src');
 
-module.exports = {
+const config = {
   entry: { app: ['./node_modules/core-js/es/object/entries.js', path.resolve(src, 'app.jsx')] },
   mode: 'production',
   module: {
@@ -24,11 +25,29 @@ module.exports = {
       }
     ]
   },
-  optimization: { minimizer: [new TerserPlugin()] },
+  optimization: { minimizer: [new TerserPlugin({ exclude: /^lib\/redoc\.standalone\..*/u })] },
   output: {
     path: dest,
     publicPath: '/'
   },
-  plugins: [new webpack.DefinePlugin({ SITE: JSON.stringify(env.SITE) }), new GenerateSW()],
+  plugins: [
+    new webpack.DefinePlugin({ SITE: JSON.stringify(env.SITE) }),
+    new GenerateSW(),
+    new CopyPlugin({
+      patterns: [
+        {
+          flatten: true,
+          from: 'src/static/**/*'
+        },
+        {
+          flatten: true,
+          from: 'node_modules/redoc/bundles/redoc.standalone.*',
+          to: 'lib'
+        }
+      ]
+    })
+  ],
   resolve: { extensions: ['.js', '.jsx'] }
 };
+
+module.exports = config;
