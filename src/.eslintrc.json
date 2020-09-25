@@ -4,7 +4,9 @@
     "@egy186/eslint-config/modules",
     "@egy186/eslint-config/react"
   ],
-  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 2020
+  },
   "rules": {
     "capitalized-comments": [
       "error",
