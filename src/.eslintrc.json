@@ -19,20 +19,6 @@
       "error",
       200
     ],
-    "react/jsx-no-bind": [
-      "error",
-      {
-        "allowArrowFunctions": true
-      }
-    ],
-    "react/forbid-component-props": [
-      "error",
-      {
-        "forbid": [
-          "style"
-        ]
-      }
-    ],
     "react/jsx-max-depth": "off"
   },
   "settings": {

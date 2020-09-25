@@ -37,7 +37,7 @@ const Login = () => {
     <Container maxWidth="sm">
       <Typography
         align="center"
-        className={classes.header}
+        classes={{ root: classes.header }}
         component="h1"
         variant="h5"
       >
@@ -71,7 +71,7 @@ const Login = () => {
           name="password"
         />
         <Button
-          className={classes.button}
+          classes={{ root: classes.button }}
           color="primary"
           fullWidth
           type="submit"

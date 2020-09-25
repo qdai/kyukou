@@ -8,7 +8,7 @@ const Settings = ({ children }) => {
   const classes = useStyles();
 
   return (
-    <MUIContainer className={classes.container}>
+    <MUIContainer classes={{ root: classes.container }}>
       {children}
     </MUIContainer>
   );

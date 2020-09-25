@@ -9,7 +9,7 @@ const useStyles = makeStyles(theme => ({ menuButton: { marginRight: theme.spacin
 
 const AppBar = ({ children = null }) => {
   const classes = useStyles();
-  const { setDrawerOpen } = useContext(AppContext);
+  const { openDrawer } = useContext(AppContext);
 
   return (
     <Fragment>
@@ -22,10 +22,10 @@ const AppBar = ({ children = null }) => {
             >
               <IconButton
                 aria-label="メニューを開く"
-                className={classes.menuButton}
+                classes={{ root: classes.menuButton }}
                 color="inherit"
                 edge="start"
-                onClick={() => setDrawerOpen(true)}
+                onClick={openDrawer}
               >
                 <MenuIcon />
               </IconButton>
@@ -35,7 +35,7 @@ const AppBar = ({ children = null }) => {
             >
               <IconButton
                 aria-label="ホームに戻る"
-                className={classes.menuButton}
+                classes={{ root: classes.menuButton }}
                 color="inherit"
                 component={Link}
                 edge="start"

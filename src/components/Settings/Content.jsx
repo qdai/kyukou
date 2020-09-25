@@ -1,5 +1,5 @@
 import { Button, Checkbox, FormControlLabel, Typography } from '@material-ui/core';
-import React, { Fragment } from 'react';
+import React, { Fragment, useCallback, useMemo } from 'react';
 import { abouts, departments } from '../../constant';
 import createCalendarURL from './create-calendar-url';
 import { useCopyToClipboard } from 'react-use';
@@ -14,7 +14,18 @@ const Settings = () => {
     toggleDepartment
   } = useSettings();
 
-  const calendarURL = createCalendarURL(selectedDepartments);
+  const handleToggleDepartment = useCallback(event => {
+    toggleDepartment(event.target.name);
+  }, [toggleDepartment]);
+
+  const handleToggleAbout = useCallback(event => {
+    toggleAbout(event.target.name);
+  }, [toggleAbout]);
+
+  const calendarURL = useMemo(() => createCalendarURL(selectedDepartments), [selectedDepartments]);
+  const handleCopyToClipboard = useCallback(() => {
+    copyToClipboard(calendarURL);
+  }, [calendarURL, copyToClipboard]);
 
   return (
     <Fragment>
@@ -37,7 +48,7 @@ const Settings = () => {
                   checked={selectedDepartments.includes(department)}
                   color="primary"
                   name={department}
-                  onClick={event => toggleDepartment(event.target.name)}
+                  onClick={handleToggleDepartment}
                 />
               )}
               key={department}
@@ -56,7 +67,7 @@ const Settings = () => {
                   checked={selectedAbouts.includes(about)}
                   color="primary"
                   name={about}
-                  onClick={event => toggleAbout(event.target.name)}
+                  onClick={handleToggleAbout}
                 />
               )}
               key={about}
@@ -78,7 +89,7 @@ const Settings = () => {
       <Typography paragraph>
         <Button
           color="primary"
-          onClick={() => copyToClipboard(calendarURL)}
+          onClick={handleCopyToClipboard}
           variant="contained"
         >
           {'カレンダーのURLをコピー'}

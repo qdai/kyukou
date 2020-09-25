@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { CssBaseline, LinearProgress, SwipeableDrawer, ThemeProvider, makeStyles } from '@material-ui/core';
-import React, { Fragment, Suspense, lazy, useState } from 'react';
+import React, { Fragment, Suspense, lazy, useCallback, useState } from 'react';
 import AppContext from './app-context';
 import DrawerContent from './components/DrawerContent';
 import ErrorBoundary from './components/ErrorBoundary';
@@ -31,6 +31,9 @@ const App = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
 
+  const closeDrawer = useCallback(() => setDrawerOpen(false), [setDrawerOpen]);
+  const openDrawer = useCallback(() => setDrawerOpen(true), [setDrawerOpen]);
+
   useEffectOnce(() => {
     const checkIsAdmin = async () => {
       const { data } = await axios.get(`${site.url}/admin`);
@@ -39,23 +42,26 @@ const App = () => {
     checkIsAdmin();
   });
 
+  const dismissAction = useCallback(key => <SnackbarDismiss id={key} />, []);
+
   return (
     <AppContext.Provider
       value={{
+        closeDrawer,
         isAdmin,
-        setDrawerOpen,
+        openDrawer,
         setIsAdmin
       }}
     >
       <ThemeProvider theme={theme}>
-        <SnackbarProvider action={key => <SnackbarDismiss id={key} />}>
+        <SnackbarProvider action={dismissAction}>
           <Fragment>
             <CssBaseline />
             <BrowserRouter>
               <SwipeableDrawer
                 classes={{ paper: classes.drawer }}
-                onClose={() => setDrawerOpen(false)}
-                onOpen={() => setDrawerOpen(true)}
+                onClose={closeDrawer}
+                onOpen={openDrawer}
                 open={drawerOpen}
               >
                 <DrawerContent />

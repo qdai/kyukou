@@ -33,7 +33,7 @@ const Status = () => {
         )}
         {logs.map(formatLog).map(({ elapsedTime, level, log, name, time }) => (
           <Alert
-            className={classes.alert}
+            classes={{ root: classes.alert }}
             key={name}
             severity={level}
           >
