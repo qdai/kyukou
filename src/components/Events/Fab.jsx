@@ -17,7 +17,7 @@ const Fab = () => {
 
   return (
     <MUIFab
-      className={classes.fab}
+      classes={{ root: classes.fab }}
       color="primary"
       component={Link}
       to="/events"

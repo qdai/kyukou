@@ -58,7 +58,7 @@ const Edit = () => {
     <Container>
       <form onSubmit={handleSubmit(onEditSubmit)}>
         <Button
-          className={classes.button}
+          classes={{ root: classes.button }}
           color="primary"
           disabled={formState.isSubmitting}
           type="submit"
@@ -67,7 +67,7 @@ const Edit = () => {
           {'Edit'}
         </Button>
         <Button
-          className={classes.button}
+          classes={{ root: classes.button }}
           color="secondary"
           onClick={handleDeleteClick}
           variant="contained"

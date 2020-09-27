@@ -23,7 +23,7 @@ const EventsOfADay = ({ data, date, dateFormatted }) => {
   return (
     <Fragment>
       <ListSubheader
-        className={classes.subheader}
+        classes={{ root: classes.subheader }}
         component="h3"
         title={date}
       >

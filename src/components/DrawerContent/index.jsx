@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
 const DrawerContent = () => {
   const classes = useStyles();
   const { isAdmin } = useContext(AppContext);
-  const { setDrawerOpen } = useContext(AppContext);
+  const { closeDrawer } = useContext(AppContext);
 
   return (
     <Fragment>
@@ -36,7 +36,7 @@ const DrawerContent = () => {
           </Typography>
         </Toolbar>
       </AppBar>
-      <Typography className={classes.content}>
+      <Typography classes={{ root: classes.content }}>
         {site.description}
       </Typography>
       <List component="nav">
@@ -62,7 +62,7 @@ const DrawerContent = () => {
               <ListItem
                 button
                 component={Link}
-                onClick={() => setDrawerOpen(false)}
+                onClick={closeDrawer}
                 to={to}
               >
                 <ListItemIcon>
@@ -96,7 +96,7 @@ const DrawerContent = () => {
       </List>
       <Typography
         align="center"
-        className={classes.content}
+        classes={{ root: classes.content }}
       >
         <IconButton
           aria-label="Twitter"
@@ -123,7 +123,7 @@ const DrawerContent = () => {
       </Typography>
       <Typography
         align="center"
-        className={classes.content}
+        classes={{ root: classes.content }}
       >
         <AnchorLink href="/">
           {site.name}
