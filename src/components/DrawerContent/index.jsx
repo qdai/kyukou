@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
 const DrawerContent = () => {
   const classes = useStyles();
   const { isAdmin } = useContext(AppContext);
-  const { closeDrawer } = useContext(AppContext);
+  const { closeDrawer: handleCloseDrawer } = useContext(AppContext);
 
   return (
     <Fragment>
@@ -62,7 +62,7 @@ const DrawerContent = () => {
               <ListItem
                 button
                 component={Link}
-                onClick={closeDrawer}
+                onClick={handleCloseDrawer}
                 to={to}
               >
                 <ListItemIcon>

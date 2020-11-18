@@ -9,7 +9,7 @@ const useStyles = makeStyles(theme => ({ menuButton: { marginRight: theme.spacin
 
 const AppBar = ({ children = null }) => {
   const classes = useStyles();
-  const { openDrawer } = useContext(AppContext);
+  const { openDrawer: handleOpenDrawer } = useContext(AppContext);
 
   return (
     <Fragment>
@@ -25,7 +25,7 @@ const AppBar = ({ children = null }) => {
                 classes={{ root: classes.menuButton }}
                 color="inherit"
                 edge="start"
-                onClick={openDrawer}
+                onClick={handleOpenDrawer}
               >
                 <MenuIcon />
               </IconButton>

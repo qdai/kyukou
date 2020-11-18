@@ -31,8 +31,8 @@ const App = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
 
-  const closeDrawer = useCallback(() => setDrawerOpen(false), [setDrawerOpen]);
-  const openDrawer = useCallback(() => setDrawerOpen(true), [setDrawerOpen]);
+  const handleCloseDrawer = useCallback(() => setDrawerOpen(false), [setDrawerOpen]);
+  const handleOpenDrawer = useCallback(() => setDrawerOpen(true), [setDrawerOpen]);
 
   useEffectOnce(() => {
     const checkIsAdmin = async () => {
@@ -47,9 +47,9 @@ const App = () => {
   return (
     <AppContext.Provider
       value={{
-        closeDrawer,
+        closeDrawer: handleCloseDrawer,
         isAdmin,
-        openDrawer,
+        openDrawer: handleOpenDrawer,
         setIsAdmin
       }}
     >
@@ -60,8 +60,8 @@ const App = () => {
             <BrowserRouter>
               <SwipeableDrawer
                 classes={{ paper: classes.drawer }}
-                onClose={closeDrawer}
-                onOpen={openDrawer}
+                onClose={handleCloseDrawer}
+                onOpen={handleOpenDrawer}
                 open={drawerOpen}
               >
                 <DrawerContent />
