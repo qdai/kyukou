@@ -36,13 +36,12 @@ const config = {
     new CopyPlugin({
       patterns: [
         {
-          flatten: true,
-          from: 'src/static/**/*'
+          from: 'src/static/**/*',
+          to: '[name].[ext]'
         },
         {
-          flatten: true,
           from: 'node_modules/redoc/bundles/redoc.standalone.*',
-          to: 'lib'
+          to: 'lib/[name].[ext]'
         }
       ]
     })
