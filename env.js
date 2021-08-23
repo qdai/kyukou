@@ -8,6 +8,7 @@ require('dotenv-safe').config();
 const jsonfile = require('jsonfile');
 const path = require('path');
 
+// eslint-disable-next-line node/no-sync
 const { author, name, version } = jsonfile.readFileSync(path.join(__dirname, './package.json'));
 
 const env = {

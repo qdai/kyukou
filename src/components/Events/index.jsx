@@ -8,8 +8,9 @@ import createEventsFilter from './create-events-filter';
 import createEventsOfADay from './create-events-of-a-day';
 import { site } from '../../constant';
 import useEvents from '../../hooks/use-events';
-import useSettings from '../../hooks/use-settings'; // eslint-disable-line import/max-dependencies
+import useSettings from '../../hooks/use-settings';
 
+// eslint-disable-next-line import/max-dependencies
 const Fab = lazy(() => import(/* webpackChunkName: "events-fab" */'./Fab'));
 
 const Events = () => {

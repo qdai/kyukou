@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { CssBaseline, LinearProgress, SwipeableDrawer, ThemeProvider, makeStyles } from '@material-ui/core';
-import React, { Fragment, Suspense, lazy, useCallback, useState } from 'react';
+import React, { Fragment, Suspense, lazy, useCallback, useMemo, useState } from 'react';
 import AppContext from './app-context';
 import DrawerContent from './components/DrawerContent';
 import ErrorBoundary from './components/ErrorBoundary';
@@ -14,9 +14,10 @@ import Status from './components/Status';
 import axios from 'axios';
 import { site } from './constant';
 import theme from './theme';
-import { useEffectOnce } from 'react-use'; // eslint-disable-line import/max-dependencies
+import { useEffectOnce } from 'react-use';
 
 const Add = lazy(() => import(/* webpackChunkName: "add" */'./components/Add'));
+// eslint-disable-next-line import/max-dependencies
 const Login = lazy(() => import(/* webpackChunkName: "login" */'./components/Login'));
 
 const useStyles = makeStyles(() => ({
@@ -44,14 +45,21 @@ const App = () => {
 
   const dismissAction = useCallback(key => <SnackbarDismiss id={key} />, []);
 
+  const appContext = useMemo(() => ({
+    closeDrawer: handleCloseDrawer,
+    isAdmin,
+    openDrawer: handleOpenDrawer,
+    setIsAdmin
+  }), [
+    handleCloseDrawer,
+    handleOpenDrawer,
+    isAdmin,
+    setIsAdmin
+  ]);
+
   return (
     <AppContext.Provider
-      value={{
-        closeDrawer: handleCloseDrawer,
-        isAdmin,
-        openDrawer: handleOpenDrawer,
-        setIsAdmin
-      }}
+      value={appContext}
     >
       <ThemeProvider theme={theme}>
         <SnackbarProvider action={dismissAction}>
