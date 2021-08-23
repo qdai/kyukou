@@ -73,7 +73,7 @@
     "workbox-webpack-plugin": "^6.0.2"
   },
   "engines": {
-    "node": "^12.13.0"
+    "node": "^16.7.0"
   },
   "homepage": "https://kyukou-kyudai.herokuapp.com/",
   "keywords": [
