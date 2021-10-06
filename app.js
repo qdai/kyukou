@@ -12,8 +12,8 @@ const helmet = require('helmet');
 const logger = require('morgan');
 const passport = require('passport');
 const path = require('path');
+const { randomUUID } = require('crypto');
 const session = require('express-session');
-const { v4: uuidv4 } = require('uuid');
 
 const app = express();
 const MongoStore = connectMongo(session);
@@ -53,7 +53,7 @@ app.use(helmet({
   hsts: { maxAge: 31536000 }
 }));
 app.use((req, res, next) => {
-  res.locals.styleNonce = Buffer.from(uuidv4()).toString('base64');
+  res.locals.styleNonce = randomUUID();
   next();
 });
 app.use(helmet({
