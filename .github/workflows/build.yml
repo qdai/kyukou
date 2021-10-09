@@ -1,0 +1,66 @@
+name: Build
+
+on: [push, pull_request]
+
+jobs:
+  lint:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Lint
+      uses: actions/setup-node@v2
+      with:
+        node-version: 16
+    - run: npm ci
+    - run: npm run lint
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build
+      uses: actions/setup-node@v2
+      with:
+        node-version: 16
+    - run: npm ci
+    - run: npm run build
+
+  publish:
+
+    runs-on: ubuntu-latest
+
+    needs: [lint, build]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Publish
+      uses: akhileshns/heroku-deploy@v3.12.12
+      with:
+        heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+        heroku_app_name: kyukou-kyudai
+        heroku_email: kyudai_taro@yahoo.co.jp
+      if: contains(github.ref, 'tags/v')
+
+env:
+  SECRET: secret
+  TZ: Asia/Tokyo
+  ADMIN_HASH: admin_hash
+  ADMIN_NAME: admin_name
+  DB_API_VERSION_1_MONGO_URI: mongodb://localhost/kyukou
+  DB_MONGO_URI: mongodb://localhost/kyukou
+  SITE_DESCRIPTION: site_description
+  SITE_KEYWORDS: site_keywords
+  SITE_LANG: ja
+  SITE_NAME: site_name
+  SITE_SHORT_NAME: site_short_name
+  SITE_THEME_COLOR: "#ffffff"
+  SITE_URL: site_url
+  TWITTER_ACCESS_TOKEN: twitter_access_token
+  TWITTER_ACCESS_TOKEN_SECRET: twitter_access_token_secret
+  TWITTER_CONSUMER_KEY: twitter_consumer_key
+  TWITTER_CONSUMER_SECRET: twitter_consumer_secret
+  TWITTER_SCREEN_NAME: twitter_screen_name
