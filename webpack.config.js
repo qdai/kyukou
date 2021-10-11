@@ -37,11 +37,11 @@ const config = {
       patterns: [
         {
           from: 'src/static/**/*',
-          to: '[name].[ext]'
+          to: '[name][ext]'
         },
         {
           from: 'node_modules/redoc/bundles/redoc.standalone.*',
-          to: 'lib/[name].[ext]'
+          to: 'lib/[name][ext]'
         }
       ]
     })
