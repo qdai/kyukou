@@ -2,7 +2,7 @@
 
 const bodyParser = require('body-parser');
 const compression = require('compression');
-const connectMongo = require('connect-mongo');
+const MongoStore = require('connect-mongo');
 const createHttpError = require('http-errors');
 const enforcesSsl = require('express-enforces-ssl');
 const env = require('./env');
@@ -16,16 +16,12 @@ const { randomUUID } = require('crypto');
 const session = require('express-session');
 
 const app = express();
-const MongoStore = connectMongo(session);
 const sessionOptions = {
   cookie: {},
   resave: false,
   saveUninitialized: false,
   secret: env.SECRET,
-  store: new MongoStore({
-    autoReconnect: true,
-    url: env.DB_MONGO_URI
-  })
+  store: MongoStore.create({ mongoUrl: env.DB_MONGO_URI })
 };
 if (app.get('env') === 'production') {
   sessionOptions.cookie.secure = true;
