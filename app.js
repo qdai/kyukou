@@ -44,10 +44,6 @@ app.set('view engine', 'pug');
 if (app.get('env') === 'production') {
   app.use(enforcesSsl());
 }
-app.use(helmet({
-  contentSecurityPolicy: false,
-  hsts: { maxAge: 31536000 }
-}));
 app.use((req, res, next) => {
   res.locals.styleNonce = randomUUID();
   next();
