@@ -61,7 +61,7 @@
     "react-dom": "^16.13.1",
     "react-hook-form": "^6.8.2",
     "react-query": "^2.26.4",
-    "react-router-dom": "^5.2.0",
+    "react-router-dom": "^6.1.1",
     "react-use": "^14.2.0",
     "redoc": "^2.0.0-rc.56",
     "rimraf": "^3.0.2",
