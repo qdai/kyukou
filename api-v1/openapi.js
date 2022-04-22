@@ -5,6 +5,6 @@ const path = require('path');
 const yaml = require('js-yaml');
 
 // eslint-disable-next-line node/no-sync
-const openapi = yaml.safeLoad(fs.readFileSync(path.resolve(__dirname, 'openapi.yaml'), 'utf8'));
+const openapi = yaml.load(fs.readFileSync(path.resolve(__dirname, 'openapi.yaml'), 'utf8'));
 
 module.exports = openapi;
