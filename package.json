@@ -23,7 +23,7 @@
     "helmet": "^4.6.0",
     "http-errors": "^1.8.0",
     "ical-generator": "^3.0.1",
-    "js-yaml": "^3.14.0",
+    "js-yaml": "^4.1.0",
     "jsonfile": "^6.1.0",
     "kyukou-api1": "github:qdai/kyukou-api#v5.2.0",
     "kyukou-scraper-kyudai1": "github:qdai/kyukou-scraper-kyudai#v5.0.1",
