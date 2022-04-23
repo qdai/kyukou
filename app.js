@@ -82,7 +82,7 @@ app.use('/admin', admin);
 
 // Catch 404 and forward to error handler
 app.use((req, res, next) => {
-  next(createHttpError(404));
+  next(new createHttpError.NotFound());
 });
 
 // Error handlers
