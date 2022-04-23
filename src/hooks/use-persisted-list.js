@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { useLocalStorage } from 'react-use';
+import { useLocalStorage } from 'usehooks-ts';
 
 const usePersistedList = (storageKey, initialList) => {
   const [list, setList] = useLocalStorage(storageKey, initialList);

@@ -2,11 +2,11 @@ import { Button, Checkbox, FormControlLabel, Typography } from '@material-ui/cor
 import React, { Fragment, useCallback, useMemo } from 'react';
 import { abouts, departments } from '../../constant';
 import createCalendarURL from './create-calendar-url';
-import { useCopyToClipboard } from 'react-use';
+import { useCopyToClipboard } from 'usehooks-ts';
 import useSettings from '../../hooks/use-settings';
 
 const Settings = () => {
-  const [clipboardState, copyToClipboard] = useCopyToClipboard();
+  const [copiedValue, copyToClipboard] = useCopyToClipboard();
   const {
     selectedAbouts,
     selectedDepartments,
@@ -96,12 +96,10 @@ const Settings = () => {
         </Button>
       </Typography>
       <Typography
-        color={clipboardState.error ? 'error' : 'primary'}
+        color="primary"
         paragraph
       >
-        {clipboardState.error
-          ? `${calendarURL}のコピーに失敗しました（state.error.message）。`
-          : clipboardState.value === calendarURL && 'URLをコピーしました。'}
+        {copiedValue === calendarURL && 'URLをコピーしました。'}
       </Typography>
     </Fragment>
   );

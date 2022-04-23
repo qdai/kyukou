@@ -14,7 +14,7 @@ import Status from './components/Status';
 import axios from 'axios';
 import { site } from './constant';
 import theme from './theme';
-import { useEffectOnce } from 'react-use';
+import { useEffectOnce } from 'usehooks-ts';
 
 const Add = lazy(() => import(/* webpackChunkName: "add" */'./components/Add'));
 // eslint-disable-next-line import/max-dependencies
