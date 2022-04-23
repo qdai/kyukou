@@ -96,7 +96,7 @@ const Settings = () => {
         </Button>
       </Typography>
       <Typography
-        color={'primary'}
+        color="primary"
         paragraph
       >
         {copiedValue === calendarURL && 'URLをコピーしました。'}
