@@ -21,7 +21,7 @@
     "express-session": "^1.17.2",
     "glob": "^8.0.1",
     "helmet": "^4.6.0",
-    "http-errors": "^1.8.0",
+    "http-errors": "^2.0.0",
     "ical-generator": "^3.4.1",
     "js-yaml": "^4.1.0",
     "jsonfile": "^6.1.0",
