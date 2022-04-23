@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { CssBaseline, LinearProgress, SwipeableDrawer, ThemeProvider, makeStyles } from '@material-ui/core';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import React, { Fragment, Suspense, lazy, useCallback, useMemo, useState } from 'react';
 import AppContext from './app-context';
 import DrawerContent from './components/DrawerContent';
@@ -19,6 +20,8 @@ import { useEffectOnce } from 'usehooks-ts';
 const Add = lazy(() => import(/* webpackChunkName: "add" */'./components/Add'));
 // eslint-disable-next-line import/max-dependencies
 const Login = lazy(() => import(/* webpackChunkName: "login" */'./components/Login'));
+
+const queryClient = new QueryClient();
 
 const useStyles = makeStyles(() => ({
   drawer: {
@@ -63,59 +66,61 @@ const App = () => {
     >
       <ThemeProvider theme={theme}>
         <SnackbarProvider action={dismissAction}>
-          <Fragment>
-            <CssBaseline />
-            <BrowserRouter>
-              <SwipeableDrawer
-                classes={{ paper: classes.drawer }}
-                onClose={handleCloseDrawer}
-                onOpen={handleOpenDrawer}
-                open={drawerOpen}
-              >
-                <DrawerContent />
-              </SwipeableDrawer>
-              <ErrorBoundary>
-                <Switch>
-                  <Route
-                    component={Events}
-                    exact
-                    path="/"
-                  />
-                  <Route
-                    component={Settings}
-                    exact
-                    path="/settings"
-                  />
-                  <Route
-                    component={Status}
-                    exact
-                    path="/status"
-                  />
-                  <Route
-                    exact
-                    path="/events"
-                  >
-                    <Suspense fallback={<LinearProgress />}>
-                      <Add />
-                    </Suspense>
-                  </Route>
-                  <Route
-                    component={Event}
-                    exact
-                    path="/events/:hash"
-                  />
-                  <Route
-                    exact
-                    path="/login"
-                  >
-                    <Suspense fallback={<LinearProgress />}>
-                      <Login />
-                    </Suspense>
-                  </Route>
-                </Switch>
-              </ErrorBoundary>
-            </BrowserRouter>
-          </Fragment>
+          <QueryClientProvider client={queryClient}>
+            <Fragment>
+              <CssBaseline />
+              <BrowserRouter>
+                <SwipeableDrawer
+                  classes={{ paper: classes.drawer }}
+                  onClose={handleCloseDrawer}
+                  onOpen={handleOpenDrawer}
+                  open={drawerOpen}
+                >
+                  <DrawerContent />
+                </SwipeableDrawer>
+                <ErrorBoundary>
+                  <Switch>
+                    <Route
+                      component={Events}
+                      exact
+                      path="/"
+                    />
+                    <Route
+                      component={Settings}
+                      exact
+                      path="/settings"
+                    />
+                    <Route
+                      component={Status}
+                      exact
+                      path="/status"
+                    />
+                    <Route
+                      exact
+                      path="/events"
+                    >
+                      <Suspense fallback={<LinearProgress />}>
+                        <Add />
+                      </Suspense>
+                    </Route>
+                    <Route
+                      component={Event}
+                      exact
+                      path="/events/:hash"
+                    />
+                    <Route
+                      exact
+                      path="/login"
+                    >
+                      <Suspense fallback={<LinearProgress />}>
+                        <Login />
+                      </Suspense>
+                    </Route>
+                  </Switch>
+                </ErrorBoundary>
+              </BrowserRouter>
+            </Fragment>
+          </QueryClientProvider>
         </SnackbarProvider>
       </ThemeProvider>
     </AppContext.Provider>
