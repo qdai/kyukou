@@ -7,6 +7,48 @@
     "public",
     "src/static"
   ],
+  "overrides": [
+    {
+      "extends": [
+        "@egy186/eslint-config/browser",
+        "@egy186/eslint-config/modules",
+        "@egy186/eslint-config/react"
+      ],
+      "files": [
+        "src/**"
+      ],
+      "parserOptions": {
+        "ecmaVersion": 2020
+      },
+      "rules": {
+        "capitalized-comments": [
+          "error",
+          "always",
+          {
+            "ignorePattern": "webpack.+"
+          }
+        ],
+        "max-lines-per-function": [
+          "error",
+          200
+        ],
+        "react/jsx-max-depth": "off"
+      },
+      "settings": {
+        "import/resolver": {
+          "node": {
+            "extensions": [
+              ".js",
+              ".jsx"
+            ]
+          }
+        },
+        "react": {
+          "version": "detect"
+        }
+      }
+    }
+  ],
   "rules": {
     "new-cap": [
       2,
