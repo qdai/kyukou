@@ -59,7 +59,7 @@ router.post('/events', async (req, res) => {
     const result = await eventsAPI.add(event);
     res.json(result);
   } else {
-    throw createHttpError(403);
+    throw new createHttpError.Forbidden();
   }
 });
 
@@ -70,7 +70,7 @@ router.put('/events/:hash', async (req, res) => {
     const result = await eventsAPI.edit(hash, data);
     res.json(result);
   } else {
-    throw createHttpError(403);
+    throw new createHttpError.Forbidden();
   }
 });
 
@@ -80,7 +80,7 @@ router.delete('/events/:hash', async (req, res) => {
     const result = await eventsAPI.delete(hash);
     res.json(result);
   } else {
-    throw createHttpError(403);
+    throw new createHttpError.Forbidden();
   }
 });
 

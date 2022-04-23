@@ -5,7 +5,7 @@ const router = require('express-promise-router')();
 const { logs: logsAPI } = require('../api');
 
 router.get('/', () => {
-  throw createHttpError(400);
+  throw new createHttpError.BadRequest();
 });
 
 router.get('/:about.json', async (req, res) => {

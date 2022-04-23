@@ -4,7 +4,7 @@ const events = require('./events');
 const logs = require('./logs');
 const openapi = require('../openapi');
 const router = require('express-promise-router')();
-const { NotFound } = require('http-errors');
+const createHttpError = require('http-errors');
 const { SITE: site } = require('../../env');
 const { contentSecurityPolicy } = require('helmet');
 
@@ -34,7 +34,7 @@ router.get('/', contentSecurityPolicy({
 });
 
 router.use((req, res, next) => {
-  next(new NotFound('Page does not exist'));
+  next(new createHttpError.NotFound('Page does not exist'));
 });
 
 router.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
