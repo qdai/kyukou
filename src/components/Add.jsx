@@ -4,7 +4,7 @@ import AppContext from '../app-context';
 import { Button } from '@material-ui/core';
 import Container from './Container';
 import EventsController from './EventsController';
-import { Redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import axios from 'axios';
 import { site } from '../constant';
 import { useForm } from 'react-hook-form';
@@ -28,7 +28,12 @@ const Add = () => {
   }, [enqueueSnackbar]);
 
   if (!isAdmin) {
-    return <Redirect to="/" />;
+    return (
+      <Navigate
+        replace
+        to="/"
+      />
+    );
   }
 
   return (

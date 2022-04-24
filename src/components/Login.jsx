@@ -1,7 +1,7 @@
 import { Button, Container, TextField, Typography, makeStyles } from '@material-ui/core';
 import { Controller, useForm } from 'react-hook-form';
+import { Navigate, useNavigate } from 'react-router-dom';
 import React, { useContext } from 'react';
-import { Redirect, useHistory } from 'react-router-dom';
 import AppContext from '../app-context';
 import axios from 'axios';
 import { site } from '../constant';
@@ -16,18 +16,18 @@ const Login = () => {
   const classes = useStyles();
   const { control, handleSubmit } = useForm();
   const { enqueueSnackbar } = useSnackbar();
-  const history = useHistory();
+  const navigate = useNavigate();
   const { isAdmin, setIsAdmin } = useContext(AppContext);
 
   if (isAdmin) {
-    return <Redirect to="/" />;
+    return <Navigate to="/" />;
   }
 
   const onSubmit = async values => {
     try {
       await axios.post(`${site.url}/admin/login`, new URLSearchParams(values));
       setIsAdmin(true);
-      history.push('/');
+      navigate('/');
     } catch (err) {
       enqueueSnackbar(err.message, { variant: 'error' });
     }

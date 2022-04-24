@@ -1,6 +1,6 @@
 import { ArrowBack as ArrowBackIcon, Menu as MenuIcon } from '@material-ui/icons';
 import { IconButton, AppBar as MUIAppBar, Toolbar, Typography, makeStyles } from '@material-ui/core';
-import { Link, Route, Switch } from 'react-router-dom';
+import { Link, useMatch } from 'react-router-dom';
 import React, { Fragment, useContext } from 'react';
 import AppContext from '../app-context';
 import PropTypes from 'prop-types';
@@ -10,29 +10,14 @@ const useStyles = makeStyles(theme => ({ menuButton: { marginRight: theme.spacin
 const AppBar = ({ children = null }) => {
   const classes = useStyles();
   const { openDrawer: handleOpenDrawer } = useContext(AppContext);
+  const match = useMatch('/events/*');
 
   return (
     <Fragment>
       <MUIAppBar>
         <Toolbar>
-          <Switch>
-            <Route
-              exact
-              path="/"
-            >
-              <IconButton
-                aria-label="メニューを開く"
-                classes={{ root: classes.menuButton }}
-                color="inherit"
-                edge="start"
-                onClick={handleOpenDrawer}
-              >
-                <MenuIcon />
-              </IconButton>
-            </Route>
-            <Route
-              path="*"
-            >
+          {match
+            ? (
               <IconButton
                 aria-label="ホームに戻る"
                 classes={{ root: classes.menuButton }}
@@ -43,8 +28,18 @@ const AppBar = ({ children = null }) => {
               >
                 <ArrowBackIcon />
               </IconButton>
-            </Route>
-          </Switch>
+            )
+            : (
+              <IconButton
+                aria-label="メニューを開く"
+                classes={{ root: classes.menuButton }}
+                color="inherit"
+                edge="start"
+                onClick={handleOpenDrawer}
+              >
+                <MenuIcon />
+              </IconButton>
+            )}
           <Typography
             component="h2"
             variant="h6"
