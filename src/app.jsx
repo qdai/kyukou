@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { CssBaseline, LinearProgress, SwipeableDrawer, ThemeProvider, makeStyles } from '@material-ui/core';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import React, { Fragment, Suspense, lazy, useCallback, useMemo, useState } from 'react';
@@ -79,44 +79,40 @@ const App = () => {
                   <DrawerContent />
                 </SwipeableDrawer>
                 <ErrorBoundary>
-                  <Switch>
+                  <Routes>
                     <Route
-                      component={Events}
-                      exact
+                      element={<Events />}
                       path="/"
                     />
                     <Route
-                      component={Settings}
-                      exact
+                      element={<Settings />}
                       path="/settings"
                     />
                     <Route
-                      component={Status}
-                      exact
+                      element={<Status />}
                       path="/status"
                     />
                     <Route
-                      exact
+                      element={(
+                        <Suspense fallback={<LinearProgress />}>
+                          <Add />
+                        </Suspense>
+                      )}
                       path="/events"
-                    >
-                      <Suspense fallback={<LinearProgress />}>
-                        <Add />
-                      </Suspense>
-                    </Route>
+                    />
                     <Route
-                      component={Event}
-                      exact
+                      element={<Event />}
                       path="/events/:hash"
                     />
                     <Route
-                      exact
+                      element={(
+                        <Suspense fallback={<LinearProgress />}>
+                          <Login />
+                        </Suspense>
+                      )}
                       path="/login"
-                    >
-                      <Suspense fallback={<LinearProgress />}>
-                        <Login />
-                      </Suspense>
-                    </Route>
-                  </Switch>
+                    />
+                  </Routes>
                 </ErrorBoundary>
               </BrowserRouter>
             </Fragment>

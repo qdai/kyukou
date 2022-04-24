@@ -1,6 +1,6 @@
 import { Button, makeStyles } from '@material-ui/core';
 import React, { useCallback } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Container from '../Container';
 import EventsController from '../EventsController';
 import axios from 'axios';
@@ -18,7 +18,7 @@ const Edit = () => {
   const { events } = useEvents();
   const { control, formState, handleSubmit } = useForm();
   const { enqueueSnackbar } = useSnackbar();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const event = events.find(e => e.hash === hash);
 
@@ -29,14 +29,14 @@ const Edit = () => {
         withCredentials: true
       });
       enqueueSnackbar(`Success: ${data.success.message}`, { variant: 'success' });
-      history.push('/');
+      navigate('/');
     } catch (err) {
       enqueueSnackbar(`Error: ${err.message}`, { variant: 'error' });
     }
   }, [
     enqueueSnackbar,
     hash,
-    history
+    navigate
   ]);
 
   const onEditSubmit = useCallback(async update => {
