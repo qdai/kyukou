@@ -46,7 +46,7 @@
     "axios": "^0.26.1",
     "babel-loader": "^8.2.5",
     "copy-webpack-plugin": "^10.2.4",
-    "core-js": "^3.22.2",
+    "core-js": "^3.22.3",
     "eslint": "^8.14.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsdoc": "^39.2.7",
