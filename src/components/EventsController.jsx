@@ -25,7 +25,11 @@ const EventsController = ({ control, defaultValues }) => (
       }
       return (
         <Controller
-          as={(
+          control={control}
+          key={key}
+          name={key}
+          // eslint-disable-next-line react/jsx-no-bind
+          render={({ field }) => (
             <TextField
               defaultValue={defaultValues && defaultValues[key]}
               fullWidth
@@ -33,11 +37,9 @@ const EventsController = ({ control, defaultValues }) => (
               margin="normal"
               required={requiredKeys.includes(key)}
               type="text"
+              {...field}
             />
           )}
-          control={control}
-          key={key}
-          name={key}
         />
       );
     })}
