@@ -1,24 +1,21 @@
-import { Link as AnchorLink, AppBar, IconButton, LinearProgress, List, ListItem, ListItemIcon, ListItemText, Toolbar, Typography } from '@mui/material';
+import { Link as AnchorLink, AppBar, IconButton, LinearProgress, List, ListItem, ListItemIcon, ListItemText, Toolbar, Typography, styled } from '@mui/material';
 import { Check as CheckIcon, Code as CodeIcon, GitHub as GitHubIcon, Home as HomeIcon, RssFeed as RssFeedIcon, Settings as SettingsIcon, Twitter as TwitterIcon } from '@mui/icons-material';
 import React, { Fragment, Suspense, lazy, useContext } from 'react';
 import AppContext from '../../app-context';
 import { Link } from 'react-router-dom';
-import { makeStyles } from '@mui/styles';
 import { site } from '../../constant';
 
 const Logout = lazy(() => import(/* webpackChunkName: "drawer-content-logout" */'./Logout'));
 
-const useStyles = makeStyles(theme => ({
-  content: { margin: theme.spacing(1, 2) },
-  ul: {
-    listStyleType: 'none',
-    margin: 0,
-    padding: 0
-  }
+const Content = styled(Typography)(({ theme }) => ({ margin: theme.spacing(1, 2) }));
+
+const Ul = styled('ul')(() => ({
+  listStyleType: 'none',
+  margin: 0,
+  padding: 0
 }));
 
 const DrawerContent = () => {
-  const classes = useStyles();
   const { isAdmin } = useContext(AppContext);
   const { closeDrawer: handleCloseDrawer } = useContext(AppContext);
 
@@ -37,11 +34,11 @@ const DrawerContent = () => {
           </Typography>
         </Toolbar>
       </AppBar>
-      <Typography classes={{ root: classes.content }}>
+      <Content>
         {site.description}
-      </Typography>
+      </Content>
       <List component="nav">
-        <ul className={classes.ul}>
+        <Ul>
           {[
             {
               Icon: HomeIcon,
@@ -93,12 +90,9 @@ const DrawerContent = () => {
               </li>
             </Suspense>
           )}
-        </ul>
+        </Ul>
       </List>
-      <Typography
-        align="center"
-        classes={{ root: classes.content }}
-      >
+      <Content align="center">
         <IconButton
           aria-label="Twitter"
           href={`https://twitter.com/${site.twitter}`}
@@ -124,11 +118,8 @@ const DrawerContent = () => {
         >
           <GitHubIcon />
         </IconButton>
-      </Typography>
-      <Typography
-        align="center"
-        classes={{ root: classes.content }}
-      >
+      </Content>
+      <Content align="center">
         <AnchorLink href="/">
           {site.name}
         </AnchorLink>
@@ -148,7 +139,7 @@ const DrawerContent = () => {
         >
           {'GitHub'}
         </AnchorLink>
-      </Typography>
+      </Content>
     </Fragment>
   );
 };

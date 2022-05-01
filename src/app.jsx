@@ -1,8 +1,9 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { CssBaseline, LinearProgress, StyledEngineProvider, ThemeProvider } from '@mui/material';
+import { CssBaseline, LinearProgress, ThemeProvider } from '@mui/material';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import React, { Fragment, Suspense, lazy, useCallback, useMemo, useState } from 'react';
 import AppContext from './app-context';
+import { CacheProvider } from '@emotion/react';
 import DrawerContent from './components/DrawerContent';
 import ErrorBoundary from './components/ErrorBoundary';
 import Event from './components/Event';
@@ -14,9 +15,15 @@ import { SnackbarProvider } from 'notistack';
 import Status from './components/Status';
 import SwipeableDrawer from './components/SwipeableDrawer';
 import axios from 'axios';
+import createCache from '@emotion/cache';
 import { site } from './constant';
 import theme from './theme';
 import { useEffectOnce } from 'usehooks-ts';
+
+const emotionCache = createCache({
+  key: 'css',
+  nonce: document.querySelector('meta[property="csp-nonce"]')?.getAttribute('content') ?? undefined
+});
 
 const Add = lazy(() => import(/* webpackChunkName: "add" */'./components/Add'));
 // eslint-disable-next-line import/max-dependencies
@@ -57,7 +64,7 @@ const App = () => {
     <AppContext.Provider
       value={appContext}
     >
-      <StyledEngineProvider injectFirst>
+      <CacheProvider value={emotionCache}>
         <ThemeProvider theme={theme}>
           <SnackbarProvider action={dismissAction}>
             <QueryClientProvider client={queryClient}>
@@ -112,7 +119,7 @@ const App = () => {
             </QueryClientProvider>
           </SnackbarProvider>
         </ThemeProvider>
-      </StyledEngineProvider>
+      </CacheProvider>
     </AppContext.Provider>
   );
 };

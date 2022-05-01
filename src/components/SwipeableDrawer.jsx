@@ -1,27 +1,22 @@
-import { SwipeableDrawer as MUISwipeableDrawer } from '@mui/material';
+import { Box, SwipeableDrawer as MUISwipeableDrawer, styled } from '@mui/material';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { makeStyles } from '@mui/styles';
 
-const useStyles = makeStyles(() => ({
-  drawer: {
-    maxWidth: '80vw',
-    width: '320px'
-  }
+const DrawerContainer = styled(Box)(() => ({
+  display: 'flex',
+  flexDirection: 'column',
+  height: '100%',
+  maxWidth: '80vw',
+  width: '320px'
 }));
 
-const SwipeableDrawer = ({ children, ...props }) => {
-  const classes = useStyles();
-
-  return (
-    <MUISwipeableDrawer
-      classes={{ paper: classes.drawer }}
-      {...props}
-    >
+const SwipeableDrawer = ({ children, ...props }) => (
+  <MUISwipeableDrawer {...props}>
+    <DrawerContainer>
       {children}
-    </MUISwipeableDrawer>
-  );
-};
+    </DrawerContainer>
+  </MUISwipeableDrawer>
+);
 
 SwipeableDrawer.propTypes = { children: PropTypes.node };
 

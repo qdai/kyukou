@@ -1,15 +1,13 @@
 import { ArrowBack as ArrowBackIcon, Menu as MenuIcon } from '@mui/icons-material';
-import { IconButton, AppBar as MUIAppBar, Toolbar, Typography } from '@mui/material';
+import { IconButton, AppBar as MUIAppBar, Toolbar, Typography, styled } from '@mui/material';
 import { Link, useMatch } from 'react-router-dom';
 import React, { Fragment, useContext } from 'react';
 import AppContext from '../app-context';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@mui/styles';
 
-const useStyles = makeStyles(theme => ({ menuButton: { marginRight: theme.spacing(2) } }));
+const MenuButton = styled(IconButton)(({ theme }) => ({ marginRight: theme.spacing(2) }));
 
 const AppBar = ({ children = null }) => {
-  const classes = useStyles();
   const { openDrawer: handleOpenDrawer } = useContext(AppContext);
   const match = useMatch('/events/*');
 
@@ -19,9 +17,8 @@ const AppBar = ({ children = null }) => {
         <Toolbar>
           {match
             ? (
-              <IconButton
+              <MenuButton
                 aria-label="ホームに戻る"
-                classes={{ root: classes.menuButton }}
                 color="inherit"
                 component={Link}
                 edge="start"
@@ -29,19 +26,18 @@ const AppBar = ({ children = null }) => {
                 to="/"
               >
                 <ArrowBackIcon />
-              </IconButton>
+              </MenuButton>
             )
             : (
-              <IconButton
+              <MenuButton
                 aria-label="メニューを開く"
-                classes={{ root: classes.menuButton }}
                 color="inherit"
                 edge="start"
                 onClick={handleOpenDrawer}
                 size="large"
               >
                 <MenuIcon />
-              </IconButton>
+              </MenuButton>
             )}
           <Typography
             component="h2"

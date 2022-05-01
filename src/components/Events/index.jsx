@@ -1,9 +1,11 @@
 import { LinearProgress, List, Typography } from '@mui/material';
 import React, { Fragment, Suspense, lazy, useContext } from 'react';
+import { Add as AddIcon } from '@mui/icons-material';
 import AppBar from '../AppBar';
 import AppContext from '../../app-context';
 import Container from '../Container';
 import EventsOfADay from './EventsOfADay';
+import { Link } from 'react-router-dom';
 import createEventsFilter from './create-events-filter';
 import createEventsOfADay from './create-events-of-a-day';
 import { site } from '../../constant';
@@ -60,7 +62,13 @@ const Events = () => {
         )}
         {isAdmin && (
           <Suspense fallback={<LinearProgress />}>
-            <Fab />
+            <Fab
+              color="primary"
+              component={Link}
+              to="/events"
+            >
+              <AddIcon />
+            </Fab>
           </Suspense>
         )}
       </Container>

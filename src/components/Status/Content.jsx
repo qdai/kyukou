@@ -4,10 +4,7 @@ import { logNames, site } from '../../constant';
 import Container from '../Container';
 import axios from 'axios';
 import formatLog from './format-log';
-import { makeStyles } from '@mui/styles';
 import { useQuery } from 'react-query';
-
-const useStyles = makeStyles(theme => ({ alert: { marginBottom: theme.spacing(2) } }));
 
 const fetchLog = async logName => {
   const { data } = await axios.get(`${site.url}/api/1/logs/${logName}.json`);
@@ -16,7 +13,6 @@ const fetchLog = async logName => {
 const fetchLogs = () => Promise.all(logNames.map(fetchLog));
 
 const Status = () => {
-  const classes = useStyles();
   const { status, data: logs = [], error } = useQuery('logs', fetchLogs, { refetchOnWindowFocus: false });
 
   return (
@@ -33,9 +29,9 @@ const Status = () => {
         )}
         {logs.map(formatLog).map(({ elapsedTime, level, log, name, time }) => (
           <Alert
-            classes={{ root: classes.alert }}
             key={name}
             severity={level}
+            sx={{ marginBottom: 2 }}
           >
             <AlertTitle component="h3">
               {`${name} (${elapsedTime} ms) `}

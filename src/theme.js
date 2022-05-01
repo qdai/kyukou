@@ -1,6 +1,6 @@
-import { adaptV4Theme, createTheme } from '@mui/material/styles';
+import { createTheme } from '@mui/material/styles';
 
-const theme = createTheme(adaptV4Theme({
+const theme = createTheme({
   palette: {
     primary: {
       contrastText: '#fff',
@@ -27,6 +27,6 @@ const theme = createTheme(adaptV4Theme({
       'sans-serif'
     ].join(',')
   }
-}));
+});
 
 export default theme;

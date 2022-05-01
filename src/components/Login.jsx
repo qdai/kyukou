@@ -4,17 +4,10 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import React, { useContext } from 'react';
 import AppContext from '../app-context';
 import axios from 'axios';
-import { makeStyles } from '@mui/styles';
 import { site } from '../constant';
 import { useSnackbar } from 'notistack';
 
-const useStyles = makeStyles(theme => ({
-  button: { margin: theme.spacing(4, 0) },
-  header: { padding: theme.spacing(4, 0, 0) }
-}));
-
 const Login = () => {
-  const classes = useStyles();
   const { control, handleSubmit } = useForm();
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
@@ -38,8 +31,8 @@ const Login = () => {
     <Container maxWidth="sm">
       <Typography
         align="center"
-        classes={{ root: classes.header }}
         component="h1"
+        sx={{ paddingTop: 4 }}
         variant="h5"
       >
         {`${site.name}にログイン`}
@@ -78,9 +71,9 @@ const Login = () => {
           )}
         />
         <Button
-          classes={{ root: classes.button }}
           color="primary"
           fullWidth
+          sx={{ marginY: 4 }}
           type="submit"
           variant="contained"
         >
