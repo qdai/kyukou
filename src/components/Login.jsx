@@ -45,30 +45,34 @@ const Login = () => {
       </Typography>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Controller
-          as={(
+          control={control}
+          name="username"
+          // eslint-disable-next-line react/jsx-no-bind
+          render={({ field }) => (
             <TextField
               fullWidth
               label="ユーザー名"
               margin="normal"
               required
               type="text"
+              {...field}
             />
           )}
-          control={control}
-          name="username"
         />
         <Controller
-          as={(
+          control={control}
+          name="password"
+          // eslint-disable-next-line react/jsx-no-bind
+          render={({ field }) => (
             <TextField
               fullWidth
               label="パスワード"
               margin="normal"
               required
               type="password"
+              {...field}
             />
           )}
-          control={control}
-          name="password"
         />
         <Button
           classes={{ root: classes.button }}
