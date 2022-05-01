@@ -46,6 +46,7 @@ const Login = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <Controller
           control={control}
+          defaultValue=""
           name="username"
           // eslint-disable-next-line react/jsx-no-bind
           render={({ field }) => (
@@ -61,6 +62,7 @@ const Login = () => {
         />
         <Controller
           control={control}
+          defaultValue=""
           name="password"
           // eslint-disable-next-line react/jsx-no-bind
           render={({ field }) => (
