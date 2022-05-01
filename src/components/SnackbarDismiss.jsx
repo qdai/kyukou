@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
-import { Close as CloseIcon } from '@material-ui/icons';
-import { IconButton } from '@material-ui/core';
+import { Close as CloseIcon } from '@mui/icons-material';
+import { IconButton } from '@mui/material';
 import PropTypes from 'prop-types';
 import { useSnackbar } from 'notistack';
 

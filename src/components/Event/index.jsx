@@ -1,7 +1,7 @@
 import React, { Fragment, Suspense, lazy, useContext } from 'react';
 import AppBar from '../AppBar';
 import AppContext from '../../app-context';
-import { LinearProgress } from '@material-ui/core';
+import { LinearProgress } from '@mui/material';
 import Table from './Table';
 
 const Edit = lazy(() => import(/* webpackChunkName: "event-edit" */'./Edit'));

@@ -1,10 +1,10 @@
-import { Alert, AlertTitle } from '@material-ui/lab';
-import { LinearProgress, Typography, makeStyles } from '@material-ui/core';
+import { Alert, AlertTitle, LinearProgress, Typography } from '@mui/material';
 import React, { Fragment } from 'react';
 import { logNames, site } from '../../constant';
 import Container from '../Container';
 import axios from 'axios';
 import formatLog from './format-log';
+import { makeStyles } from '@mui/styles';
 import { useQuery } from 'react-query';
 
 const useStyles = makeStyles(theme => ({ alert: { marginBottom: theme.spacing(2) } }));

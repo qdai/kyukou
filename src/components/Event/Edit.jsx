@@ -1,10 +1,11 @@
-import { Button, makeStyles } from '@material-ui/core';
 import React, { useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { Button } from '@mui/material';
 import Container from '../Container';
 import EventsController from '../EventsController';
 import axios from 'axios';
 import flatten from 'flat';
+import { makeStyles } from '@mui/styles';
 import { site } from '../../constant';
 import useEvents from '../../hooks/use-events';
 import { useForm } from 'react-hook-form';

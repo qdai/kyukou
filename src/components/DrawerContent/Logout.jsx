@@ -1,7 +1,7 @@
-import { ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
+import { ListItem, ListItemIcon, ListItemText } from '@mui/material';
 import React, { useCallback, useContext } from 'react';
 import AppContext from '../../app-context';
-import { ExitToApp as ExitToAppIcon } from '@material-ui/icons';
+import { ExitToApp as ExitToAppIcon } from '@mui/icons-material';
 import axios from 'axios';
 import { site } from '../../constant';
 

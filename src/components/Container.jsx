@@ -1,6 +1,7 @@
-import { Container as MUIContainer, makeStyles } from '@material-ui/core';
+import { Container as MUIContainer } from '@mui/material';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles(theme => ({ container: { padding: theme.spacing(3, 2) } }));
 

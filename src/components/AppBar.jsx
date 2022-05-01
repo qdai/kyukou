@@ -1,9 +1,10 @@
-import { ArrowBack as ArrowBackIcon, Menu as MenuIcon } from '@material-ui/icons';
-import { IconButton, AppBar as MUIAppBar, Toolbar, Typography, makeStyles } from '@material-ui/core';
+import { ArrowBack as ArrowBackIcon, Menu as MenuIcon } from '@mui/icons-material';
+import { IconButton, AppBar as MUIAppBar, Toolbar, Typography } from '@mui/material';
 import { Link, useMatch } from 'react-router-dom';
 import React, { Fragment, useContext } from 'react';
 import AppContext from '../app-context';
 import PropTypes from 'prop-types';
+import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles(theme => ({ menuButton: { marginRight: theme.spacing(2) } }));
 
@@ -24,6 +25,7 @@ const AppBar = ({ children = null }) => {
                 color="inherit"
                 component={Link}
                 edge="start"
+                size="large"
                 to="/"
               >
                 <ArrowBackIcon />
@@ -36,6 +38,7 @@ const AppBar = ({ children = null }) => {
                 color="inherit"
                 edge="start"
                 onClick={handleOpenDrawer}
+                size="large"
               >
                 <MenuIcon />
               </IconButton>

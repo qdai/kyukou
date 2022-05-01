@@ -1,7 +1,8 @@
-import { ListItem, ListItemText, ListSubheader, makeStyles } from '@material-ui/core';
+import { ListItem, ListItemText, ListSubheader } from '@mui/material';
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles(theme => ({
   subheader: {

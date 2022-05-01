@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { CssBaseline, LinearProgress, ThemeProvider } from '@material-ui/core';
+import { CssBaseline, LinearProgress, StyledEngineProvider, ThemeProvider } from '@mui/material';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import React, { Fragment, Suspense, lazy, useCallback, useMemo, useState } from 'react';
 import AppContext from './app-context';
@@ -57,60 +57,62 @@ const App = () => {
     <AppContext.Provider
       value={appContext}
     >
-      <ThemeProvider theme={theme}>
-        <SnackbarProvider action={dismissAction}>
-          <QueryClientProvider client={queryClient}>
-            <Fragment>
-              <CssBaseline />
-              <BrowserRouter>
-                <SwipeableDrawer
-                  onClose={handleCloseDrawer}
-                  onOpen={handleOpenDrawer}
-                  open={drawerOpen}
-                >
-                  <DrawerContent />
-                </SwipeableDrawer>
-                <ErrorBoundary>
-                  <Routes>
-                    <Route
-                      element={<Events />}
-                      path="/"
-                    />
-                    <Route
-                      element={<Settings />}
-                      path="/settings"
-                    />
-                    <Route
-                      element={<Status />}
-                      path="/status"
-                    />
-                    <Route
-                      element={(
-                        <Suspense fallback={<LinearProgress />}>
-                          <Add />
-                        </Suspense>
-                      )}
-                      path="/events"
-                    />
-                    <Route
-                      element={<Event />}
-                      path="/events/:hash"
-                    />
-                    <Route
-                      element={(
-                        <Suspense fallback={<LinearProgress />}>
-                          <Login />
-                        </Suspense>
-                      )}
-                      path="/login"
-                    />
-                  </Routes>
-                </ErrorBoundary>
-              </BrowserRouter>
-            </Fragment>
-          </QueryClientProvider>
-        </SnackbarProvider>
-      </ThemeProvider>
+      <StyledEngineProvider injectFirst>
+        <ThemeProvider theme={theme}>
+          <SnackbarProvider action={dismissAction}>
+            <QueryClientProvider client={queryClient}>
+              <Fragment>
+                <CssBaseline />
+                <BrowserRouter>
+                  <SwipeableDrawer
+                    onClose={handleCloseDrawer}
+                    onOpen={handleOpenDrawer}
+                    open={drawerOpen}
+                  >
+                    <DrawerContent />
+                  </SwipeableDrawer>
+                  <ErrorBoundary>
+                    <Routes>
+                      <Route
+                        element={<Events />}
+                        path="/"
+                      />
+                      <Route
+                        element={<Settings />}
+                        path="/settings"
+                      />
+                      <Route
+                        element={<Status />}
+                        path="/status"
+                      />
+                      <Route
+                        element={(
+                          <Suspense fallback={<LinearProgress />}>
+                            <Add />
+                          </Suspense>
+                        )}
+                        path="/events"
+                      />
+                      <Route
+                        element={<Event />}
+                        path="/events/:hash"
+                      />
+                      <Route
+                        element={(
+                          <Suspense fallback={<LinearProgress />}>
+                            <Login />
+                          </Suspense>
+                        )}
+                        path="/login"
+                      />
+                    </Routes>
+                  </ErrorBoundary>
+                </BrowserRouter>
+              </Fragment>
+            </QueryClientProvider>
+          </SnackbarProvider>
+        </ThemeProvider>
+      </StyledEngineProvider>
     </AppContext.Provider>
   );
 };

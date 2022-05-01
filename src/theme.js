@@ -1,6 +1,6 @@
-import { createTheme } from '@material-ui/core/styles';
+import { adaptV4Theme, createTheme } from '@mui/material/styles';
 
-const theme = createTheme({
+const theme = createTheme(adaptV4Theme({
   palette: {
     primary: {
       contrastText: '#fff',
@@ -27,6 +27,6 @@ const theme = createTheme({
       'sans-serif'
     ].join(',')
   }
-});
+}));
 
 export default theme;

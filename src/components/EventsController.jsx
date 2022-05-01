@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Controller } from 'react-hook-form';
 import PropTypes from 'prop-types';
-import { TextField } from '@material-ui/core';
+import { TextField } from '@mui/material';
 import { eventKeys } from '../constant';
 
 const requiredKeys = [

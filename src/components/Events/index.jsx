@@ -1,4 +1,4 @@
-import { LinearProgress, List, Typography } from '@material-ui/core';
+import { LinearProgress, List, Typography } from '@mui/material';
 import React, { Fragment, Suspense, lazy, useContext } from 'react';
 import AppBar from '../AppBar';
 import AppContext from '../../app-context';

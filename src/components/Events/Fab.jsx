@@ -1,7 +1,8 @@
-import { Fab as MUIFab, makeStyles } from '@material-ui/core';
-import { Add as AddIcon } from '@material-ui/icons';
+import { Add as AddIcon } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
+import { Fab as MUIFab } from '@mui/material';
 import React from 'react';
+import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles(theme => ({
   fab: {

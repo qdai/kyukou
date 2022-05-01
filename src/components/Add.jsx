@@ -1,7 +1,7 @@
 import React, { Fragment, useCallback, useContext } from 'react';
 import AppBar from './AppBar';
 import AppContext from '../app-context';
-import { Button } from '@material-ui/core';
+import { Button } from '@mui/material';
 import Container from './Container';
 import EventsController from './EventsController';
 import { Navigate } from 'react-router-dom';

@@ -1,8 +1,9 @@
-import { Link as AnchorLink, AppBar, IconButton, LinearProgress, List, ListItem, ListItemIcon, ListItemText, Toolbar, Typography, makeStyles } from '@material-ui/core';
-import { Check as CheckIcon, Code as CodeIcon, GitHub as GitHubIcon, Home as HomeIcon, RssFeed as RssFeedIcon, Settings as SettingsIcon, Twitter as TwitterIcon } from '@material-ui/icons';
+import { Link as AnchorLink, AppBar, IconButton, LinearProgress, List, ListItem, ListItemIcon, ListItemText, Toolbar, Typography } from '@mui/material';
+import { Check as CheckIcon, Code as CodeIcon, GitHub as GitHubIcon, Home as HomeIcon, RssFeed as RssFeedIcon, Settings as SettingsIcon, Twitter as TwitterIcon } from '@mui/icons-material';
 import React, { Fragment, Suspense, lazy, useContext } from 'react';
 import AppContext from '../../app-context';
 import { Link } from 'react-router-dom';
+import { makeStyles } from '@mui/styles';
 import { site } from '../../constant';
 
 const Logout = lazy(() => import(/* webpackChunkName: "drawer-content-logout" */'./Logout'));
@@ -102,6 +103,7 @@ const DrawerContent = () => {
           aria-label="Twitter"
           href={`https://twitter.com/${site.twitter}`}
           rel="noopener noreferrer"
+          size="large"
           target="_blank"
         >
           <TwitterIcon />
@@ -109,6 +111,7 @@ const DrawerContent = () => {
         <IconButton
           aria-label="RSS"
           href="/rss"
+          size="large"
         >
           <RssFeedIcon />
         </IconButton>
@@ -116,6 +119,7 @@ const DrawerContent = () => {
           aria-label="GitHub"
           href={`https://github.com/${site.author}/kyukou`}
           rel="noopener noreferrer"
+          size="large"
           target="_blank"
         >
           <GitHubIcon />

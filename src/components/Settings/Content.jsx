@@ -1,4 +1,4 @@
-import { Button, Checkbox, FormControlLabel, Typography } from '@material-ui/core';
+import { Button, Checkbox, FormControlLabel, Typography } from '@mui/material';
 import React, { Fragment, useCallback, useMemo } from 'react';
 import { abouts, departments } from '../../constant';
 import createCalendarURL from './create-calendar-url';
