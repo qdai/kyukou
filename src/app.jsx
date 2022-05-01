@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { CssBaseline, LinearProgress, SwipeableDrawer, ThemeProvider, makeStyles } from '@material-ui/core';
+import { CssBaseline, LinearProgress, ThemeProvider } from '@material-ui/core';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import React, { Fragment, Suspense, lazy, useCallback, useMemo, useState } from 'react';
 import AppContext from './app-context';
@@ -12,6 +12,7 @@ import Settings from './components/Settings';
 import SnackbarDismiss from './components/SnackbarDismiss';
 import { SnackbarProvider } from 'notistack';
 import Status from './components/Status';
+import SwipeableDrawer from './components/SwipeableDrawer';
 import axios from 'axios';
 import { site } from './constant';
 import theme from './theme';
@@ -23,15 +24,7 @@ const Login = lazy(() => import(/* webpackChunkName: "login" */'./components/Log
 
 const queryClient = new QueryClient();
 
-const useStyles = makeStyles(() => ({
-  drawer: {
-    maxWidth: '80vw',
-    width: '320px'
-  }
-}));
-
 const App = () => {
-  const classes = useStyles();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
 
@@ -71,7 +64,6 @@ const App = () => {
               <CssBaseline />
               <BrowserRouter>
                 <SwipeableDrawer
-                  classes={{ paper: classes.drawer }}
                   onClose={handleCloseDrawer}
                   onOpen={handleOpenDrawer}
                   open={drawerOpen}
