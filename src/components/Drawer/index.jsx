@@ -1,7 +1,15 @@
+import { Box, SwipeableDrawer, styled } from '@mui/material';
 import DrawerContent from './DrawerContent';
 import React from 'react';
-import SwipeableDrawer from './SwipeableDrawer';
 import useAppContext from '../../hooks/use-app-context';
+
+const DrawerContainer = styled(Box)(() => ({
+  display: 'flex',
+  flexDirection: 'column',
+  height: '100%',
+  maxWidth: '80vw',
+  width: '320px'
+}));
 
 const Drawer = () => {
   const { closeDrawer: handleCloseDrawer, drawerOpen, openDrawer: handleOpenDrawer } = useAppContext();
@@ -12,7 +20,9 @@ const Drawer = () => {
       onOpen={handleOpenDrawer}
       open={drawerOpen}
     >
-      <DrawerContent />
+      <DrawerContainer>
+        <DrawerContent />
+      </DrawerContainer>
     </SwipeableDrawer>
   );
 };
