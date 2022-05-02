@@ -1,10 +1,10 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { CssBaseline, LinearProgress, ThemeProvider } from '@mui/material';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import React, { Fragment, Suspense, lazy, useCallback, useMemo, useState } from 'react';
-import AppContext from './app-context';
+import React, { Fragment, Suspense, lazy, useCallback } from 'react';
+import { Provider as AppContextProvider } from './hooks/use-app-context';
 import { CacheProvider } from '@emotion/react';
-import DrawerContent from './components/DrawerContent';
+import { Drawer } from './components/Drawer';
 import ErrorBoundary from './components/ErrorBoundary';
 import Event from './components/Event';
 import Events from './components/Events';
@@ -13,12 +13,8 @@ import Settings from './components/Settings';
 import SnackbarDismiss from './components/SnackbarDismiss';
 import { SnackbarProvider } from 'notistack';
 import Status from './components/Status';
-import SwipeableDrawer from './components/SwipeableDrawer';
-import axios from 'axios';
 import createCache from '@emotion/cache';
-import { site } from './constant';
 import theme from './theme';
-import { useEffectOnce } from 'usehooks-ts';
 
 const emotionCache = createCache({
   key: 'css',
@@ -32,38 +28,10 @@ const Login = lazy(() => import(/* webpackChunkName: "login" */'./components/Log
 const queryClient = new QueryClient();
 
 const App = () => {
-  const [drawerOpen, setDrawerOpen] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
-
-  const handleCloseDrawer = useCallback(() => setDrawerOpen(false), [setDrawerOpen]);
-  const handleOpenDrawer = useCallback(() => setDrawerOpen(true), [setDrawerOpen]);
-
-  useEffectOnce(() => {
-    const checkIsAdmin = async () => {
-      const { data } = await axios.get(`${site.url}/admin`);
-      setIsAdmin(data.isAdmin === true);
-    };
-    checkIsAdmin();
-  });
-
   const dismissAction = useCallback(key => <SnackbarDismiss id={key} />, []);
 
-  const appContext = useMemo(() => ({
-    closeDrawer: handleCloseDrawer,
-    isAdmin,
-    openDrawer: handleOpenDrawer,
-    setIsAdmin
-  }), [
-    handleCloseDrawer,
-    handleOpenDrawer,
-    isAdmin,
-    setIsAdmin
-  ]);
-
   return (
-    <AppContext.Provider
-      value={appContext}
-    >
+    <AppContextProvider>
       <CacheProvider value={emotionCache}>
         <ThemeProvider theme={theme}>
           <SnackbarProvider action={dismissAction}>
@@ -71,13 +39,7 @@ const App = () => {
               <Fragment>
                 <CssBaseline />
                 <BrowserRouter>
-                  <SwipeableDrawer
-                    onClose={handleCloseDrawer}
-                    onOpen={handleOpenDrawer}
-                    open={drawerOpen}
-                  >
-                    <DrawerContent />
-                  </SwipeableDrawer>
+                  <Drawer />
                   <ErrorBoundary>
                     <Routes>
                       <Route
@@ -120,7 +82,7 @@ const App = () => {
           </SnackbarProvider>
         </ThemeProvider>
       </CacheProvider>
-    </AppContext.Provider>
+    </AppContextProvider>
   );
 };
 

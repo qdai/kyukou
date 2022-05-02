@@ -1,14 +1,14 @@
 import { ArrowBack as ArrowBackIcon, Menu as MenuIcon } from '@mui/icons-material';
 import { IconButton, AppBar as MUIAppBar, Toolbar, Typography, styled } from '@mui/material';
 import { Link, useMatch } from 'react-router-dom';
-import React, { Fragment, useContext } from 'react';
-import AppContext from '../app-context';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { useAppContext } from '../hooks/use-app-context';
 
 const MenuButton = styled(IconButton)(({ theme }) => ({ marginRight: theme.spacing(2) }));
 
 const AppBar = ({ children = null }) => {
-  const { openDrawer: handleOpenDrawer } = useContext(AppContext);
+  const { openDrawer: handleOpenDrawer } = useAppContext();
   const match = useMatch('/events/*');
 
   return (

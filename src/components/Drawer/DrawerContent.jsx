@@ -1,9 +1,9 @@
 import { Link as AnchorLink, AppBar, IconButton, LinearProgress, List, ListItem, ListItemIcon, ListItemText, Toolbar, Typography, styled } from '@mui/material';
 import { Check as CheckIcon, Code as CodeIcon, GitHub as GitHubIcon, Home as HomeIcon, RssFeed as RssFeedIcon, Settings as SettingsIcon, Twitter as TwitterIcon } from '@mui/icons-material';
-import React, { Fragment, Suspense, lazy, useContext } from 'react';
-import AppContext from '../../app-context';
+import React, { Fragment, Suspense, lazy } from 'react';
 import { Link } from 'react-router-dom';
 import { site } from '../../constant';
+import useAppContext from '../../hooks/use-app-context';
 
 const Logout = lazy(() => import(/* webpackChunkName: "drawer-content-logout" */'./Logout'));
 
@@ -16,8 +16,7 @@ const Ul = styled('ul')(() => ({
 }));
 
 const DrawerContent = () => {
-  const { isAdmin } = useContext(AppContext);
-  const { closeDrawer: handleCloseDrawer } = useContext(AppContext);
+  const { closeDrawer: handleCloseDrawer, isAdmin } = useAppContext();
 
   return (
     <Fragment>

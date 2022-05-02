@@ -1,12 +1,12 @@
 import { ListItem, ListItemIcon, ListItemText } from '@mui/material';
-import React, { useCallback, useContext } from 'react';
-import AppContext from '../../app-context';
+import React, { useCallback } from 'react';
 import { ExitToApp as ExitToAppIcon } from '@mui/icons-material';
 import axios from 'axios';
 import { site } from '../../constant';
+import { useAppContext } from '../../hooks/use-app-context';
 
 const LogoutButton = () => {
-  const { closeDrawer, setIsAdmin } = useContext(AppContext);
+  const { closeDrawer, setIsAdmin } = useAppContext();
 
   const handleClick = useCallback(async () => {
     try {

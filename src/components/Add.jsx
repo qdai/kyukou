@@ -1,17 +1,18 @@
-import React, { Fragment, useCallback, useContext } from 'react';
+import React, { Fragment, useCallback } from 'react';
 import AppBar from './AppBar';
-import AppContext from '../app-context';
 import { Button } from '@mui/material';
 import Container from './Container';
 import EventsController from './EventsController';
 import { Navigate } from 'react-router-dom';
 import axios from 'axios';
 import { site } from '../constant';
+import { useAppContext } from '../hooks/use-app-context';
 import { useForm } from 'react-hook-form';
-import { useSnackbar } from 'notistack'; // eslint-disable-line import/max-dependencies
+// eslint-disable-next-line import/max-dependencies
+import { useSnackbar } from 'notistack';
 
 const Add = () => {
-  const { isAdmin } = useContext(AppContext);
+  const { isAdmin } = useAppContext();
   const { control, formState, handleSubmit } = useForm();
   const { enqueueSnackbar } = useSnackbar();
 

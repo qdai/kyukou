@@ -1,17 +1,17 @@
 import { Button, Container, TextField, Typography } from '@mui/material';
 import { Controller, useForm } from 'react-hook-form';
 import { Navigate, useNavigate } from 'react-router-dom';
-import React, { useContext } from 'react';
-import AppContext from '../app-context';
+import React from 'react';
 import axios from 'axios';
 import { site } from '../constant';
+import { useAppContext } from '../hooks/use-app-context';
 import { useSnackbar } from 'notistack';
 
 const Login = () => {
   const { control, handleSubmit } = useForm();
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
-  const { isAdmin, setIsAdmin } = useContext(AppContext);
+  const { isAdmin, setIsAdmin } = useAppContext();
 
   if (isAdmin) {
     return <Navigate to="/" />;
