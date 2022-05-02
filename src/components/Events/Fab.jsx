@@ -1,7 +1,6 @@
 import { Fab as MUIFab, styled } from '@mui/material';
 import { Add as AddIcon } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
-import React from 'react';
 
 const StyledFab = styled(MUIFab)(({ theme }) => ({
   bottom: theme.spacing(2),

@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import React, { Suspense, lazy } from 'react';
+import { Suspense, lazy } from 'react';
 import { Drawer } from './Drawer';
 import ErrorBoundary from './ErrorBoundary';
 import Event from './Event';

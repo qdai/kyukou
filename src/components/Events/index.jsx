@@ -1,5 +1,5 @@
+import { Fragment, Suspense, lazy } from 'react';
 import { LinearProgress, List, Typography } from '@mui/material';
-import React, { Fragment, Suspense, lazy } from 'react';
 import AppBar from '../AppBar';
 import Container from '../Container';
 import EventsOfADay from './EventsOfADay';

@@ -1,7 +1,7 @@
 import { Alert, AlertTitle, LinearProgress, Typography } from '@mui/material';
-import React, { Fragment } from 'react';
 import { logNames, site } from '../../constant';
 import Container from '../Container';
+import { Fragment } from 'react';
 import axios from 'axios';
 import formatLog from './format-log';
 import { useQuery } from 'react-query';

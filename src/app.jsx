@@ -1,6 +1,6 @@
 import { CssBaseline, ThemeProvider } from '@mui/material';
+import { Fragment, useCallback } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import React, { Fragment, useCallback } from 'react';
 import { Provider as AppContextProvider } from './hooks/use-app-context';
 import { CacheProvider } from '@emotion/react';
 import ReactDOM from 'react-dom';

@@ -1,4 +1,4 @@
-import React, { Fragment, Suspense, lazy } from 'react';
+import { Fragment, Suspense, lazy } from 'react';
 import AppBar from '../AppBar';
 import { LinearProgress } from '@mui/material';
 

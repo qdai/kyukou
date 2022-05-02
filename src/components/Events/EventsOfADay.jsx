@@ -1,5 +1,5 @@
 import { ListItem, ListItemText, ListSubheader, styled } from '@mui/material';
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 

@@ -1,4 +1,3 @@
-import React, { useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Button } from '@mui/material';
 import Container from '../Container';
@@ -6,6 +5,7 @@ import EventsController from '../EventsController';
 import axios from 'axios';
 import flatten from 'flat';
 import { site } from '../../constant';
+import { useCallback } from 'react';
 import useEvents from '../../hooks/use-events';
 import { useForm } from 'react-hook-form';
 import { useSnackbar } from 'notistack'; // eslint-disable-line import/max-dependencies

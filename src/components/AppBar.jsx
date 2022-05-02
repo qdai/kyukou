@@ -1,7 +1,7 @@
 import { ArrowBack as ArrowBackIcon, Menu as MenuIcon } from '@mui/icons-material';
 import { IconButton, AppBar as MUIAppBar, Toolbar, Typography, styled } from '@mui/material';
 import { Link, useMatch } from 'react-router-dom';
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { useAppContext } from '../hooks/use-app-context';
 

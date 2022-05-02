@@ -15,7 +15,7 @@ const config = {
         useBuiltIns: 'usage'
       }
     ],
-    '@babel/preset-react'
+    ['@babel/preset-react', { runtime: 'automatic' }]
   ]
 };
 

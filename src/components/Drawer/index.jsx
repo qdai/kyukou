@@ -1,6 +1,5 @@
 import { Box, SwipeableDrawer, styled } from '@mui/material';
 import DrawerContent from './DrawerContent';
-import React from 'react';
 import useAppContext from '../../hooks/use-app-context';
 
 const DrawerContainer = styled(Box)(() => ({
