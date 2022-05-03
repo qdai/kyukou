@@ -1,125 +1,41 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { CssBaseline, LinearProgress, SwipeableDrawer, ThemeProvider, makeStyles } from '@material-ui/core';
+import { CssBaseline, ThemeProvider } from '@mui/material';
+import { Fragment, useCallback } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import React, { Fragment, Suspense, lazy, useCallback, useMemo, useState } from 'react';
-import AppContext from './app-context';
-import DrawerContent from './components/DrawerContent';
-import ErrorBoundary from './components/ErrorBoundary';
-import Event from './components/Event';
-import Events from './components/Events';
+import { Provider as AppContextProvider } from './hooks/use-app-context';
+import { CacheProvider } from '@emotion/react';
 import ReactDOM from 'react-dom';
-import Settings from './components/Settings';
+import { Router } from './components/Router';
 import SnackbarDismiss from './components/SnackbarDismiss';
 import { SnackbarProvider } from 'notistack';
-import Status from './components/Status';
-import axios from 'axios';
-import { site } from './constant';
-import theme from './theme';
-import { useEffectOnce } from 'usehooks-ts';
-
-const Add = lazy(() => import(/* webpackChunkName: "add" */'./components/Add'));
+import createCache from '@emotion/cache';
 // eslint-disable-next-line import/max-dependencies
-const Login = lazy(() => import(/* webpackChunkName: "login" */'./components/Login'));
+import theme from './theme';
+
+const emotionCache = createCache({
+  key: 'css',
+  nonce: document.querySelector('meta[property="csp-nonce"]')?.getAttribute('content') ?? undefined
+});
 
 const queryClient = new QueryClient();
 
-const useStyles = makeStyles(() => ({
-  drawer: {
-    maxWidth: '80vw',
-    width: '320px'
-  }
-}));
-
 const App = () => {
-  const classes = useStyles();
-  const [drawerOpen, setDrawerOpen] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
-
-  const handleCloseDrawer = useCallback(() => setDrawerOpen(false), [setDrawerOpen]);
-  const handleOpenDrawer = useCallback(() => setDrawerOpen(true), [setDrawerOpen]);
-
-  useEffectOnce(() => {
-    const checkIsAdmin = async () => {
-      const { data } = await axios.get(`${site.url}/admin`);
-      setIsAdmin(data.isAdmin === true);
-    };
-    checkIsAdmin();
-  });
-
   const dismissAction = useCallback(key => <SnackbarDismiss id={key} />, []);
 
-  const appContext = useMemo(() => ({
-    closeDrawer: handleCloseDrawer,
-    isAdmin,
-    openDrawer: handleOpenDrawer,
-    setIsAdmin
-  }), [
-    handleCloseDrawer,
-    handleOpenDrawer,
-    isAdmin,
-    setIsAdmin
-  ]);
-
   return (
-    <AppContext.Provider
-      value={appContext}
-    >
-      <ThemeProvider theme={theme}>
-        <SnackbarProvider action={dismissAction}>
-          <QueryClientProvider client={queryClient}>
-            <Fragment>
-              <CssBaseline />
-              <BrowserRouter>
-                <SwipeableDrawer
-                  classes={{ paper: classes.drawer }}
-                  onClose={handleCloseDrawer}
-                  onOpen={handleOpenDrawer}
-                  open={drawerOpen}
-                >
-                  <DrawerContent />
-                </SwipeableDrawer>
-                <ErrorBoundary>
-                  <Routes>
-                    <Route
-                      element={<Events />}
-                      path="/"
-                    />
-                    <Route
-                      element={<Settings />}
-                      path="/settings"
-                    />
-                    <Route
-                      element={<Status />}
-                      path="/status"
-                    />
-                    <Route
-                      element={(
-                        <Suspense fallback={<LinearProgress />}>
-                          <Add />
-                        </Suspense>
-                      )}
-                      path="/events"
-                    />
-                    <Route
-                      element={<Event />}
-                      path="/events/:hash"
-                    />
-                    <Route
-                      element={(
-                        <Suspense fallback={<LinearProgress />}>
-                          <Login />
-                        </Suspense>
-                      )}
-                      path="/login"
-                    />
-                  </Routes>
-                </ErrorBoundary>
-              </BrowserRouter>
-            </Fragment>
-          </QueryClientProvider>
-        </SnackbarProvider>
-      </ThemeProvider>
-    </AppContext.Provider>
+    <AppContextProvider>
+      <CacheProvider value={emotionCache}>
+        <ThemeProvider theme={theme}>
+          <SnackbarProvider action={dismissAction}>
+            <QueryClientProvider client={queryClient}>
+              <Fragment>
+                <CssBaseline />
+                <Router />
+              </Fragment>
+            </QueryClientProvider>
+          </SnackbarProvider>
+        </ThemeProvider>
+      </CacheProvider>
+    </AppContextProvider>
   );
 };
 

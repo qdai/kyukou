@@ -1,23 +1,16 @@
-import { Button, Container, TextField, Typography, makeStyles } from '@material-ui/core';
+import { Button, Container, TextField, Typography } from '@mui/material';
 import { Controller, useForm } from 'react-hook-form';
 import { Navigate, useNavigate } from 'react-router-dom';
-import React, { useContext } from 'react';
-import AppContext from '../app-context';
 import axios from 'axios';
 import { site } from '../constant';
+import { useAppContext } from '../hooks/use-app-context';
 import { useSnackbar } from 'notistack';
 
-const useStyles = makeStyles(theme => ({
-  button: { margin: theme.spacing(4, 0) },
-  header: { padding: theme.spacing(4, 0, 0) }
-}));
-
 const Login = () => {
-  const classes = useStyles();
   const { control, handleSubmit } = useForm();
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
-  const { isAdmin, setIsAdmin } = useContext(AppContext);
+  const { isAdmin, setIsAdmin } = useAppContext();
 
   if (isAdmin) {
     return <Navigate to="/" />;
@@ -37,8 +30,8 @@ const Login = () => {
     <Container maxWidth="sm">
       <Typography
         align="center"
-        classes={{ root: classes.header }}
         component="h1"
+        sx={{ paddingTop: 4 }}
         variant="h5"
       >
         {`${site.name}にログイン`}
@@ -46,6 +39,7 @@ const Login = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <Controller
           control={control}
+          defaultValue=""
           name="username"
           // eslint-disable-next-line react/jsx-no-bind
           render={({ field }) => (
@@ -61,6 +55,7 @@ const Login = () => {
         />
         <Controller
           control={control}
+          defaultValue=""
           name="password"
           // eslint-disable-next-line react/jsx-no-bind
           render={({ field }) => (
@@ -75,9 +70,9 @@ const Login = () => {
           )}
         />
         <Button
-          classes={{ root: classes.button }}
           color="primary"
           fullWidth
+          sx={{ marginY: 4 }}
           type="submit"
           variant="contained"
         >

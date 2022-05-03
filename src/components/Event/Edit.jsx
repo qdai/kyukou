@@ -1,19 +1,16 @@
-import { Button, makeStyles } from '@material-ui/core';
-import React, { useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { Button } from '@mui/material';
 import Container from '../Container';
 import EventsController from '../EventsController';
 import axios from 'axios';
 import flatten from 'flat';
 import { site } from '../../constant';
+import { useCallback } from 'react';
 import useEvents from '../../hooks/use-events';
 import { useForm } from 'react-hook-form';
 import { useSnackbar } from 'notistack'; // eslint-disable-line import/max-dependencies
 
-const useStyles = makeStyles(theme => ({ button: { marginRight: theme.spacing(2) } }));
-
 const Edit = () => {
-  const classes = useStyles();
   const { hash } = useParams();
   const { events } = useEvents();
   const { control, formState, handleSubmit } = useForm();
@@ -58,16 +55,15 @@ const Edit = () => {
     <Container>
       <form onSubmit={handleSubmit(onEditSubmit)}>
         <Button
-          classes={{ root: classes.button }}
           color="primary"
           disabled={formState.isSubmitting}
+          sx={{ marginRight: 2 }}
           type="submit"
           variant="contained"
         >
           {'Edit'}
         </Button>
         <Button
-          classes={{ root: classes.button }}
           color="secondary"
           onClick={handleDeleteClick}
           variant="contained"

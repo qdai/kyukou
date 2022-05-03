@@ -1,5 +1,5 @@
-import { Button, Checkbox, FormControlLabel, Typography } from '@material-ui/core';
-import React, { Fragment, useCallback, useMemo } from 'react';
+import { Button, Checkbox, FormControlLabel, Typography } from '@mui/material';
+import { Fragment, useCallback, useMemo } from 'react';
 import { abouts, departments } from '../../constant';
 import createCalendarURL from './create-calendar-url';
 import { useCopyToClipboard } from 'usehooks-ts';

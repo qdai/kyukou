@@ -1,12 +1,12 @@
-import { LinearProgress, List, Typography } from '@material-ui/core';
-import React, { Fragment, Suspense, lazy, useContext } from 'react';
+import { Fragment, Suspense, lazy } from 'react';
+import { LinearProgress, List, Typography } from '@mui/material';
 import AppBar from '../AppBar';
-import AppContext from '../../app-context';
 import Container from '../Container';
 import EventsOfADay from './EventsOfADay';
 import createEventsFilter from './create-events-filter';
 import createEventsOfADay from './create-events-of-a-day';
 import { site } from '../../constant';
+import { useAppContext } from '../../hooks/use-app-context';
 import useEvents from '../../hooks/use-events';
 import useSettings from '../../hooks/use-settings';
 
@@ -14,7 +14,7 @@ import useSettings from '../../hooks/use-settings';
 const Fab = lazy(() => import(/* webpackChunkName: "events-fab" */'./Fab'));
 
 const Events = () => {
-  const { isAdmin } = useContext(AppContext);
+  const { isAdmin } = useAppContext();
   const { status, events, error } = useEvents();
   const { selectedAbouts, selectedDepartments } = useSettings();
 

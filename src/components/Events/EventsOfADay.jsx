@@ -1,54 +1,47 @@
-import { ListItem, ListItemText, ListSubheader, makeStyles } from '@material-ui/core';
-import React, { Fragment } from 'react';
+import { ListItem, ListItemText, ListSubheader, styled } from '@mui/material';
+import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const useStyles = makeStyles(theme => ({
-  subheader: {
-    backgroundColor: theme.palette.grey[50],
-    top: theme.spacing(7)
-  },
-  [`${theme.breakpoints.up('xs')} and (orientation: landscape)`]: { subheader: { top: theme.spacing(6) } },
-  [theme.breakpoints.up('sm')]: { subheader: { top: theme.spacing(8) } },
-  ul: {
-    listStyle: 'none',
-    margin: 0,
-    padding: 0
-  }
+const StickyListSubheader = styled(ListSubheader)(({ theme }) => ({
+  top: theme.spacing(7),
+  [`${theme.breakpoints.up('xs')} and (orientation: landscape)`]: { top: theme.spacing(6) },
+  [theme.breakpoints.up('sm')]: { top: theme.spacing(8) }
 }));
 
-const EventsOfADay = ({ data, date, dateFormatted }) => {
-  const classes = useStyles();
+const Ul = styled('ul')(() => ({
+  listStyle: 'none',
+  margin: 0,
+  padding: 0
+}));
 
-  return (
-    <Fragment>
-      <ListSubheader
-        classes={{ root: classes.subheader }}
-        component="h3"
-        title={date}
-      >
-        {dateFormatted}
-      </ListSubheader>
-      <ul className={classes.ul}>
-        {data.map(({ about, department, hash, period, raw, subject }) => (
-          <li key={hash}>
-            <ListItem
-              button
-              component={Link}
-              title={raw}
-              to={`/events/${hash}`}
-            >
-              <ListItemText
-                primary={`${about} ${subject}`}
-                secondary={`${department} ${period}時限`}
-              />
-            </ListItem>
-          </li>
-        ))}
-      </ul>
-    </Fragment>
-  );
-};
+const EventsOfADay = ({ data, date, dateFormatted }) => (
+  <Fragment>
+    <StickyListSubheader
+      component="h3"
+      title={date}
+    >
+      {dateFormatted}
+    </StickyListSubheader>
+    <Ul>
+      {data.map(({ about, department, hash, period, raw, subject }) => (
+        <li key={hash}>
+          <ListItem
+            button
+            component={Link}
+            title={raw}
+            to={`/events/${hash}`}
+          >
+            <ListItemText
+              primary={`${about} ${subject}`}
+              secondary={`${department} ${period}時限`}
+            />
+          </ListItem>
+        </li>
+      ))}
+    </Ul>
+  </Fragment>
+);
 
 EventsOfADay.propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({

@@ -1,15 +1,14 @@
-import { ArrowBack as ArrowBackIcon, Menu as MenuIcon } from '@material-ui/icons';
-import { IconButton, AppBar as MUIAppBar, Toolbar, Typography, makeStyles } from '@material-ui/core';
+import { ArrowBack as ArrowBackIcon, Menu as MenuIcon } from '@mui/icons-material';
+import { IconButton, AppBar as MUIAppBar, Toolbar, Typography, styled } from '@mui/material';
 import { Link, useMatch } from 'react-router-dom';
-import React, { Fragment, useContext } from 'react';
-import AppContext from '../app-context';
+import { Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { useAppContext } from '../hooks/use-app-context';
 
-const useStyles = makeStyles(theme => ({ menuButton: { marginRight: theme.spacing(2) } }));
+const MenuButton = styled(IconButton)(({ theme }) => ({ marginRight: theme.spacing(2) }));
 
 const AppBar = ({ children = null }) => {
-  const classes = useStyles();
-  const { openDrawer: handleOpenDrawer } = useContext(AppContext);
+  const { openDrawer: handleOpenDrawer } = useAppContext();
   const match = useMatch('/events/*');
 
   return (
@@ -18,27 +17,27 @@ const AppBar = ({ children = null }) => {
         <Toolbar>
           {match
             ? (
-              <IconButton
+              <MenuButton
                 aria-label="ホームに戻る"
-                classes={{ root: classes.menuButton }}
                 color="inherit"
                 component={Link}
                 edge="start"
+                size="large"
                 to="/"
               >
                 <ArrowBackIcon />
-              </IconButton>
+              </MenuButton>
             )
             : (
-              <IconButton
+              <MenuButton
                 aria-label="メニューを開く"
-                classes={{ root: classes.menuButton }}
                 color="inherit"
                 edge="start"
                 onClick={handleOpenDrawer}
+                size="large"
               >
                 <MenuIcon />
-              </IconButton>
+              </MenuButton>
             )}
           <Typography
             component="h2"

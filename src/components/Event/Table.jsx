@@ -1,7 +1,6 @@
-import { Button, LinearProgress, Typography } from '@material-ui/core';
+import { Button, LinearProgress, Typography } from '@mui/material';
 import Container from '../Container';
-import { Launch as LaunchIcon } from '@material-ui/icons';
-import React from 'react';
+import { Launch as LaunchIcon } from '@mui/icons-material';
 import useEvents from '../../hooks/use-events';
 import { useParams } from 'react-router-dom';
 
