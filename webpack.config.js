@@ -11,17 +11,14 @@ const dest = path.resolve(__dirname, 'public');
 const src = path.resolve(__dirname, 'src');
 
 const config = {
-  entry: { app: ['./node_modules/core-js/es/object/entries.js', path.resolve(src, 'app.jsx')] },
+  entry: { app: path.resolve(src, 'app.jsx') },
   mode: 'production',
   module: {
     rules: [
       {
+        exclude: /node_modules/u,
         loader: 'babel-loader',
-        test: [
-          src,
-          path.resolve(__dirname, 'node_modules/nano-css'),
-          path.resolve(__dirname, 'node_modules/react-query')
-        ]
+        test: /\.(?:js|jsx)$/u
       }
     ]
   },
