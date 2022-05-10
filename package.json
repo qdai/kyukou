@@ -68,7 +68,7 @@
     "redoc": "^2.0.0-rc.67",
     "rimraf": "^3.0.2",
     "terser-webpack-plugin": "^5.3.1",
-    "usehooks-ts": "^2.5.1",
+    "usehooks-ts": "^2.5.2",
     "webpack": "^5.72.0",
     "webpack-cli": "^4.9.2",
     "workbox-webpack-plugin": "^6.5.3"
