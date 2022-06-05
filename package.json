@@ -65,7 +65,7 @@
     "react-hook-form": "^7.30.0",
     "react-query": "^3.39.0",
     "react-router-dom": "^6.3.0",
-    "redoc": "^2.0.0-rc.67",
+    "redoc": "^2.0.0-rc.72",
     "rimraf": "^3.0.2",
     "terser-webpack-plugin": "^5.3.1",
     "usehooks-ts": "^2.5.1",
