@@ -31,7 +31,7 @@ const EventsController = ({ control, defaultValues }) => (
           // eslint-disable-next-line react/jsx-no-bind
           render={({ field }) => (
             <TextField
-              defaultValue={defaultValues && defaultValues[key]}
+              defaultValue={defaultValues ? defaultValues[key] : null}
               fullWidth
               label={key}
               margin="normal"
