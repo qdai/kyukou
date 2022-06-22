@@ -17,16 +17,18 @@ const Status = () => {
 
   return (
     <Fragment>
-      {(status === 'loading' || status === 'idle') && <LinearProgress />}
+      {status === 'loading' || status === 'idle' ? <LinearProgress /> : null}
       <Container>
-        {error && (
-          <Typography
-            color="error"
-            paragraph
-          >
-            {error.message}
-          </Typography>
-        )}
+        {error
+          ? (
+            <Typography
+              color="error"
+              paragraph
+            >
+              {error.message}
+            </Typography>
+          )
+          : null}
         {logs.map(formatLog).map(({ elapsedTime, level, log, name, time }) => (
           <Alert
             key={name}

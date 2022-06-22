@@ -82,13 +82,15 @@ const DrawerContent = () => {
               <ListItemText primary="API v1" />
             </ListItem>
           </li>
-          {isAdmin && (
-            <Suspense fallback={<LinearProgress />}>
-              <li>
-                <Logout />
-              </li>
-            </Suspense>
-          )}
+          {isAdmin
+            ? (
+              <Suspense fallback={<LinearProgress />}>
+                <li>
+                  <Logout />
+                </li>
+              </Suspense>
+            )
+            : null}
         </Ul>
       </List>
       <Content align="center">

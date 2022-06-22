@@ -25,7 +25,7 @@ const Events = () => {
       <AppBar>
         {site.name}
       </AppBar>
-      {(status === 'loading' || status === 'idle') && <LinearProgress />}
+      {status === 'loading' || status === 'idle' ? <LinearProgress /> : null}
       <Container>
         {status === 'error'
           ? (
@@ -44,11 +44,13 @@ const Events = () => {
               {`表示中：${filteredEvents.length}/${events.length}`}
             </Typography>
           )}
-        {(status === 'success' && filteredEvents.length === 0) && (
-          <Typography paragraph>
-            {`${selectedDepartments.join('、')}の${selectedAbouts.join('、')}に関する情報はありません。`}
-          </Typography>
-        )}
+        {status === 'success' && filteredEvents.length === 0
+          ? (
+            <Typography paragraph>
+              {`${selectedDepartments.join('、')}の${selectedAbouts.join('、')}に関する情報はありません。`}
+            </Typography>
+          )
+          : null}
         {status === 'success' && (
           <List>
             {createEventsOfADay(filteredEvents).map(daysEvents => (
@@ -58,11 +60,13 @@ const Events = () => {
             ))}
           </List>
         )}
-        {isAdmin && (
-          <Suspense fallback={<LinearProgress />}>
-            <Fab />
-          </Suspense>
-        )}
+        {isAdmin
+          ? (
+            <Suspense fallback={<LinearProgress />}>
+              <Fab />
+            </Suspense>
+          )
+          : null}
       </Container>
     </Fragment>
   );
