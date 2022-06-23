@@ -48,7 +48,7 @@
     "@mui/material": "^5.8.5",
     "axios": "^0.27.2",
     "babel-loader": "^8.2.5",
-    "copy-webpack-plugin": "^10.2.4",
+    "copy-webpack-plugin": "^11.0.0",
     "eslint": "^8.15.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsdoc": "^39.2.9",
