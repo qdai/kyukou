@@ -4,7 +4,7 @@ import Container from '../Container';
 import { Fragment } from 'react';
 import axios from 'axios';
 import formatLog from './format-log';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 
 const fetchLog = async logName => {
   const { data } = await axios.get(`${site.url}/api/1/logs/${logName}.json`);
@@ -13,7 +13,7 @@ const fetchLog = async logName => {
 const fetchLogs = () => Promise.all(logNames.map(fetchLog));
 
 const Status = () => {
-  const { status, data: logs = [], error } = useQuery('logs', fetchLogs, { refetchOnWindowFocus: false });
+  const { status, data: logs = [], error } = useQuery(['logs'], fetchLogs, { refetchOnWindowFocus: false });
 
   return (
     <Fragment>
