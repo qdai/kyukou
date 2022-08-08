@@ -63,7 +63,7 @@
     "pug-lint": "^2.6.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-hook-form": "^7.30.0",
+    "react-hook-form": "^7.34.0",
     "react-router-dom": "^6.3.0",
     "redoc": "^2.0.0-rc.74",
     "rimraf": "^3.0.2",
