@@ -49,8 +49,9 @@ router.post('/login', (req, res, next) => {
 });
 
 router.get('/logout', (req, res) => {
-  req.logout();
-  req.session.destroy(() => res.json({}));
+  req.logout(() => {
+    req.session.destroy(() => res.json({}));
+  });
 });
 
 router.post('/events', async (req, res) => {
