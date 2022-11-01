@@ -36,14 +36,13 @@ jobs:
     needs: [lint, build]
 
     steps:
-    - uses: actions/checkout@v2
     - name: Publish
-      uses: akhileshns/heroku-deploy@v3.12.12
+      uses: fjogeleit/http-request-action@v1
       with:
-        heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-        heroku_app_name: kyukou-kyudai
-        heroku_email: kyudai_taro@yahoo.co.jp
-      if: contains(github.ref, 'tags/v')
+        url: https://api.render.com/v1/services/${{ secrets.RENDER_SERVICE_ID }}/deploys
+        bearerToken: ${{ secrets.RENDER_API_KEY }}
+        method: POST
+      # if: contains(github.ref, 'tags/v')
 
 env:
   SECRET: secret

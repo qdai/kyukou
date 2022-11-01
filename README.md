@@ -1,4 +1,4 @@
-# [Kyukou Kyudai](https://kyukou-kyudai.herokuapp.com/)
+# [Kyukou Kyudai](https://kyukou-kyudai.onrender.com/)
 
 [![GitHub release](https://img.shields.io/github/release/qdai/kyukou.svg)](https://github.com/qdai/kyukou/releases/latest)
 [![dependencies Status](https://david-dm.org/qdai/kyukou/status.svg)](https://david-dm.org/qdai/kyukou)
