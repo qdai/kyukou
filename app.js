@@ -73,6 +73,10 @@ app.use(session(sessionOptions));
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.all('*', (req, res) => {
+  res.redirect(301, new URL(req.originalUrl, 'https://kyukou-kyudai.onrender.com').toString());
+});
+
 app.use('/', routes);
 app.use('/rss', rss);
 app.use('/calendar', calendar);
